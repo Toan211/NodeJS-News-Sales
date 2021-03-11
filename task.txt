@@ -1,12 +1,7 @@
-Node 2 - Chương 2 - Bài 2. Xây dựng chức năng quyền truy cập của nhóm người dùng
-
-Video 1: Group CRUD - C2B1V1 - Group CRUD 
-- 
-
 
 error 16: articles--special change status
 
-b17:
+
 Vào 1 cate sẽ hiển thị các bài viết trong 
 cate đó ra
 - Lấy danh sách cate trong CSDL
