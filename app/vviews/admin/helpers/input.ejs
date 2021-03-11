@@ -1,0 +1,18 @@
+<% 
+    // inputHelper = (name, value, type = 'text', params = {}) => {
+    //     let id = '';
+    //     if (params.hasOwnProperty('id') && params['id'] !== undefined)
+    //     {
+    //         id = `id= "${params.id}"`;
+    //     }
+    //     return `<input type="${type}" name="${name}" value="${value}" ${id} class="form-control form-control-sm">`;
+    // }
+
+    inputHelper = (name, value, type='text', id = '') => {
+        return 	`<input type="${type}" name="${name}" value="${value}" class="form-control form-control-sm" id='${id}''>`;
+    }
+
+
+%>
+				
+

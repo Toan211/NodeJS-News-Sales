@@ -1,0 +1,77 @@
+Node 2 - Chương 2 - Bài 2. Xây dựng chức năng quyền truy cập của nhóm người dùng
+
+Video 1: Group CRUD - C2B1V1 - Group CRUD 
+- 
+
+
+error 16: articles--special change status
+
+b17:
+Vào 1 cate sẽ hiển thị các bài viết trong 
+cate đó ra
+- Lấy danh sách cate trong CSDL
+	+ Field: name, id, slug
+	+ status = active
+	+ sắp xếp order tăng đần	A C
+	+ CategoryModel
+	+ Trừ index.js ra các tập tin khác đều gọi để lấy category
+- Đổ danh sách đó ra menu
+	+ header.ejs
+
+Khai báo router /category trong index
+
+Category A
+- ArticlesModel 
+    + cateroy/12038201381203128
+	+ Lấy danh sách Article thuộc về categoryID
+    + select: 
+        id name thumb content,  
+        created.user_name created.user_id content
+        category.id, category.name 
+	+ status: active
+    + order: created.time giảm dần 
+    + where category.id = categoryID
+- category.ejs 
+    + khai báo route /:id
+    + lấy categoryID
+    + lấy itemsArticle đổ ra view
+- categories/index.ejs đổ dữ liệu	
+
+
+Detail
+-Article model
++ lấy danh sách article thuộc về categoryID
++ select: id, name, content, thumb, slug
+	  create.username, create.userid, create.time
+	  category.id, category.name
+
++ pagination, relavent: where category.id = categoryID
+
+-article.ejs
+	+ khai báo router article/:id
+	+ lấy articleID
+	+ đổ itemArticle ra view
+-article/index.ejs đổ dữ liệu
+
+
+layout:
+
+
+- CategoryModel 
+    - category/categoryID
+	+ Lấy danh sách Article thuộc về categoryID
+	+ layoutNumber
+    - select: 
+        id name thumb content,  
+        created.user_name created.user_id content
+        category.id, category.name 
+	+ status: active
+    - order: created.time giảm dần 
+    - where category.id = categoryID
+- category.ejs 
+    + khai báo route /:id
+    + lấy categoryID
+    + điều kiện từ categoryID: layoutNumber
+    + lấy itemsArticle đổ ra view
+- categories/indexLayout1.ejs 	đổ dữ liệu 
+- categories/indexLayout2.ejs 	đổ dữ liệu 
