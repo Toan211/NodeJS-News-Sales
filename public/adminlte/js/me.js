@@ -1,5 +1,5 @@
 //CKEDITOR.replace('content');
-CKEDITOR.replace( 'content' );
+//CKEDITOR.replace( 'content' );
 
 //Create slug input
 function change_alias(alias) {
@@ -31,7 +31,7 @@ function readURL(input, output) {
     }
   }
   
-  $(document).ready(function () { //deprecated 
+$(document).ready(function () { //deprecated 
 //$(function () {
     var ckbAll = $(".cbAll");
     var fmAdmin = $("#zt-form");
@@ -39,7 +39,7 @@ function readURL(input, output) {
     // CKEDITOR
     if ($('textarea#content').length) {
         CKEDITOR.replace('content');
-    }
+    } // cái này vô dc
     
       $("#imgInp").on('change',function() {
         readURL(this);

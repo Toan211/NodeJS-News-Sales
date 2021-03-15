@@ -25,8 +25,21 @@ let xmlToJson = (url, callback) => {
 	});
   }
 
+  let getDataInURL = async (linkURL) => {
+	let items = [];
+	for await (let item of linkURL) {
+	  await xmlToJson(item.link, (err, data) => {
+		if (err) { return console.err(err); }
+		items.push(data.rss.channel[0].item);
+		console.log(item.link, '-', items.length);
+		console.log(items[0].length);
+	  });
+	}
+	return items;
+  }
   
 
 module.exports = {
-    xmlToJson
+    xmlToJson,
+	getDataInURL,
 }
