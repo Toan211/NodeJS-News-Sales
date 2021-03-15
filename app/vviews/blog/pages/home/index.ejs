@@ -36,7 +36,7 @@
                     <div class="media-body">
                       <h4 class="media-heading"><a href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name%> </a></h4>
                       <div class="comments_box">
-                         <span class="meta_date">14/12/2045</span>
+                         <span class="meta_date"><%= moment(itemsNews[i].created.time).format(systemConfig.format_date) %></span>
                         <span class="meta_more"><a  href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name%></a></span>
                          </div>
                     </div>

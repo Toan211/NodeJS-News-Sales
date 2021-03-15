@@ -16,7 +16,7 @@
 	let xhtmlForm = formBodyHelper(elementsForm);
 %>
 
-<% include ./../../elements/errors %>
+<% include ./../../html/errors %>
 
 <div class="card card-info card-outline">
 	<form action="<%= linkPrefix %>save/" method="POST" class="mb-0" >
@@ -33,5 +33,5 @@
 	</form>
 </div>
 <script>
-	//CKEDITOR.replace( 'content' );
+	CKEDITOR.replace( 'content' );
 </script>

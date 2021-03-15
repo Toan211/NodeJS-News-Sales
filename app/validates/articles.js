@@ -6,7 +6,7 @@ const options = {
     ordering: { min: 0, max: 100 },
     status: { value: 'allvalue' },
     special: { value: 'allvalue' },
-    content: { min: 5, max: 1000 },
+    content: { min: 5, max: 1000000 },
     group: { value: 'allvalue' },
     slug: { min: 5, max: 80 },
 }
