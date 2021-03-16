@@ -12,6 +12,8 @@ router.use('/rss', require('./rss'));
 router.use('/groups', require('./groups'));
 router.use('/users', require('./users'));
 router.use('/articles', require('./articles'));
+router.use('/products', require('./products'));
+router.use('/types', require('./types'));
 
 
 module.exports = router;

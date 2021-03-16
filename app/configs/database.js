@@ -20,4 +20,6 @@ module.exports = {
     col_users: 'users',
     col_rss: 'rss',
     col_articles: 'articles',
+    col_products: 'products',
+    col_types: 'types',
 };

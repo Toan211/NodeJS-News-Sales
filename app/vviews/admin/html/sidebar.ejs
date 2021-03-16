@@ -4,29 +4,46 @@
 
 <%  
     let arrMenu = [
-        {name: 'Dashboard', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/dashboard`},
         {name: 'Items', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/items`},
         {name: 'Categories', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/categories`},
         {name: 'Articles', icon: 'fa-minus', link: `${systemConfig.prefixAdmin}/articles`},
         {name: 'RSS', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/rss`},
         {name: 'Groups', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/groups`},
         {name: 'Users', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/users`},
+        {name: 'Types', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/types`},
+        {name: 'Products', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/products`},
     ];
 
     let xhtmlMenu = '';
     arrMenu.forEach(menu => {
-        xhtmlMenu += `<li class="nav-item">
-                    <a href="${menu.link}" class="nav-link" data-active="${menu.name.toLowerCase()}">
+        xhtmlMenu += `
+            <li class="nav-item">
+                    <a href="${menu.link}" class="nav-link" data-active="${menu.data}">
                         <i class="nav-icon fas ${menu.icon}"></i>
-                        <p>${menu.name}</p>
+                        <p>${menu.name}<i class="fas fa-angle-left right"></i></p>
                     </a>
-                </li>`;
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="${menu.link}" class="nav-link" data-active="index">
+                                <i class="nav-icon fas fa-list-ul"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a href="${menu.link}/form" class="nav-link" data-active="form">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>Form</p>
+                            </a>
+                        </li>
+                    </ul>
+            </li>`;
     });   
 %>
-icon: 'fa-minus'
+
 <aside class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
-    <a  href="index3.html" class="brand-link">
+    <a  href="/<%=systemConfig.prefixAdmin%>/" class="brand-link">
         <img src="adminlte/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">ZendVN</span>
     </a>
@@ -45,10 +62,20 @@ icon: 'fa-minus'
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <%- xhtmlMenu %>
+            <ul id="side-menu" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                        Article Management
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <%- xhtmlMenu %>
+                    </ul>
+                </li>
             </ul>
-
             <ul class="dropdown-menu dropdown-user">
 	
                 <li>

@@ -1,0 +1,39 @@
+<% include ./../helpers/format-date %>
+<% include ./../helpers/format-summary %>
+<%
+    const folder_uploads = 'uploads/articles/';
+%>
+
+
+<div class="col-lg-4 col-md-4">
+    <div class="content_bottom_right">
+        <!-- recent  -->
+      <div class="single_bottom_rightbar">
+        <h2>Random Post</h2>
+        <ul class="small_catg popular_catg wow fadeInDown">
+          <% for(let i = 0; i < itemsRandom.length; i++){ %>
+          <li>
+            <div class="media wow fadeInDown"> <a  href="/article/<%= itemsRandom[i]._id %>" class="media-left"><img src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"> </a>
+              <div class="media-body">
+                <h4 class="media-heading"><a  href="/article/<%= itemsRandom[i]._id %>" ><%= itemsRandom[i].name %> </a></h4>
+                <p><%= itemsRandom[i].content.substring(0,100) %> </p>
+              </div>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+      
+    <!-- link -->
+      <div class="single_bottom_rightbar wow fadeInDown">
+        <h2>Popular Lnks</h2>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Blog Home</a></li>
+          <li><a href="#">Error Page</a></li>
+          <li><a href="#">Social link</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

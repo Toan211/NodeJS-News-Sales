@@ -2,6 +2,7 @@
 module.exports = {
     prefixAdmin: 'adminCCC',
     prefixBlog: '',
+    prefixSales: 'sales',
     format_long_time: 'DD-MM-YYYY',
     format_date: 'DD-MM-YYYY',
     env: 'dev', // production dev

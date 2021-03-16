@@ -1,0 +1,32 @@
+<%
+    const folder_uploads = 'uploads/articles/';
+    
+%>
+
+<div class="content_top">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm6">
+        <div class="latest_slider">
+          <div class="slick_slider">
+            <% for(let i = 0; i < itemsSpecial.length; i++){ %>
+              
+              <div class="single_iteam"><img src="<%= folder_uploads + itemsSpecial[i].avatar %>" alt="<%= itemsSpecial[i].name %>">
+                <h2><a class="slider_tittle" href="/category/<%= itemsSpecial[i].group.id %>"><%= itemsSpecial[i].group.name %>></a></h2>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm6">
+        <div class="content_top_right">
+          <ul class="featured_nav wow fadeInDown">
+            <% for(let i = 0; i < itemsSpecial.length; i++){ %>
+            <li><img src="<%= folder_uploads + itemsSpecial[i].avatar %>" alt="<%= itemsSpecial[i].name %>">
+              <div class="title_caption"><a href="/category/<%= itemsSpecial[i].group.id %>"><%= itemsSpecial[i].group.name %>></a></div>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

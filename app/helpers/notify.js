@@ -18,6 +18,9 @@ let show = (req, res, linkIndex, params = null ) => {
 		case 'change-ordering':
 			notifyContent = notify.CHANGE_ORDERING_SUCCESS;
 			break;
+		case 'change-price':
+			notifyContent = notify.CHANGE_ORDERING_SUCCESS;
+			break;
 		case 'change-group-acp':
 			notifyContent = notify.CHANGE_GROUP_ACP_SUCCESS;
 			break;
