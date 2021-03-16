@@ -3,8 +3,8 @@ var router = express.Router();
 
 const ArticleModel = require(__path_models + 'articles');
 
-const folderView	 = __path_views_blog + 'pages/home/';
-const layoutBlog    = __path_views_blog + 'frontend';
+const folderView	 = __path_views_sales + 'pages/home/';
+const layoutBlog    = __path_views_sales + 'frontend';
 
 /* GET home page. */
 router.get('/', async (req, res, next)=> {

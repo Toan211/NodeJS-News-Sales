@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<% include ./elements/head %>
 </head>
 <body>
-<div id="preloader">
-  <div id="status">&nbsp;</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="position-center-center">
+    <div class="ldr"></div>
+  </div>
 </div>
-<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-<div class="container">
+
+<!-- Wrap -->
+<div id="wrap"> 
   
-	<% include ./elements/header %>
-
+  <!-- header -->
 	<% include ./elements/cate %>
-
-	
-  <section id="mainContent">
+  
+  
+  <!--======= HOME MAIN SLIDER =========-->
+   
     
-	<% if(top_post == true){ %>
-		<% include ./elements/top_post %>
-	<% } %>
-
-    <% //if(mid_post == true){ %>
-		<% //include ./elements/top_post %>
-	<% //} %>
-
-    <div class="content_bottom">
-      
-		<%- body %>
-		
-      <% if(silde_bar == true){ %>
-		<% include ./elements/sildebar %>
-	<% } %>
-    </div>
-  </section>
+    <!-- SLIDE Start -->
+		<% if(top_post == true){ %>
+			<% include ./elements/top_post %>
+		<% } %>
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <%- body %> 
+    
+  </div>
+  
+  <!--======= FOOTER =========-->
+  <% include ./elements/footer %>
+  
+  <!--======= RIGHTS =========--> 
+  
 </div>
-	<% include ./elements/footer %>
 	<% include ./elements/script %>
 </body>
 </html>
