@@ -24,13 +24,13 @@ module.exports = {
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
         let select = 'name created.user_name created.time group.id group.name avatar content price';
-        let limit = 3;
+        let limit = 4;
         let sort = '';
 
         if (options.task == 'items-special'){
             find = {special: 'active'};
             sort = {ordering: 'asc'};
-            limit = 4;
+            //limit = 4;
         }
 
         if (options.task == 'items-sales'){
@@ -43,7 +43,7 @@ module.exports = {
             select = 'name created.user_name created.time group.name group.id  avatar content price';
             find = {status:'active'};
             sort = {'created.time': 'desc'};
-            limit = 4;
+            //limit = 4;
         }
 
         if (options.task == 'items-in-category'){

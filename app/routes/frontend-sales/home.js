@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const ArticleModel = require(__path_models + 'articles');
+const ProductModel = require(__path_models + 'products');
 
 const folderView	 = __path_views_sales + 'pages/home/';
 const layoutBlog    = __path_views_sales + 'frontend';
@@ -12,10 +12,10 @@ router.get('/', async (req, res, next)=> {
 	let itemsSpecial 	= [];
 	let itemsNews 	 	= [];
 
-	await ArticleModel.listItemsFrontend(null, {task: 'items-special'} ).then( (items) => { itemsSpecial = items; });
+	await ProductModel.listItemsFrontend(null, {task: 'items-special'} ).then( (items) => { itemsSpecial = items; });
 
 	// Latest News
-	await ArticleModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });
+	await ProductModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });
 
 	
 	res.render(`${folderView}index`, {

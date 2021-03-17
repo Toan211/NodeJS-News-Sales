@@ -1,4 +1,5 @@
 const MainModel 	= require(__path_schemas + 'rss');
+var RSSCombiner = require('rss-combiner');
 
 module.exports = {
     listItems: (params, options = null) => {
@@ -15,6 +16,20 @@ module.exports = {
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
+    },
+
+    listItemsFrontend: (params= null, options = null) => {
+        let find = {};
+        let select = 'name';
+        let limit = 10;
+        let sort = '';
+
+        if (options.task == 'items-in-rss'){
+            find = {status:'active'};
+            sort = {ordering: 'asc'};            
+        }
+
+        return MainModel.find(find).select(select).limit(limit).sort(sort);
     },
 
     getItem: (id, options = null) => {

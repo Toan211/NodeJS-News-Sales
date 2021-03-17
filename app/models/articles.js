@@ -30,14 +30,14 @@ module.exports = {
         if (options.task == 'items-special'){
             find = {special: 'active'};
             sort = {ordering: 'asc'};
-            limit = 4;
+            limit = 5;
         }
 
         if (options.task == 'items-news'){
             select = 'name created.user_name created.time group.name group.id  avatar content';
             find = {status:'active'};
             sort = {'created.time': 'desc'};
-            limit = 4;
+            limit = 8;
         }
 
         if (options.task == 'items-in-category'){
@@ -51,7 +51,7 @@ module.exports = {
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
                     { $project : {name : 1 , created : 1 ,avatar: 1, content: 1}  },
-                    { $sample: {size: 3}}
+                    { $sample: {size: 5}}
                 ]);
         }
 

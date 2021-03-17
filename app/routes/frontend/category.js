@@ -10,6 +10,7 @@ const layoutBlog    = __path_views_blog + 'frontend';
 /* GET home page. */
 router.get('/:id', async (req, res, next) => {
 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
+	let params 		 	 = ParamsHelpers.createParam(req);
 
 	let itemsInCategory	= [];
 	let itemsInArticle	= [];
@@ -23,7 +24,8 @@ router.get('/:id', async (req, res, next) => {
 		top_post: false,
 		silde_bar: true,
 		itemsInCategory,
-		itemsInArticle
+		itemsInArticle,
+		params
 	});
 });
 
@@ -33,9 +35,20 @@ router.get('/:id/json', async (req, res, next) => {
 	let itemsArticleJs	= [];
 	// Article In Category
 	
-	await ArticleModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsArticleJs = items; });
+	await ArticleModel.listItemsFrontend({id: idCategory}, {task: 'items-in-news'} ).then( (items) => { itemsArticleJs = items; });
 
 	res.json(itemsArticleJs);
 });
+
+router.get('/items/json', async (req, res, next) => {
+	let itemsCategory   = [];
+	
+	//category
+	await CategoryModel.listItemsFrontend(null,{task: 'items-in-menu'} ).then( (items) => { itemsCategory = items; });
+  
+	res.json(itemsCategory);
+  });
+  
+  
 
 module.exports = router;

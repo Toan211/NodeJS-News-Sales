@@ -9,6 +9,22 @@
     <div class="content_bottom_right">
         <!-- recent  -->
       <div class="single_bottom_rightbar">
+        <h2>Popular</h2>
+        <ul class="small_catg popular_catg wow fadeInDown">
+          <% for(let i = 0; i < itemsSpecial.length; i++){ %>
+          <li>
+            <div class="media wow fadeInDown"> <a  href="/article/<%= itemsSpecial[i]._id %>" class="media-left"><img src="<%= folder_uploads + itemsSpecial[i].avatar %>" alt="<%= itemsSpecial[i].name %>"> </a>
+              <div class="media-body">
+                <h4 class="media-heading"><a  href="/article/<%= itemsSpecial[i]._id %>" ><%= itemsSpecial[i].name %> </a></h4>
+                <p><%- formatSummary(itemsSpecial[i].content) %> ...</p>
+              </div>
+            </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+      
+      <div class="single_bottom_rightbar">
         <h2>Random Post</h2>
         <ul class="small_catg popular_catg wow fadeInDown">
           <% for(let i = 0; i < itemsRandom.length; i++){ %>
@@ -16,7 +32,7 @@
             <div class="media wow fadeInDown"> <a  href="/article/<%= itemsRandom[i]._id %>" class="media-left"><img src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"> </a>
               <div class="media-body">
                 <h4 class="media-heading"><a  href="/article/<%= itemsRandom[i]._id %>" ><%= itemsRandom[i].name %> </a></h4>
-                <p><%= itemsRandom[i].content.substring(0,100) %> </p>
+                <p><%- formatSummary(itemsRandom[i].content) %> ...</p>
               </div>
             </div>
           </li>

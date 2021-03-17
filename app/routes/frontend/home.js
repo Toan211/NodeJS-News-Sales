@@ -9,10 +9,8 @@ const layoutBlog    = __path_views_blog + 'frontend';
 /* GET home page. */
 router.get('/', async (req, res, next)=> {
 
-	let itemsSpecial 	= [];
+	
 	let itemsNews 	 	= [];
-
-	await ArticleModel.listItemsFrontend(null, {task: 'items-special'} ).then( (items) => { itemsSpecial = items; });
 
 	// Latest News
 	await ArticleModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });
@@ -22,9 +20,19 @@ router.get('/', async (req, res, next)=> {
 		layout: layoutBlog,
 		top_post: true,
 		silde_bar: true,
-		itemsSpecial,
+		
 		itemsNews,
 	});
 });
+
+
+router.get('/items/json', async (req, res, next) => {
+	let itemsCategory   = [];
+	
+	//category
+	await CategoryModel.listItemsFrontend(null,{task: 'items-in-menu'} ).then( (items) => { itemsCategory = items; });
+  
+	res.json(itemsCategory);
+  });
 
 module.exports = router;
