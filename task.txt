@@ -73,7 +73,7 @@ layout:
 ----------------
 
 fix frontend
-search 
+search *
 đổ các article của từng category cụ thể trong trang home
 add thêm vài cái article
 about me

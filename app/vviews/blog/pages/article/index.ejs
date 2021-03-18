@@ -1,5 +1,6 @@
-<% include ./../../helpers/format-date %> <% include
-./../../helpers/format-summary %> <% const folder_uploads = 'uploads/articles/';
+<% include ./../../helpers/format-date %>
+ <% include ./../../helpers/format-summary %>
+ <% const folder_uploads = 'uploads/articles/';
 %>
 
 <div class="col-lg-8 col-md-8">
@@ -7,15 +8,15 @@
 		<div class="single_page_area">
 			<ol class="breadcrumb">
 				<li><a href="#">Home</a></li>
-				<li><a href="#"><%= itemArticle.group.name %></a></li>
+				<li><a href="/category/<%= itemArticle.group.id %>"	><%= itemArticle.group.name %></a></li>
 				<li class="active"><%= itemArticle.name %></li>
 			</ol>
 			<h2 class="post_titile"><%= itemArticle.name %></h2>
 			<div class="single_page_content">
 				<div class="post_commentbox">
-					<a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
-					<span><i class="fa fa-calendar"></i>6:49 AM</span>
-					<a href="#"><i class="fa fa-tags"></i><%= itemArticle.group.name %></a>
+					<a><i class="fa fa-user"></i><%= itemArticle.created.user_name %></a>
+					<span><i class="fa fa-calendar"></i><%- formatDate(itemArticle.created.time) %></span>
+					<a href="/category/<%= itemArticle.group.id %>"><i class="fa fa-tags"></i><%= itemArticle.group.name %></a>
 				</div>
 				<img class="img-center" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>" />
 				<p>

@@ -6,6 +6,7 @@ let RssParser = new RSSParser();
 const UrlHelpers = require(__path_helpers + 'url-helper');
 const rp = require('request-promise');
 
+const ParamsHelpers = require(__path_helpers + 'params');
 const folderView	 = __path_views_blog + 'pages/rss/';
 const layoutBlog    = __path_views_blog + 'frontend';
 
@@ -30,7 +31,7 @@ router.get('/', async (req, res, next) => {
 	
 	let feed	= [];
 	let GoldItems= [];
-	
+	let params 		 	 = ParamsHelpers.createParam(req);
 
 	feed = await RssParser.parseURL('https://vnexpress.net/rss/the-thao.rss');
 	FeedItems = feed.items;
@@ -54,7 +55,8 @@ router.get('/', async (req, res, next) => {
 				FeedItems,
 				CoinItems,
 				CoinUpdateTime,
-				GoldItems
+				GoldItems, 
+				params
 			});
 		  }).catch((err) => {
 			console.log('API call error:', err.message);

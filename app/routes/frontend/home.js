@@ -8,7 +8,7 @@ const folderView	 = __path_views_blog + 'pages/home/';
 const layoutBlog    = __path_views_blog + 'frontend';
 
 /* GET home page. */
-router.get('/', async (req, res, next)=> {
+router.get('/', async (req, res, next)=> {	
 
 	
 	let itemsNews 	 	= [];
@@ -28,13 +28,6 @@ router.get('/', async (req, res, next)=> {
 });
 
 
-router.get('/items/json', async (req, res, next) => {
-	let itemsCategory   = [];
-	
-	//category
-	await CategoryModel.listItemsFrontend(null,{task: 'items-in-menu'} ).then( (items) => { itemsCategory = items; });
-  
-	res.json(itemsCategory);
-  });
+
 
 module.exports = router;

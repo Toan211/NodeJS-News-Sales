@@ -66,31 +66,6 @@ function loadData(id, url){
     }) 
 }
 
-function rederNewsCategoryBox(items) {
-    let xhtml = '';
-    items.forEach(
-        (item) => 
-        xhtml += 
-        `
-            <div class="col-lg-6 col-md-6">
-                <div class="single-what-news mb-100">
-                    <div class="what-img">
-                        <img src="uploads/article/${item.thumb}" alt="" class="img_itemsRandom_home">
-                    </div>
-                    <div class="what-cap">
-                        <span class="color1">${item.category.name}</span>
-                        <h4><a href="/article/${item._id}">${item.name}</a></h4>
-                    </div>
-                </div>
-            </div>
-        `
-    );
-    
-    return xhtml;
-}
-
-
-
 function renderBox(items){
     let xhtml = '';
     let righthtml = '';
@@ -103,17 +78,17 @@ function renderBox(items){
                 <div class="media-body">
                 <h4 class="media-heading"><a href="/article/${items[i]._id}">${items[i].name} </a></h4>
                 <div class="comments_box">
-                <span class="meta_date">${formatSummary(items[0].created.time)}</span>
-                    <span class="meta_more"><a  href="/category/${items[0].group.id}">${items[i].group.name}</a></span>
+               
+                    <span class="meta_more"><a  href="/category/${items[i].group.id}">${items[i].group.name}</a></span>
                     </div>
                 </div>
             </div>
       </li>
 
-        `
-        
+        ` 
     }
-    
+    if(items.length > 0)
+    {
     xhtml = 
     `
         <div class="business_category_left wow fadeInDown">
@@ -123,7 +98,7 @@ function renderBox(items){
                 <div class="catgimg2_container"> <a href="/article/${items[0]._id}"><img src="uploads/articles/${items[0].avatar}" alt="${items[0].name}"></a> </div>
                 <h2 class="catg_titile"><a href="/article/${items[0]._id}">${items[0].name}</a></h2>
                 <div class="comments_box">
-                  <span class="meta_date">${formatSummary(items[0].created.time)}</span> 
+                  
                   <span class="meta_more"><a  href="/category/${items[0].group.id}">${items[0].group.name}</a></span> </div>
                 <p>${formatSummary(items[0].content)}...</p>
               </li>
@@ -138,7 +113,12 @@ function renderBox(items){
         </div>
           
     `
-    
+    }else{
+        xhtml = 
+        `
+        <h2>KHÔNG CÓ DỮ LIỆU</h2>
+        `
+    }
     return xhtml;
 }
 

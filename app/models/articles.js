@@ -80,13 +80,14 @@ module.exports = {
     },
 
     listItemsSearch: (params, options = null) =>{
-        let objWhere    = {};
+        let objWhere    = {status:'active'};
         let sort		= {};
         if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
+        
 
         return MainModel
             .find(objWhere)
-            .select('name avatar status special ordering created modified group.name content')
+            .select('name avatar status specisal ordering created modified group.name content')
             .sort(sort)
             .limit(9);
     },

@@ -12,6 +12,7 @@ router.get('/:id', async (req, res, next) => {
 	let idArticle 		= ParamsHelpers.getParam(req.params, 'id', '');
 	let itemArticle		= {};
 	let itemsOthers		= [];
+	let params 		 	 = ParamsHelpers.createParam(req);
 
 	// Article Info
 	await ArticleModel.getItemFrontend(idArticle, null ).then( (item) => { itemArticle = item; });
@@ -24,7 +25,8 @@ router.get('/:id', async (req, res, next) => {
 		top_post: false,
 		silde_bar: true,
 		itemsOthers,
-		itemArticle
+		itemArticle,
+		params
 	});
 });
 

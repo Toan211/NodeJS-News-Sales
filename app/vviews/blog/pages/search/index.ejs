@@ -20,7 +20,7 @@
                         <h2><a href="/article/<%= item.id %>"><%= item.name %></a></h2>
                         <p><%- formatSummary(item.content) %> ...</p>
                     </div>
-                    <a class="read_more" href="/article/<%= item.id %>"><span>Read More</span></a> 
+                    <a class="read_more" href="/category/<%= item.group.id %>"><span><%= item.group.name %></span></a> 
                 </div>
                 
                 <% }) %>
