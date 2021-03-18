@@ -14,5 +14,6 @@ router.use('/about', require('./about'));
 router.use('/contact', require('./contact'));
 router.use('/rss', require('./rss'));
 router.use('/auth', require('./auth'));
+router.use('/search', require('./search'));
 
 module.exports = router;

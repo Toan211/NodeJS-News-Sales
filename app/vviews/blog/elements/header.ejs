@@ -18,15 +18,15 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
             </ul>
           </div>
           <div class="header_top_right">
-            <form action="#" class="search_form">
-              <input type="text" placeholder="Text to Search">
-              <input type="submit" value="">
-            </form>
+            <form class="search_form" action="/search" method="GET">
+              <input class="form-control mb-3" type="text" placeholder="Search" name="keyword" value='<%= params.keyword %>'>
+              <input  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" value="Search">
+          </form>
           </div>
         </div>
         <div class="header_bottom">
           <div class="header_bottom_left"><a class="logo" href="/">mag<strong>Express</strong> <span>A Pro Magazine Template</span></a></div>
-          <div class="header_bottom_right"><a href="#"><img src="images/addbanner_728x90_V1.jpg" alt=""></a></div>
+          <div class="header_bottom_right"><a href="#"><img src="magexpress/assets/images/addbanner_728x90_V1.jpg" alt=""></a></div>
         </div>
       </div>
     </div>
