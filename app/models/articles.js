@@ -30,14 +30,21 @@ module.exports = {
         if (options.task == 'items-special'){
             find = {special: 'active'};
             sort = {ordering: 'asc'};
-            limit = 5;
+            limit = 4;
         }
 
         if (options.task == 'items-news'){
-            select = 'name created.user_name created.time group.name group.id  avatar content';
+            select = ' name created.user_name created.time group.name group.id  avatar content';
             find = {status:'active'};
             sort = {'created.time': 'desc'};
             limit = 8;
+        }
+
+        if (options.task == 'items-news-category'){
+            limit = 5;
+            select = ' name created.user_name created.time group.name group.id  avatar content';
+            find = {status:'active','group.id': params.id};
+            sort = {'created.time': 'desc'};   
         }
 
         if (options.task == 'items-in-category'){
@@ -51,7 +58,7 @@ module.exports = {
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
                     { $project : {name : 1 , created : 1 ,avatar: 1, content: 1}  },
-                    { $sample: {size: 5}}
+                    { $sample: {size: 4}}
                 ]);
         }
 
@@ -70,6 +77,18 @@ module.exports = {
 
         return MainModel.find(find).select(select).limit(limit).sort(sort);
 
+    },
+
+    listItemsSearch: (params, options = null) =>{
+        let objWhere    = {};
+        let sort		= {};
+        if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
+
+        return MainModel
+            .find(objWhere)
+            .select('name avatar status special ordering created modified group.name')
+            .sort(sort)
+            .limit(9);
     },
 
     getMainArticle: (id, option = null) => {

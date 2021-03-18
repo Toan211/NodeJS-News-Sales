@@ -3,6 +3,11 @@ $(document).ready(function () {
     let linkBox = $(".box-large").data("url");
     let linkGold = $("#box-gold").data("url");
     let linkCoin = $("#box-coin").data("url");
+    let linkCate0 = $("#box-cate0").data("url");
+    let linkCate1 = $("#box-cate1").data("url");
+    let linkCate2 = $("#box-cate2").data("url");
+    let linkCate3 = $("#box-cate3").data("url");
+    let linkCate4 = $("#box-cate4").data("url");
 
     $(".box-large").load(linkBox, null, function(res, status){
         let data = JSON.parse(res);
@@ -20,13 +25,44 @@ $(document).ready(function () {
         $("#box-coin").html(renderCoinTable(data));
     });
 
+    $("#box-cate0").load(linkCate0, null, function(response, status) {
+        let data = JSON.parse(response);
+        $("#box-cate0").html(renderBox(data));
+    });
+
+    $("#box-cate1").load(linkCate1, null, function(response, status) {
+        let data = JSON.parse(response);
+        $("#box-cate1").html(renderBox(data));
+    });
+    $("#box-cate2").load(linkCate2, null, function(response, status) {
+        let data = JSON.parse(response);
+        $("#box-cate2").html(renderBox(data));
+    });
+    $("#box-cate3").load(linkCate3, null, function(response, status) {
+        let data = JSON.parse(response);
+        $("#box-cate3").html(renderBox(data));
+    });
+    $("#box-cate4").load(linkCate4, null, function(response, status) {
+        let data = JSON.parse(response);
+        $("#box-cate4").html(renderBox(data));
+    });
+
+
 });
+
+formatSummary = (content, maxLength = 300) => { 
+    return content.replace(/(<([^>]+)>)/igm,"").substr(0, maxLength);
+}
+
+formatDate = (time) => { 
+    return moment(time).format(systemConfig.format_time);
+} 
 
 //load data from json
 function loadData(id, url){
     $("#data-" + id).load(url,null, function(res, status){
         let data = JSON.parse(res);
-        $("#data-" + id).html(rederNewsCategoryBox(data));
+        $("#data-" + id).html(renderBox(data));
     }) 
 }
 
@@ -53,23 +89,56 @@ function rederNewsCategoryBox(items) {
     return xhtml;
 }
 
+
+
 function renderBox(items){
     let xhtml = '';
+    let righthtml = '';
 
-    items.forEach(
-        (item) =>
-    xhtml += 
+    for (let i = 1; i < items.length; i++) {
+        righthtml+=`
+        <li>
+            <div class="media wow fadeInDown"> <a class="media-left"  href="/article/${items[i]._id}">
+                <img src="uploads/articles/${items[i].avatar}" alt="${items[i].name}"></a>
+                <div class="media-body">
+                <h4 class="media-heading"><a href="/article/${items[i]._id}">${items[i].name} </a></h4>
+                <div class="comments_box">
+                <span class="meta_date">${formatSummary(items[0].created.time)}</span>
+                    <span class="meta_more"><a  href="/category/${items[0].group.id}">${items[i].group.name}</a></span>
+                    </div>
+                </div>
+            </div>
+      </li>
+
+        `
+        
+    }
+    
+    xhtml = 
     `
-    <ul class="fashion_catgnav">
+        <div class="business_category_left wow fadeInDown">
+
+            <ul class="fashion_catgnav">
               <li>
-                <div class="catgimg2_container"> <a href="pages/single.html"><img alt="" src="images/390x240x1.jpg"></a> </div>
-                <h2 class="catg_titile"><a href="pages/single.html">${item.name }</a></h2>
-                <div class="comments_box"> <span class="meta_date">${item.group.name }</span> <span class="meta_comment"><a href="#">No Comments</a></span> <span class="meta_more"><a  href="#">Read More...</a></span> </div>
-                <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla...</p>
+                <div class="catgimg2_container"> <a href="/article/${items[0]._id}"><img src="uploads/articles/${items[0].avatar}" alt="${items[0].name}"></a> </div>
+                <h2 class="catg_titile"><a href="/article/${items[0]._id}">${items[0].name}</a></h2>
+                <div class="comments_box">
+                  <span class="meta_date">${formatSummary(items[0].created.time)}</span> 
+                  <span class="meta_more"><a  href="/category/${items[0].group.id}">${items[0].group.name}</a></span> </div>
+                <p>${formatSummary(items[0].content)}...</p>
               </li>
             </ul>
+          </div> 
+
+          <div class="business_category_right wow fadeInDown">
+          <ul class="small_catg">
+            ${righthtml}
+
+          </ul>
+        </div>
+          
     `
-    );
+    
     return xhtml;
 }
 

@@ -70,3 +70,13 @@ layout:
     + lấy itemsArticle đổ ra view
 - categories/indexLayout1.ejs 	đổ dữ liệu 
 - categories/indexLayout2.ejs 	đổ dữ liệu 
+----------------
+
+fix frontend
+search 
+đổ các article của từng category cụ thể trong trang home
+add thêm vài cái article
+about me
+contact nếu đủ tg
+sửa rss
+cắt frontend của sales

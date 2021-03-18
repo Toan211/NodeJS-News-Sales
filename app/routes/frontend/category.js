@@ -35,7 +35,7 @@ router.get('/:id/json', async (req, res, next) => {
 	let itemsArticleJs	= [];
 	// Article In Category
 	
-	await ArticleModel.listItemsFrontend({id: idCategory}, {task: 'items-in-news'} ).then( (items) => { itemsArticleJs = items; });
+	await ArticleModel.listItemsFrontend({id: idCategory}, {task: 'items-news-category'} ).then( (items) => { itemsArticleJs = items; });
 
 	res.json(itemsArticleJs);
 });

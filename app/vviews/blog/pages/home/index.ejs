@@ -4,43 +4,23 @@
     
 %>
 
-
 <div class="col-lg-8 col-md-8">
-    <div class="content_bottom_left">
-      <%= //JSON.stringify(itemArr)  %> 
-      <% itemsCategory.forEach( (cate) => { %>
+  <div class="content_bottom_left">
+    <%= //JSON.stringify(itemArr)  %> 
 
-        <div class="single_category wow fadeInDown">
-          <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a class="title_text" href="#"><%= cate.name %> </a> </h2>
-          
-          
-          
+    <% for (let i = 0; i < itemsCategory.length; i++) { %>   
 
-          <div class="business_category_right wow fadeInDown">
-            <ul class="small_catg" id="data-<%= cate.id %>">
-              <% for(let i = 1; i < 4; i++){ %>
-
-                <li>
-                  <div class="media wow fadeInDown"> <a class="media-left"  href="/article/<%= itemsNews[i].id %>">
-                    <img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>"></a>
-                    <div class="media-body">
-                      <h4 class="media-heading"><a href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name%> </a></h4>
-                      <div class="comments_box">
-                         <span class="meta_date"><%= moment(itemsNews[i].created.time).format(systemConfig.format_date) %></span>
-                        <span class="meta_more"><a  href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name%></a></span>
-                         </div>
-                    </div>
-                  </div>
-                </li>
-              
-                <% } %>
-            </ul>
+      <div class="single_category wow fadeInDown">
+        <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a class="title_text" href="category/<%= itemsCategory[i].id %>"><%= itemsCategory[i].name %></a> </h2>  
+          <div id="box-cate<%= i %>" data-url="category/<%= itemsCategory[i].id %>/json">
+          
           </div>
-        </div>
+      </div>
 
-      <% }) %>
-    </div>
+      
+    <% } %> 
   </div>
+</div>
 
 
 

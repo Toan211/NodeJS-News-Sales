@@ -12,39 +12,41 @@
         <div class="single_category wow fadeInDown">
           <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a class="title_text" href="#">Latest News</a> </h2>
           
-          
-          <div class="business_category_left wow fadeInDown">
+          <div id="box-cate1" data-url="category/<%= itemsCategory[0].id %>/json">
+            <div class="business_category_left wow fadeInDown">
 
-            <ul class="fashion_catgnav">
-              <li>
-                <div class="catgimg2_container"> <a href="/article/<%= itemsNews[0].id %>"><img src="<%= folder_uploads + itemsNews[0].avatar %>" alt="<%= itemsNews[0].name %>"></a> </div>
-                <h2 class="catg_titile"><a href="/article/<%= itemsNews[0].id%>"> <%= itemsNews[0].name%></a></h2>
-                <div class="comments_box">
-                   <span class="meta_date"><%= moment(itemsNews[0].created.time).format(systemConfig.format_date) %></span> 
-                   <span class="meta_more"><a  href="/category/<%= itemsNews[0].group.id %>"><%= itemsNews[0].group.name%></a></span> </div>
-                <p><%= formatSummary(itemsNews[0].content)%></p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="business_category_right wow fadeInDown">
-            <ul class="small_catg">
-              <% for(let i = 1; i < itemsSpecial.length; i++){ %>
+              <ul class="fashion_catgnav">
                 <li>
-                  <div class="media wow fadeInDown"> <a class="media-left"  href="/article/<%= itemsNews[i].id %>">
-                    <img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>"></a>
-                    <div class="media-body">
-                      <h4 class="media-heading"><a href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name%> </a></h4>
-                      <div class="comments_box">
-                         <span class="meta_date"><%= moment(itemsNews[i].created.time).format(systemConfig.format_date) %></span>
-                        <span class="meta_more"><a  href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name%></a></span>
-                         </div>
-                    </div>
-                  </div>
+                  <div class="catgimg2_container"> <a href="/article/<%= itemsNews[0].id %>"><img src="<%= folder_uploads + itemsNews[0].avatar %>" alt="<%= itemsNews[0].name %>"></a> </div>
+                  <h2 class="catg_titile"><a href="/article/<%= itemsNews[0].id%>"> <%= itemsNews[0].name%></a></h2>
+                  <div class="comments_box">
+                    <span class="meta_date"><%= moment(itemsNews[0].created.time).format(systemConfig.format_date) %></span> 
+                    <span class="meta_more"><a  href="/category/<%= itemsNews[0].group.id %>"><%= itemsNews[0].group.name%></a></span> </div>
+                  <p><%= formatSummary(itemsNews[0].content)%></p>
                 </li>
-              <% } %>
-            </ul>
+              </ul>
+            </div>
+
+            <div class="business_category_right wow fadeInDown">
+              <ul class="small_catg">
+                <% for(let i = 1; i < itemsSpecial.length; i++){ %>
+                  <li>
+                    <div class="media wow fadeInDown"> <a class="media-left"  href="/article/<%= itemsNews[i].id %>">
+                      <img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>"></a>
+                      <div class="media-body">
+                        <h4 class="media-heading"><a href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name%> </a></h4>
+                        <div class="comments_box">
+                          <span class="meta_date"><%= moment(itemsNews[i].created.time).format(systemConfig.format_date) %></span>
+                          <span class="meta_more"><a  href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name%></a></span>
+                          </div>
+                      </div>
+                    </div>
+                  </li>
+                <% } %>
+              </ul>
+            </div>
           </div>
+          
         </div>
       
     </div>

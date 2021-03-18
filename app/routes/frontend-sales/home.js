@@ -15,7 +15,7 @@ router.get('/', async (req, res, next)=> {
 	await ProductModel.listItemsFrontend(null, {task: 'items-special'} ).then( (items) => { itemsSpecial = items; });
 
 	// Latest News
-	await ProductModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });
+	await ProductModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { z = items; });
 
 	
 	res.render(`${folderView}index`, {
