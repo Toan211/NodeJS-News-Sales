@@ -11,7 +11,7 @@
             <% for(let i = 0; i < 4; i++){ %>
               
               <div class="single_iteam"><img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>">
-                <h2><a class="slider_tittle" style="display: block;" href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name %>></a></h2>
+                <h2><a class="slider_tittle" style="display: block;" href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name %></a></h2>
                 <h2 style="right: unset; top: 0%; text-align: inherit;"><a class="slider_tittle" style="color: #646464;  background-color: darkorange;" href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name %></a></h2>
               </div>
             <% } %>

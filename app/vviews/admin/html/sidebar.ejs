@@ -1,51 +1,32 @@
+<% include ./../helpers/menu-sidebar %>
+
 <% 
 	const linkPrefix = systemConfig.prefixBlog + `/auth/logout/`;
 %>
 
 <%  
-    let arrMenu = [
-        {name: 'Items', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/items`},
-        {name: 'Categories', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/categories`},
-        {name: 'Articles', icon: 'fa-minus', link: `${systemConfig.prefixAdmin}/articles`},
-        {name: 'RSS', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/rss`},
-        {name: 'Groups', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/groups`},
-        {name: 'Users', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/users`},
-        {name: 'Types', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/types`},
-        {name: 'Products', icon: 'fa-tachometer-alt', link: `${systemConfig.prefixAdmin}/products`},
+    let articleManagement = [
+        {name: 'Categories', icon: 'fa-table', link: `${systemConfig.prefixAdmin}/categories`, activeValue: 'categories'},
+        {name: 'Articles', icon: 'fa-book-open', link: `${systemConfig.prefixAdmin}/articles`, activeValue: 'articles'},
+        {name: 'Rss', icon: 'fa-tag', link: `${systemConfig.prefixAdmin}/rss`, activeValue: 'rss'},
+        {name: 'Contact', icon: 'fa-user-plus', link: `${systemConfig.prefixAdmin}/contact`, activeValue: 'contact'},
+    ];
+    let userManagement = [
+        {name: 'Groups', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/groups`, activeValue: 'groups'},
+        {name: 'Users', icon: 'fa-user', link: `${systemConfig.prefixAdmin}/users`, activeValue: 'users'},
+    ];
+    let shopManagement = [
+        {name: 'Types', icon: 'fa-th-list', link: `${systemConfig.prefixAdmin}/types`, activeValue: 'types'},
+        {name: 'Products', icon: 'fa-star', link: `${systemConfig.prefixAdmin}/products`, activeValue: 'products'},
     ];
 
-    let xhtmlMenu = '';
-    arrMenu.forEach(menu => {
-        xhtmlMenu += `
-            <li class="nav-item">
-                    <a href="${menu.link}" class="nav-link" data-active="${menu.data}">
-                        <i class="nav-icon fas ${menu.icon}"></i>
-                        <p>${menu.name}<i class="fas fa-angle-left right"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="${menu.link}" class="nav-link" data-active="index">
-                                <i class="nav-icon fas fa-list-ul"></i>
-                                <p>List</p>
-                            </a>
-                        </li>
-                
-                        <li class="nav-item">
-                            <a href="${menu.link}/form" class="nav-link" data-active="form">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Form</p>
-                            </a>
-                        </li>
-                    </ul>
-            </li>`;
-    });   
 %>
 
 <aside class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
     <a  href="/<%=systemConfig.prefixAdmin%>/" class="brand-link">
         <img src="adminlte/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">ZendVN</span>
+        <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -56,34 +37,30 @@
                 <img src="adminlte/images/default-user.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin ZendVN</a>
+                <a href="#" class="d-block">Admin</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul id="side-menu" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                      <i class="nav-icon fas fa-tachometer-alt"></i>
-                      <p>
-                        Article Management
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="/<%=systemConfig.prefixAdmin%>/dashboard" class="nav-link" data-active="dashboard">
+                      <i class="nav-icon fas fa-database"></i>
+                      <p>Dashboard</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <%- xhtmlMenu %>
-                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/<%=systemConfig.prefixAdmin%>/items" class="nav-link" data-active="items">
+                        <i class="nav-icon fas fa-file"></i>
+                        <p>Items</p>
+                    </a>
+                </li>
+                    <%- menuSidebarHelper('Quản lý user', userManagement, 'fa-male') %>
+                    <%- menuSidebarHelper('Quản lý bài viết', articleManagement, 'fa-newspaper') %>
+                    <%- menuSidebarHelper('Quản lý sản phẩm', shopManagement, 'fa-shopping-cart') %>
                 </li>
             </ul>
-            <ul class="dropdown-menu dropdown-user">
-	
-                <li>
-                    <a href="<%= linkPrefix %>">
-                        <i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-            </ul>
-
         </nav>
         <!-- /.sidebar-menu -->
 

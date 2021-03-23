@@ -1,0 +1,42 @@
+<% include ./../helpers/format-date %>
+<% include ./../helpers/format-summary %>
+<%
+    const folder_uploads = 'uploads/products/';
+%>
+
+<!-- Popular Products -->
+<section class="padding-top-50 padding-bottom-150">
+    <div class="container"> 
+      
+      <!-- Main Heading -->
+      <div class="heading text-center">
+        <h4>popular products</h4>
+        <span>special, special, special...! </span> </div>
+      
+      <!-- Popular Item Slide -->
+      <div class="papular-block block-slide"> 
+  
+        <% for(let i = 0; i < itemsSpecial.length; i++){ %>
+        <!-- Item -->
+        <div class="item"> 
+          <!-- Item img -->
+          <div class="item-img"> <img class="img-1"src="<%= folder_uploads + itemsSpecial[i].avatar %>" alt="<%= itemsSpecial[i].name %>" > <img class="img-2" src="<%= folder_uploads + itemsSpecial[i].avatar %>" alt="<%= itemsSpecial[i].name %>" > 
+            <!-- Overlay -->
+            <div class="overlay">
+              <div class="position-center-center">
+                <div class="inn"><a href="/product/<%= itemsSpecial[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+              </div>
+            </div>
+          </div>
+          <!-- Item Name -->
+          <div class="item-name"> <a href="/article/<%= itemsSpecial[i]._id %>"><%= itemsSpecial[i].name %></a>
+            <p><%- formatSummary(itemsSpecial[i].content) %> ...</p>
+          </div>
+          <!-- Price --> 
+          <span class="price"><small>đ</small><%= itemsSpecial[i].price %></span> </div>
+        
+        <% } %>
+        
+      </div>
+    </div>
+  </section>

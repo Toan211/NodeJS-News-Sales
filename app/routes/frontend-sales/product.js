@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 const ParamsHelpers = require(__path_helpers + 'params');
-const ArticleModel 	= require(__path_models + 'articles');
+const ProductModel = require(__path_models + 'products');
 
-const folderView	 = __path_views_blog + 'pages/article/';
-const layoutBlog    = __path_views_blog + 'frontend';
+const folderView	 = __path_views_sales + 'pages/product/';
+const layoutBlog    = __path_views_sales + 'frontend';
 
 /* GET home page. */
 router.get('/:id', async (req, res, next) => {
@@ -14,10 +14,10 @@ router.get('/:id', async (req, res, next) => {
 	let itemsOthers		= [];
 
 	// Article Info
-	await ArticleModel.getItemFrontend(idArticle, null ).then( (item) => { itemArticle = item; });
+	await ProductModel.getItemFrontend(idArticle, null ).then( (item) => { itemArticle = item; });
 
 	// Article In Category
-	await ArticleModel.listItemsFrontend(itemArticle, {task: 'items-others'} ).then( (items) => { itemsOthers = items; });
+	await ProductModel.listItemsFrontend(itemArticle, {task: 'items-others'} ).then( (items) => { itemsOthers = items; });
 	
 	res.render(`${folderView}index`, {
 		layout: layoutBlog,

@@ -86,6 +86,7 @@ $(document).ready(function () { //deprecated
         let arrMenu = pathname.split("/");
         let currentMenu = arrMenu[2];
         $('li.nav-item a[data-active="'+currentMenu+'"]').addClass('my-active');
+        $('li.nav-item a[data-active="'+currentMenu+'"]').parent().parent().parent().addClass('menu-open');
     }
 
     //

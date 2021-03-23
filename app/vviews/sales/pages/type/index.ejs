@@ -1,0 +1,121 @@
+<% include ./../../helpers/format-date %>
+<% include ./../../helpers/format-summary %>
+
+<%
+    const folder_uploads = 'uploads/products/';
+%>
+
+    
+    <!-- Products -->
+    <section class="shop-page padding-top-100 padding-bottom-100">
+      <div class="container">
+        <div class="row"> 
+          
+          <!-- Item Content -->
+          <div class="col-sm-9">
+            <div class="item-display">
+              <div class="row"> 
+                <!-- Products Select -->
+                <div class="col-xs-6">
+                  <div class="pull-left"> 
+                    
+                    <!-- Short By -->
+                    <select class="selectpicker">
+                      <option>Short By</option>
+                      <option>Short By</option>
+                      <option>Short By</option>
+                    </select>
+                    <!-- Filter By -->
+                    <select class="selectpicker">
+                      <option>Filter By</option>
+                      <option>Short By</option>
+                      <option>Short By</option>
+                    </select>
+                    
+                    <!-- GRID & LIST --> 
+                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
+                </div>
+                <div class="col-xs-6 text-right"> <span class="product-num">Showing 1 - 10 of 30 products</span> </div>
+              </div>
+            </div>
+            
+            <!-- Popular Item Slide -->
+            <div class="papular-block row"> 
+              
+              
+                <% itemsInCategory.forEach((item)=> { %>
+              <!-- Item -->
+              <div class="col-md-4">
+                <div class="item"> 
+                  <!-- Sale Tags -->
+                  <div class="on-sale"> 10% <span>OFF</span> </div>
+                  
+                  <!-- Item img -->
+                  <div class="item-img"> <img class="img-1" src="<%= folder_uploads + item.avatar %>" alt="<%= item.name %>" > <img class="img-2" src="<%= folder_uploads + item.avatar %>" alt="<%= item.name %>" > 
+                    <!-- Overlay -->
+                    <div class="overlay">
+                      <div class="position-center-center">
+                        <div class="inn"><a href="images/product-2-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Item Name -->
+                  <div class="item-name"> <a href="/product/<%= item.id %>"><%= item.name %></a>
+                    <p><%- formatSummary(item.content) %> ..</p>
+                  </div>
+                  <!-- Price --> 
+                  <span class="price"><small>đ</small><%= item.price %></span> </div>
+              </div>
+              <% }) %>
+             
+            </div>
+            
+            <!-- Pagination -->
+            <ul class="pagination in-center">
+              <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+          </div>
+          
+          <!-- Shop SideBar -->
+          <div class="col-sm-3">
+            <div class="shop-sidebar"> 
+              
+              <!-- Category -->
+              <h5 class="shop-tittle margin-bottom-30">category</h5>
+              <ul class="shop-cate">
+                <% itemsCategory.forEach((category) => { %>
+                <li><a href="/type/<%= category.id %>"><%= category.name %><span></span></a></li> 
+                <%})%>
+              </ul>
+              
+              <!-- Recent Post -->
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">random product</h5>
+              <ul class="papu-post margin-top-20">
+                <% for(let i = 0; i < itemsRandom.length; i++){ %>
+                <li class="media">
+                  <div class="media-left"> <a href="#"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"></a> </div>
+                  <div class="media-body"> <a class="media-heading" href="#."><%= itemsRandom[i].name %></a> <span>Posted on Sep 27</span> </div>
+                </li>
+                <% } %>
+              </ul>
+              
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- About -->
+  
+ 
+
+
+
+
+    
+

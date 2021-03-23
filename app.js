@@ -37,6 +37,7 @@ global.__path_middleware= __path_app + pathConfig.folder_middleware + '/';
 
 
 const systemConfig = require(__path_configs + 'system');
+const settingConfig = require(__path_configs + 'setting');
 const databaseConfig = require(__path_configs + 'database');
 
 // mongoose.connect(`mongodb+srv://admin:FC9sz7viteURvwgy@cluster0.wrsms.mongodb.net/training_nodejs?retryWrites=false&w=majority`);
@@ -90,6 +91,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Local variable
 app.locals.systemConfig = systemConfig;
+app.locals.settingConfig = settingConfig;
 app.locals.moment = moment;
 
 // Setup router
