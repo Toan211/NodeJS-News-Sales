@@ -74,9 +74,27 @@ layout:
 
 fix frontend
 search *
-đổ các article của từng category cụ thể trong trang home
-add thêm vài cái article
+--đổ các article của từng category cụ thể trong trang home
+--add thêm vài cái article
 about me
 contact nếu đủ tg
 sửa rss
-cắt frontend của sales
+--cắt frontend của sales
+
+
+fix lại tiêu đề, tiêu đề cate, article, url slug, css
+vietj hóa
+fix logo
+menu active
+gắn search trong tiêu đề
+sửa about us
+sửa hình bị móp trong cate
+chi tiết url
+bài viết liên quan xóa descrips
+tìm tấm hình quảng cáo bỏ vô phần bên phải dưới
+bclick vào tin tức tổng hợp--> mở tab mới
+phân trang trong tin tức tổng hợp
+trang login
+thống kê dasboard'
+làm trang liên hệ
+total item nếu dc

@@ -24,12 +24,12 @@
             <!-- Overlay -->
             <div class="overlay">
               <div class="position-center-center">
-                <div class="inn"><a href="/product/<%= itemsSpecial[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+                <div class="inn"><a href="sales/product/<%= itemsSpecial[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
               </div>
             </div>
           </div>
           <!-- Item Name -->
-          <div class="item-name"> <a href="/article/<%= itemsSpecial[i]._id %>"><%= itemsSpecial[i].name %></a>
+          <div class="item-name"> <a href="sales/product/<%= itemsSpecial[i]._id %>"><%= itemsSpecial[i].name %></a>
             <p><%- formatSummary(itemsSpecial[i].content) %> ...</p>
           </div>
           <!-- Price --> 

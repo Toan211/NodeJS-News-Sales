@@ -47,8 +47,20 @@ $(document).ready(function () {
         $("#box-cate4").html(renderBox(data));
     });
 
+    activeMenu();
 
 });
+
+//active menu function
+function activeMenu() {
+    let pathname = window.location.pathname;
+    let arrMenu = pathname.split("/");
+    let currentMenu = arrMenu[1];
+    console.log(currentMenu);
+    $('ul.top_nav li[data-active="'+currentMenu+'"]').addClass('active');
+
+}
+
 
 formatSummary = (content, maxLength = 300) => { 
     return content.replace(/(<([^>]+)>)/igm,"").substr(0, maxLength);
@@ -176,3 +188,4 @@ function renderCoinTable(items) {
             </tbody>
         </table>`;
 }
+

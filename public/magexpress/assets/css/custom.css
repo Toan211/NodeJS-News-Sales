@@ -1,13 +1,33 @@
 .media-heading a {
-    font-family: monospace;
+    font-family: 'Merriweather';
+    font-size: 21px;
 }
 
 h2 {
-    font-family: system-ui;
-
-    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    
 }
+
+.catg_titile a {
+    color: dimgrey;
+    font-size: 24px;
+}
+
 
 p {
     float: left;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+}
+
+h4, .h4 {
+    font-size: 20px;
+}
+
+.search_form {
+    padding: 11px 0 0;
+}
+
+.search_form input[type="text"] {
+    width: 210px;
 }

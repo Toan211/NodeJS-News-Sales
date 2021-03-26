@@ -207,12 +207,12 @@
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="sales/product/<%= itemsOthers[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                 </div>
               </div>
             </div>
             <!-- Item Name -->
-            <div class="item-name"> <a href="#."><%= itemsOthers[i].name %></a>
+            <div class="item-name"> <a href="sales/product/<%= itemsOthers[i]._id %>"><%= itemsOthers[i].name %></a>
               <p><%- formatSummary(itemsOthers[i].content) %> ...</p>
             </div>
             <!-- Price --> 

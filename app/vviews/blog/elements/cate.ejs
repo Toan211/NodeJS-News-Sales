@@ -10,7 +10,7 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav custom_nav">
+          <ul class="nav navbar-nav custom_nav" style="border: none;">
             <li class=""><a href="/">Home</a></li>
             <li class="dropdown"> <a href="#" class="" data-toggle="dropdown" role="button" aria-expanded="false">Category</a>
               <ul class="dropdown-menu" role="menu">
@@ -27,10 +27,22 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
             <li><a href="/rss">General News</a></li>
             <li><a href="/sales/">Ornament</a></li>
             <%- showMenuUser(userInfo) %>
+            <div class="header_top_right">
+              <form class="search_form" action="/search" method="GET">
+                <input class="form-control mb-3" type="text" placeholder="Search" name="keyword" value='<%= params.keyword %>'>
+                <input style=" float: right; width: 37px;"  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" value="">
+            </form>
+            </div>
           </ul>
+          
         </div>
+        
       </div>
+      
     </nav>
+
+    
+    
   </div>
 
 

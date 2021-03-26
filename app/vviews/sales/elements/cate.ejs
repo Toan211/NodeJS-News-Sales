@@ -1,6 +1,8 @@
 <% include ./../helpers/show-menu-user %>
 <% 
 const linkLogin = systemConfig.prefixBlog + `/auth/login`;
+const controllerName = "type";
+const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
 %>
 
 
@@ -9,7 +11,7 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
     <div class="container"> 
       
       <!-- Logo -->
-      <div class="logo"> <a href="/"><img class="img-responsive" src="pavshop/images/logo.png" alt="" ></a> </div>
+      <div class="logo"> <a href="/sales/"><img class="img-responsive" src="pavshop/images/logo.png" alt="" ></a> </div>
       <nav class="navbar ownmenu">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"><i class="fa fa-navicon"></i></span> </button>
@@ -18,19 +20,19 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
         <!-- NAV -->
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav">
-            <li> <a href="/">Home </a> </li>
+            <li> <a href="/sales/">Home </a> </li>
             <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Type</a>
               <ul class="dropdown-menu">
                 <% itemsCategory.forEach((category) => { %>  
                   <li>
-                      <a href="/type/<%= category.id %>"><%= category.name %></a>
+                      <a href="/sales/type/<%= category.id %>"><%= category.name %></a>
                   </li>
               <%})%>
               </ul>
             </li>
-            <li> <a href="/about">About </a> </li>
+            <li> <a href="/sales/about">About </a> </li>
             
-            <li> <a href="/contact"> contact</a> </li>
+            <li> <a href="/sales/contact"> contact</a> </li>
           </ul>
         </div>
         

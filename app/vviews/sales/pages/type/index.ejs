@@ -55,12 +55,12 @@
                     <!-- Overlay -->
                     <div class="overlay">
                       <div class="position-center-center">
-                        <div class="inn"><a href="images/product-2-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                        <div class="inn"><a href="sales/product/<%= item.id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                       </div>
                     </div>
                   </div>
                   <!-- Item Name -->
-                  <div class="item-name"> <a href="/product/<%= item.id %>"><%= item.name %></a>
+                  <div class="item-name"> <a href="sales/product/<%= item.id %>"><%= item.name %></a>
                     <p><%- formatSummary(item.content) %> ..</p>
                   </div>
                   <!-- Price --> 
@@ -88,7 +88,7 @@
               <h5 class="shop-tittle margin-bottom-30">category</h5>
               <ul class="shop-cate">
                 <% itemsCategory.forEach((category) => { %>
-                <li><a href="/type/<%= category.id %>"><%= category.name %><span></span></a></li> 
+                <li><a href="sales/type/<%= category.id %>"><%= category.name %><span></span></a></li> 
                 <%})%>
               </ul>
               
@@ -97,8 +97,8 @@
               <ul class="papu-post margin-top-20">
                 <% for(let i = 0; i < itemsRandom.length; i++){ %>
                 <li class="media">
-                  <div class="media-left"> <a href="#"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"></a> </div>
-                  <div class="media-body"> <a class="media-heading" href="#."><%= itemsRandom[i].name %></a> <span>Posted on Sep 27</span> </div>
+                  <div class="media-left"> <a href="sales/product/<%= itemsRandom[i]._id %>"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"></a> </div>
+                  <div class="media-body"> <a class="media-heading" href="sales/product/<%= itemsRandom[i]._id %>"><%= itemsRandom[i].name %></a> <span>Posted on Sep 27</span> </div>
                 </li>
                 <% } %>
               </ul>
