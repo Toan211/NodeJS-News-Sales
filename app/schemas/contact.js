@@ -7,6 +7,16 @@ var schema = new mongoose.Schema({
     phone: String,
     message: String,
     status: String,
+    created: {
+        user_id: String,
+        user_name: String,
+        time: Date
+    },
+    modified: {
+        user_id: String,
+        user_name: String,
+        time: Date
+    }
 });
 
-module.exports = db.model(databaseConfig.col_contact, schema );
+module.exports = mongoose.model(databaseConfig.col_contact, schema );

@@ -14,7 +14,7 @@ router.use('/users', require('./users'));
 router.use('/articles', require('./articles'));
 router.use('/products', require('./products'));
 router.use('/types', require('./types'));
-//router.use('/contact', require('./contact'));
+router.use('/contact', require('./contact'));
 
 
 module.exports = router;

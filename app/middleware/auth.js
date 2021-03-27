@@ -1,6 +1,6 @@
 const StringHelpers 	= require(__path_helpers + 'string');
 const systemConfig       = require(__path_configs + 'system');
-
+//router
 const linkLogin		     = StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/auth/login/');
 const linkNoPermission	 = StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/auth/no-permission');
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <% include ./elements/header-login %>
+    
 </head>
 
 <body>
@@ -10,12 +10,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <%- body %>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <% include ./elements/scripts-login %>
+    
 </body>
 
+</html>
+
+<!doctype html>
+
+  <head>
+
+    <% include ./elements/header-login %>
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(login/images/bg.jpg);">
+	
+    <%- body %>
+
+	<% include ./elements/scripts-login %>
+
+	</body>
 </html>
