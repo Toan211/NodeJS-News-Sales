@@ -3,15 +3,15 @@ const MainModel 	= require(__path_schemas + 'contact');
 module.exports = {
     listItems: (params, options = null) => {
         let objWhere    = {};
-        let sort		= {};
         if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
         
+        let sort		= {};
         sort[params.sortField]  = params.sortType;
     
         return MainModel
             .find(objWhere)
-            .select('name status email phone message')
+            .select('name status email phone message created')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -35,15 +35,10 @@ module.exports = {
         return MainModel.count(objWhere);
     },
 
-    changeStatus: (id, currentStatus, user, options = null) => {
+    changeStatus: (id, currentStatus, options = null) => {
         let status			= (currentStatus === "active") ? "inactive" : "active";
         let data 			= {
-            status: status,
-            modified: {
-                user_id: user.id,
-                user_name: user.username,
-                time: Date.now()
-            }
+            status: status,    
         }
 
         if(options.task == "update-one"){
@@ -56,7 +51,7 @@ module.exports = {
         }
     },
 
-    changeOrdering: async (cids, orderings, user, options = null) => {
+    changeOrdering: async (cids, orderings, options = null) => {
         let data = {
             ordering: parseInt(orderings), 
             
@@ -83,9 +78,12 @@ module.exports = {
         }
     },
 
-    saveItem: (item, user, options = null) => {
+    saveItem: (item, options = null) => {
         if(item.status == null) item.status = 'inactive';
         if(options.task == "add") {
+            item.created = {
+				time: Date.now()
+            }
 			return new MainModel(item).save();
         }
 

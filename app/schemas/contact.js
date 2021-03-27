@@ -8,15 +8,8 @@ var schema = new mongoose.Schema({
     message: String,
     status: String,
     created: {
-        user_id: String,
-        user_name: String,
         time: Date
     },
-    modified: {
-        user_id: String,
-        user_name: String,
-        time: Date
-    }
 });
 
 module.exports = mongoose.model(databaseConfig.col_contact, schema );

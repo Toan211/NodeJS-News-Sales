@@ -1,3 +1,7 @@
+<%
+    const linkSubmit = systemConfig.prefixBlog + '/contact/save';
+%>
+
 <section id="ContactContent">
 	<div class="row">
 	  <div class="col-lg-12 col-md-12 col-sm-12">
@@ -6,14 +10,15 @@
 		  <p>Vestibulum id nisl a neque malesuada hendrerit. Mauris ut porttitor nunc, ut volutpat nisl. Nam ullamcorper ultricies metus vel ornare. Vivamus tincidunt erat in mi accumsan, a sollicitudin risus vestibulum. Nam dignissim purus vitae nisl adipiscing ultricies. Pellentesque in porttitor tellus. Integer fermentum in sem eu tempus. In eu metus vitae nibh laoreet sollicitudin et ac lectus. Curabitur blandit velit elementum augue elementum scelerisque.</p>
 		  <div class="contact_bottom">
 			<div class="contact_us wow fadeInRightBig">
+				<% include ./../../elements/notify %>
 			  <h2>Contact Us</h2>
-			  <form action="#" class="contact_form">
-				<input class="form-control" type="text" placeholder="Name(required)">
-				<input class="form-control" type="email" placeholder="E-mail(required)">
-				<input class="form-control" type="phone" placeholder="Phone(required)">
-				<input class="form-control" type="text" placeholder="Subject">
-				<textarea class="form-control" cols="30" rows="10" placeholder="Message(required)"></textarea>
-				<input type="submit" value="Send">
+			  <form class="contact_form" id="fh5co_contact_form" name="contact-form" action="<%= linkSubmit %>" method="POST">
+				<input class="form-control" name="name" type="text" placeholder="Name(required)">
+				<input class="form-control" name="email" type="email" placeholder="E-mail(required)">
+				<input class="form-control" name="phone" type="text" placeholder="Phone(required)">
+				<input class="form-control" name="subject" type="text" placeholder="Subject">
+				<textarea class="form-control" name="message" cols="30" rows="10" placeholder="Message(required)"></textarea>
+				<button type="submit">Send Message</button>
 			  </form>
 			</div>
 		  </div>

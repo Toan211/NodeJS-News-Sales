@@ -98,3 +98,6 @@ trang login
 thống kê dasboard'
 làm trang liên hệ
 total item nếu dc
+ajax
+fix lại tin tưc tổng hợp
+

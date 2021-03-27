@@ -2,11 +2,11 @@ const util  = require('util');
 const notify= require(__path_configs + 'notify');
 
 const options = {
-    ame: { min: 2, max: 30 },
+    name: { min: 2, max: 30 },
     email: { min: 5, max: 100 },
     status: { value: 'allValue' },
     phone: {  min: 5, max: 20 },
-    message: { min: 1, max: 5000 }
+    message: { min: 1, max: 50000 }
 }
 
 module.exports = {

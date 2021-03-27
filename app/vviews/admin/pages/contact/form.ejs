@@ -2,17 +2,17 @@
 <% include ./../../helpers/input %>
 <% include ./../../helpers/textarea %>
 <% include ./../../helpers/formBody %>
+
 <% 
-	const controllerName = "categories";
+	const controllerName = "contact";
 	const linkPrefix = systemConfig.prefixAdmin + `/${controllerName}/`;
 	
 	let elementsForm = [
-		
-		{for: 'name', label: 'Name', input: inputHelper('name', item.name, 'text', 'name_slug')},
-		{for: 'slug', label: 'Slug', input: inputHelper('slug', item.slug)},
-		{ for: 'status', label: 'Status', input: selectboxHelper('status', systemConfig.status_value, item.status) },
-		{ for: 'ordering', label: 'Ordering', input: inputHelper('ordering', item.ordering ) },
-		{ for: 'content', label: 'Content', input:  textareaHelper('content', item.content ) },
+		{for: 'name', label: 'Name', input: inputHelper('name', item.name)},
+		{for: 'email', label: 'Email', input: inputHelper('email', item.email)},
+		{for: 'phone', label: 'Phone', input: inputHelper('phone', item.phone)},
+		{for: 'status', label: 'Status', input: selectboxHelper('status', systemConfig.status_value, item.status)},
+		{for: 'message', label: 'Message', input: textareaHelper('message', item.message)},
 	];
 
 	let xhtmlForm = formBodyHelper(elementsForm);

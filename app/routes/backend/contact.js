@@ -41,7 +41,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus	= ParamsHelpers.getParam(req.params, 'status', 'active'); 
 	let id				= ParamsHelpers.getParam(req.params, 'id', ''); 
 	
-	MainModel.changeStatus(id, currentStatus, req.user,{task: "update-one"})
+	MainModel.changeStatus(id, currentStatus ,{task: "update-one"})
 			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-status'}));
 });
 
@@ -49,7 +49,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus	= ParamsHelpers.getParam(req.params, 'status', 'active'); 
 	
-	MainModel.changeStatus(req.body.cid, currentStatus,req.user, {task: "update-multi"})
+	MainModel.changeStatus(req.body.cid, currentStatus, {task: "update-multi"})
 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-multi-status', total: result.n}));
 });
 
@@ -58,7 +58,7 @@ router.post('/change-ordering', (req, res, next) => {
 	let cids 		= req.body.cid;
 	let orderings 	= req.body.ordering;
 
-	MainModel.changeOrdering(cids, orderings,req.user, null)
+	MainModel.changeOrdering(cids, orderings, null)
 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {total: result.n , task: 'change-ordering'}));
 });
 
@@ -80,12 +80,12 @@ router.post('/delete', (req, res, next) => {
 // FORM
 router.get(('/form(/:id)?'), (req, res, next) => {
 	let id		= ParamsHelpers.getParam(req.params, 'id', '');
-	let item	= {name: '', ordering: 0, status: 'allvalue', content: '', slug: ''};
+	let item	= {name: '', email: '', phone: '', status: 'allvalue', message: ''};
 	let errors   = null;
 	if(id === '') { // ADD
 		res.render(`${folderView}form`, { pageTitle: pageTitleAdd, controllerName, item, errors});
 	}else { // EDIT
-		MainModel.getItem(id).then((item) =>{
+		MainModel.getItem({id: id}, {task: 'get-items-by-id'}).then((item) =>{
 			res.render(`${folderView}form`, { pageTitle: pageTitleEdit, controllerName, item, errors});
 		});	
 	}
@@ -104,14 +104,14 @@ router.post('/save', (req, res, next) => {
 		let pageTitle = (taskCurrent == "add") ? pageTitleAdd : pageTitleEdit;
 		res.render(`${folderView}form`, { pageTitle, controllerName, item, errors});
 	}else {
-		MainModel.saveItem(item, req.user, {task: taskCurrent})
+		MainModel.saveItem(item, {task: taskCurrent})
 			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: taskCurrent}));
 	}
 });
 
 // SORT
 router.get(('/sort/:sort_field/:sort_type'), (req, res, next) => {
-	req.session.sort_field		= ParamsHelpers.getParam(req.params, 'sort_field', 'ordering');
+	req.session.sort_field		= ParamsHelpers.getParam(req.params, 'sort_field', 'created');
 	req.session.sort_type		= ParamsHelpers.getParam(req.params, 'sort_type', 'asc');
 	res.redirect(linkIndex);
 });
