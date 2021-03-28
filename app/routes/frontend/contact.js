@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+const ContactModel 		= require(__path_models + 'contact');
+const NotifyHelpers		= require(__path_helpers + 'notify');
+const systemConfig  	= require(__path_configs + 'system');
+const MainValidate	= require(__path_validates + 'contact');
+const linkIndex		 	=  `/contact/`;
+
 
 const ParamsHelpers = require(__path_helpers + 'params');
 const folderView	 = __path_views_blog + 'pages/contact/';
@@ -17,5 +23,32 @@ router.get('/', async (req, res, next) => {
 		params
 	});
 });
+
+router.post('/save',   async(req, res, next) => {
+
+  
+	req.body = JSON.parse(JSON.stringify(req.body));
+	let item = Object.assign(req.body);
+
+	let errors = MainValidate.validator(req);
+	let params = ParamsHelpers.createParam(req);
+	  
+
+	  if(Array.isArray(errors) && errors.length > 0) {
+		
+		res.render(`${folderView}index`, {
+			layout: layoutBlog,
+			top_post: false,
+			silde_bar: false,
+			params,
+			errors
+		});
+	}else {
+		ContactModel.saveItem(item, {task: 'add'}).then((result) => {
+			NotifyHelpers.show(req, res, linkIndex, {task: 'add-contact'});
+	  });
+	}
+  });
+  
 
 module.exports = router;

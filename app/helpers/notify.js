@@ -36,6 +36,9 @@ let show = (req, res, linkIndex, params = null ) => {
 		case 'edit':
 			notifyContent = notify.EDIT_SUCCESS;
 			break;
+		case 'add-contact':
+			notifyContent = notify.ADD_CONTACT_SUCCESS;
+			break;	
 		default:
 			notifyContent = '';
 			break;

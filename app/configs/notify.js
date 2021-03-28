@@ -22,4 +22,5 @@ module.exports = {
     ERROR_LOGIN_USERNAME_NOTEXIST: 'Username không tồn tại',
     ERROR_LOGIN_PASSWORD_INCORRECT: 'Password không chính xác',
     ERROR_LOGIN: 'Thông tin đăng nhập không chính xác',
+    ADD_CONTACT_SUCCESS: 'Thông tin đã được gửi đi!',
 };
