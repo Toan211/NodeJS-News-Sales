@@ -1,3 +1,4 @@
+const { json } = require('express');
 var express = require('express');
 var router 	= express.Router();
 
@@ -41,8 +42,9 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus	= ParamsHelpers.getParam(req.params, 'status', 'active'); 
 	let id				= ParamsHelpers.getParam(req.params, 'id', ''); 
 	
-	MainModel.changeStatus(id, currentStatus,req.user, {task: "update-one"})
-			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-status'}));
+	// MainModel.changeStatus(id, currentStatus,req.user, {task: "update-one"})
+	// 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-status'}));
+	res.json({'status': currentStatus, 'msg': 'cập nhật thành công', 'id': id})
 });
 
 // Change status - Multi

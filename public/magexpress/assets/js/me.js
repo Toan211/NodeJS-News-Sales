@@ -3,7 +3,7 @@ $(document).ready(function () {
     let linkBox = $(".box-large").data("url");
     let linkGold = $("#box-gold").data("url");
     let linkCoin = $("#box-coin").data("url");
-    let linkCate0 = $("#box-cate0").data("url");
+    let linkCate0 = $("0#box-cate0").data("url");
     let linkCate1 = $("#box-cate1").data("url");
     let linkCate2 = $("#box-cate2").data("url");
     let linkCate3 = $("#box-cate3").data("url");

@@ -18,6 +18,16 @@ function change_alias(alias) {
     return str;
 }
 
+function changeStatus(link)
+{
+    $.get( link, function( data ) {
+        console.log(data);
+        //change nút
+        $("a.status-" + data.id).notify(data.msg, { position:"top", className: 'success', });
+    });
+
+}
+
 //preview upload img
 function readURL(input, output) {
     if (input.files && input.files[0]) {
