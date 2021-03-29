@@ -22,8 +22,23 @@ function changeStatus(link)
 {
     $.get( link, function( data ) {
         console.log(data);
-        //change nút
-        $("a.status-" + data.id).notify(data.msg, { position:"top", className: 'success', });
+        var notifyClick = $("a.status-" + data.id)
+        
+        var btnNow = 'btn-warning';
+        var btnAfter = 'btn-success';
+        var statusValue = 'active';
+        if(data.currentStatus == 'active') {
+            btnNow = 'btn-success';
+            btnAfter = 'btn-warning';
+            statusValue = 'inactive';
+        }
+        //change link cho nút
+        var linkChange = notifyClick.attr("onclick").replace(data.currentStatus, statusValue);
+        notifyClick.attr("onclick", linkChange);
+        // thông báo ajax
+        notifyClick.notify(data.msg, { position:"top", className: 'success', });
+        // add vs remove class trực tiếp
+        notifyClick.addClass(btnAfter).removeClass(btnNow);
     });
 
 }
