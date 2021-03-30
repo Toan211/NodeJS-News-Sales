@@ -8,6 +8,7 @@ const MainValidate 	= require(__path_validates + 'groups');
 const UtilsHelpers 	= require(__path_helpers + 'utils');
 const NotifyHelpers = require(__path_helpers + 'notify');
 const ParamsHelpers = require(__path_helpers + 'params');
+const notify  		= require(__path_configs + 'notify');
 
 const controllerName = "groups";
 
@@ -44,8 +45,10 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let id				= ParamsHelpers.getParam(req.params, 'id', '');
 
 	MainModel.changeStatus(id, currentStatus,req.user, {task: "update-one"})
-		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-status'}));
-});
+		.then((result) => {// NotifyHelpers.show(req, res, linkIndex, {task: 'change-status'}));
+		res.json({'currentStatus': currentStatus, 'msg': notify.CHANGE_STATUS_SUCCESS, 'id': id})
+	});
+	});
 
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
