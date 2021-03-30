@@ -89,8 +89,10 @@ function activeMenu() {
     let pathname = window.location.pathname;
     let arrMenu = pathname.split("/");
     let currentMenu = arrMenu[1];
+    console.log(arrMenu);
     console.log(currentMenu);
-    $('ul.top_nav li[data-active="'+currentMenu+'"]').addClass('active');
+    $('ul.navbar-nav > li > a[data-active="'+currentMenu+'"]').addClass('active');
+    $('ul.navbar-nav > li > ul[data-active="'+currentMenu+'"]').addClass('active');
 
 }
 
@@ -253,9 +255,3 @@ function contactForm(link)
         }
 }
 
-function checkContact()
-{
-    $('#blog_contact_form').submit(function() {
-        return false;
-    });
-}

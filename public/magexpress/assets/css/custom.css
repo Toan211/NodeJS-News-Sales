@@ -57,6 +57,12 @@ h4, .h4 {
     top: -2px;
 }
 
+a.active {
+    background-color: rgba(255, 255, 255, 0.707);
+    color: #fff;
+    top:-2px;
+}
+
 .dropdown-menu > li > a {
     font-family: 'Merriweather', serif;
     padding: 7px 15px;
