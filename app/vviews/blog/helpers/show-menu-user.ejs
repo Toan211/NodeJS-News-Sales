@@ -10,7 +10,7 @@
         if( Object.keys(userInfo).length > 0) {
             xhtmlMenuUser = `<li><a href="${linkLogout}">Đăng xuất</a></li>`;
             if(userInfo.username == "admin"){
-                xhtmlMenuUser += `<li><a href="${linkAdmin}">Admin Control Panel</a></li>`;
+                xhtmlMenuUser += `<li><a href="${linkAdmin}">Admin</a></li>`;
             }
         }else {
             xhtmlMenuUser = `<li>

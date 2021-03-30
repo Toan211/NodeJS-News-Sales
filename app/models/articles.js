@@ -24,7 +24,7 @@ module.exports = {
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
         let select = 'name created.user_name created.time group.id group.name avatar content';
-        let limit = 3;
+        let limit;
         let sort = '';
 
         if (options.task == 'items-special'){
@@ -48,9 +48,10 @@ module.exports = {
         }
 
         if (options.task == 'items-in-category'){
-            select = 'name created.user_name created.time group.name avatar content';
+            select = 'name created.user_name created.time group.name avatar content slug';
             find = {status:'active', 'group.id': params.id};
             sort = {'created.time': 'desc'};
+            
         }
 
 
@@ -73,6 +74,7 @@ module.exports = {
             select = 'name created.user_name created.time group.id group.name avatar content';
             find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
             sort = {'created.time': 'desc'};
+            limit = 3;
         }
 
         return MainModel.find(find).select(select).limit(limit).sort(sort);

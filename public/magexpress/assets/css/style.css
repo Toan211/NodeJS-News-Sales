@@ -36,7 +36,7 @@ img:hover{opacity:0.75}
 .top_nav li{ display:inline-block}
 .top_nav li a{ color:#798992; display:inline-block; font-family:"Oswald",sans-serif; font-size:12px; padding:8px 12px; text-transform:uppercase; -webkit-transition:all 0.5; -o-transition:all 0.5; transition:all 0.5}
 .top_nav li a:hover{ color:#FFA500; text-decoration:none; outline:none}
-.header_top_right{ float:right; display:inline; width:30%; text-align:right}
+.header_top_right{ display:inline; width:30%; text-align:right}
 .search_form{ padding:3px 0 0}
 .search_form input[type="text"]{ background:none repeat scroll 0 0 #fff; border:medium none; color:#afafaf; display:inline-block; line-height:27px; margin:0; max-height:31px; padding:0 0 0 15px; width:180px}
 .search_form input[type="submit"]{ background:url("images/icon-search.png") no-repeat scroll center 5px rgba(0,0,0,0); height:27px; line-height:27px; width:30px; border:none}
