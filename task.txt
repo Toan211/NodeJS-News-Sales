@@ -92,13 +92,14 @@ làm trang liên hệ -done 28/3
 ajax -done 29/3
 fix logo ?
 menu active -done 30/3
+thống kê dasboard' -done 30/3
 
-fix lại tiêu đề, tiêu đề cate, article, url slug, css
+
 sửa about us
 sửa hình bị móp trong cate
 chi tiết url
 phân trang trong tin tức tổng hợp
-thống kê dasboard'
 total item nếu dc
 fix lại tin tưc tổng hợp
-
+pav shop
+in đậm search

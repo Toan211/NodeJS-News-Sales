@@ -73,7 +73,19 @@ a.active {
     height: 130px;
 }
 
+span.highlight {
+    background-color: chocolate;
+}
 
+.read_more > span {
+    background-color: gray;
+    
+}
+
+.read_more {
+    border-bottom: 4px solid gray;
+    
+}
 
 /*---------- MEDIA--PHONE ----------*/
 @media(max-width:991px ){

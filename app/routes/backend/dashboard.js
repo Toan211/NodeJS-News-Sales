@@ -8,6 +8,10 @@ const GroupsModel 	= require(__path_schemas + 'groups');
 const UsersModel 	= require(__path_schemas + 'users');
 const CategoryModel = require(__path_schemas + 'categories');
 const ArticleModel 	= require(__path_schemas + 'articles');
+const ContactModel 	= require(__path_schemas + 'contact');
+const RSSModel 	= require(__path_schemas + 'rss');
+const ProductModel 	= require(__path_schemas + 'products');
+const TypeModel 	= require(__path_schemas + 'types');
 
 const countItemHelpers 	= require(__path_helpers + 'count-items');
 
@@ -23,6 +27,14 @@ router.get('/', async(req, res, next) => {
 	totalCategories = await countItemHelpers.countItems2(CategoryModel);
 	let totalArticles = 0;
 	totalArticles = await countItemHelpers.countItems2(ArticleModel);
+	let totalProducts = 0;
+	totalProducts = await countItemHelpers.countItems2(ProductModel);
+	let totalTypes = 0;
+	totalTypes = await countItemHelpers.countItems2(TypeModel);
+	let totalContacts = 0;
+	totalContacts = await countItemHelpers.countItems2(ContactModel);
+	let totalRss = 0;
+	totalRss = await countItemHelpers.countItems2(RSSModel);
 
 
 	res.render(`${folderView}index`, { 
@@ -31,7 +43,11 @@ router.get('/', async(req, res, next) => {
     	totalGroups,
     	totalUsers,
     	totalCategories,
-		totalArticles
+		totalArticles,
+		totalProducts,
+		totalTypes,
+		totalContacts,
+		totalRss,
 	});
 });
 
