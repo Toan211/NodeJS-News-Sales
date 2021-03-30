@@ -31,3 +31,23 @@ h4, .h4 {
 .search_form input[type="text"] {
     width: 210px;
 }
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    margin-top: 0px;
+    margin-bottom: -4px;
+    padding-bottom: 17px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    top: -2px;
+}
+
+.dropdown-menu > li > a {
+    font-family: 'Merriweather', serif;
+    padding: 7px 15px;
+}

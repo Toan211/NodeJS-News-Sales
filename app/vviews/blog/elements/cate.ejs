@@ -11,8 +11,8 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav custom_nav" style="border: none;">
-            <li class=""><a href="/">Home</a></li>
-            <li class="dropdown"> <a href="#" class="" data-toggle="dropdown" role="button" aria-expanded="false">Category</a>
+            <li class=""><a href="/">Trang chủ</a></li>
+            <li class="dropdown"> <a href="#" class="" data-toggle="dropdown" role="button" aria-expanded="false">Chuyên mục</a>
               <ul class="dropdown-menu" role="menu">
                   <% itemsCategory.forEach((category) => { %>  
                       <li>
@@ -22,10 +22,10 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
               
               </ul>
             </li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/rss">General News</a></li>
-            <li><a href="/sales/">Ornament</a></li>
+            <li><a href="/about">Giới thiệu</a></li>
+            <li><a href="/contact">Liên hệ</a></li>
+            <li><a href="/rss">Tin tức tổng hợp</a></li>
+            <li><a href="/sales/">Trang sức</a></li>
             <%- showMenuUser(userInfo) %>
             <div class="header_top_right">
               <form class="search_form" action="/search" method="GET">

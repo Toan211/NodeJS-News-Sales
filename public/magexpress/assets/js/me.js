@@ -49,6 +49,39 @@ $(document).ready(function () {
 
     activeMenu();
 
+
+    // // Form blog contact
+    $('form#blog_contact_form').submit( async function(event) {
+        link ='blog/contact/save';
+        var $inputName = $('#blog_contact_form :input[name=name]');
+        var $inputEmail = $('#blog_contact_form :input[name=email]');
+        var $inputPhone = $('#blog_contact_form :input[name=phone]');
+        var $inputMessage = $('#blog_contact_form :input[name=message]');
+        
+        if(!$inputName.val() || !$inputEmail.val() || !$inputPhone.val() || !$inputMessage.val()) {
+            if(!$inputName.val()) {
+                $('#blog_contact_form :input[name=name]').notify("Hãy nhập tên của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputEmail.val()) {
+                $('#blog_contact_form :input[name=email]').notify("Hãy nhập địa chỉ email của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputPhone.val()) {
+                $('#blog_contact_form :input[name=phone]').notify("Hãy nhập số điện thoại của bạn", { position:"top", className: 'info' });
+            }
+            if(!$inputMessage.val()) {
+                $('#blog_contact_form :input[name=message]').notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });
+            }
+            console.log('false submit');
+            event.preventDefault();
+            return false;
+        } else {
+            window.location.href = link;
+            
+        }
+    });
+
+
+
 });
 
 //active menu function
@@ -189,3 +222,40 @@ function renderCoinTable(items) {
         </table>`;
 }
 
+
+function contactForm(link)
+{
+        
+        var $inputName = $('#blog_contact_form :input[name=name]');
+        var $inputEmail = $('#blog_contact_form :input[name=email]');
+        var $inputPhone = $('#blog_contact_form :input[name=phone]');
+        var $inputMessage = $('#blog_contact_form :input[name=message]');
+    console.log(link);
+        if(!$inputName.val() || !$inputEmail.val() || !$inputPhone.val() || !$inputMessage.val()) {
+            if(!$inputName.val()) {
+                $('#blog_contact_form :input[name=name]').notify("Hãy nhập tên của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputEmail.val()) {
+                $('#blog_contact_form :input[name=email]').notify("Hãy nhập địa chỉ email của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputPhone.val()) {
+                $('#blog_contact_form :input[name=phone]').notify("Hãy nhập số điện thoại của bạn", { position:"top", className: 'info' });
+            }
+            if(!$inputMessage.val()) {
+                $('#blog_contact_form :input[name=message]').notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });
+            }
+            $('#blog_contact_form').submit(function() {
+                return false;
+            });
+        } else {
+            window.location.href = link;
+            console.log(link);
+        }
+}
+
+function checkContact()
+{
+    $('#blog_contact_form').submit(function() {
+        return false;
+    });
+}

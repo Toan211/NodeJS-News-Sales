@@ -8,13 +8,13 @@
         let xhtmlMenuUser = '';
         
         if( Object.keys(userInfo).length > 0) {
-            xhtmlMenuUser = `<li><a href="${linkLogout}">Logout</a></li>`;
+            xhtmlMenuUser = `<li><a href="${linkLogout}">Đăng xuất</a></li>`;
             if(userInfo.username == "admin"){
                 xhtmlMenuUser += `<li><a href="${linkAdmin}">Admin Control Panel</a></li>`;
             }
         }else {
             xhtmlMenuUser = `<li>
-                        <a href="${linkLogin}">Login</a>
+                        <a href="${linkLogin}">Đăng nhập</a>
                     </li>`;
         }
         return xhtmlMenuUser;
