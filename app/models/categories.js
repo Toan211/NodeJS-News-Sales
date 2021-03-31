@@ -19,7 +19,7 @@ module.exports = {
 
     listItemsFrontend: (params= null, options = null) => {
         let find = {};
-        let select = 'name';
+        let select = 'name slug';
         let limit = 10;
         let sort = '';
 

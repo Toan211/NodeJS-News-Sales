@@ -6,6 +6,7 @@ module.exports = {
         facebook: '/',
         instagram: '/'
     },
-    about:` I'm the Website Order, the orgin of all being within it </br>
-            In million and billion website, everything and anything in my order, hide without the law of the order, will cease to exist. `
+    about:` Xin chào, tên tôi là Đặng Hữu Toàn </br>
+    Đây là project nodeJS blog của tôi, nếu có sai sót gì vui lòng liên hệ trong phần liên hệ</br>
+    Trân trọng cám ơn.`
 }

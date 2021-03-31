@@ -96,10 +96,36 @@ thống kê dasboard' -done 30/3
 
 
 sửa about us
-sửa hình bị móp trong cate
+
 chi tiết url
 phân trang trong tin tức tổng hợp
 total item nếu dc
 fix lại tin tưc tổng hợp
 pav shop
-in đậm search
+in đậm search --done 30/3
+không có bài viết nào
+fix lại layout blog category--sửa hình bị móp trong cate
+slider -- hiển thị status-link--hình quảng cáo sp != hình sản phầm
+lọc theo status
+subcribe-- name email status time -- quản lý subcribe
+
+A 
+    size{
+        A: 1  
+            {
+                color{
+                    red : 1
+                        {
+                            price:
+                        }
+                    blue: 0
+                    yellow: 0
+
+                }
+
+            }
+        B: 0
+        C: 0
+        D: 1
+        original price
+    } 
