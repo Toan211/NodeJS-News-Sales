@@ -22,9 +22,7 @@ module.exports = {
         return  MainModel.find({}, {_id: 1, name: 1});
     },
 
-    listNameItems: () => {
-        return  MainModel.find({}, {_id: 1, name: 1});
-    },
+    
 
     getItem: (id, options = null) => {
         return MainModel.findById(id);

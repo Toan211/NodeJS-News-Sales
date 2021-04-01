@@ -5,7 +5,7 @@
     const folder_uploads = 'uploads/articles/';
 %>
 
-    
+<%= //JSON.stringify(testing)  %> 
 <div class="col-lg-8 col-md-8">
     <div class="content_bottom_left">
         <div class="single_category wow fadeInDown">
@@ -17,10 +17,10 @@
                 <div class="single_archive wow fadeInDown">
                     <div class="archive_imgcontainer"><img src="<%= folder_uploads + item.avatar %>" alt="<%= item.name %>"> </div>
                     <div class="archive_caption">
-                        <h2><a href="/article/<%= item.id %>"><%= item.name %></a></h2>
+                        <h2><a href="/article/<%= item.slug %>"><%= item.name %></a></h2>
                         <p><%- formatSummary(item.content) %> ...</p>
                     </div>
-                    <a class="read_more" href="/article/<%= item.id %>"><span>Read More</span></a> 
+                    <a class="read_more" href="/article/<%= item.slug %>"><span>Read More</span></a> 
                 </div>
                 
                 <% }) %>

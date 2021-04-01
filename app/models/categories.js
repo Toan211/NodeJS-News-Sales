@@ -35,13 +35,23 @@ module.exports = {
         return MainModel.findById(id);
     },
 
+    getItems: (params = null, option = null) => {
+        if(option.task == 'get-items-by-id'){
+            return MainModel.findById(params.id);
+        }
+        if(option.task == 'get-name-items'){
+            return MainModel.find({}, {_id: 1, name: 1});
+        }
+        if(option.task == 'get-items-by-slug'){
+            return MainModel.find({slug: params.slug}).select('name slug');
+        }
+    },
+
     listItemsInSelectbox: (params, options = null) => {
         return  MainModel.find({}, {_id: 1, name: 1});
     },
 
-    listNameItems: () => {
-        return  MainModel.find({}, {_id: 1, name: 1});
-    },
+    
 
     countItem: (params, options = null) => {
         let objWhere    = {};

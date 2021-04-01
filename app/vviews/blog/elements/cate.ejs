@@ -16,7 +16,7 @@ const linkLogin = systemConfig.prefixBlog + `/auth/login`;
               <ul class="dropdown-menu" role="menu">
                   <% itemsCategory.forEach((category) => { %>  
                       <li>
-                          <a href="/category/<%= category.id %>"><%= category.name %></a>
+                          <a href="/category/<%= category.slug %>"><%= category.name %></a>
                       </li>
                   <%})%>
               

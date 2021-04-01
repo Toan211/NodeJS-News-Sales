@@ -30,4 +30,27 @@ router.get('/:id', async (req, res, next) => {
 	});
 });
 
+/* GET home page. */
+router.get('/:slug', async (req, res, next) => {
+	let slugArticle 		= ParamsHelpers.getParam(req.params, 'slug', '');
+	let itemArticle		= {};
+	let itemsOthers		= [];
+	let params 		 	 = ParamsHelpers.createParam(req);
+
+	// Article Info
+	await ArticleModel.getItemFrontend(slugArticle, null ).then( (item) => { itemArticle = item; });
+
+	// Article In Category
+	await ArticleModel.listItemsFrontend(itemArticle, {task: 'items-others'} ).then( (items) => { itemsOthers = items; });
+	
+	res.render(`${folderView}index`, {
+		layout: layoutBlog,
+		top_post: false,
+		silde_bar: true,
+		itemsOthers,
+		itemArticle,
+		params
+	});
+});
+
 module.exports = router;
