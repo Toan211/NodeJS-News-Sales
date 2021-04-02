@@ -11,8 +11,8 @@
             <% for(let i = 0; i < 4; i++){ %>
               
               <div class="single_iteam"><img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>">
-                <h2><a class="slider_tittle" style="display: block;" href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name %></a></h2>
-                <h2 style="right: unset; top: 0%; text-align: inherit;"><a class="slider_tittle" style="color: azure;background-color: grey;" href="/category/<%= itemsNews[i].group.id %>"><%= itemsNews[i].group.name %></a></h2>
+                <h2><a class="slider_tittle" style="display: block;" href="/article/<%= itemsNews[i].slug %>"><%= itemsNews[i].name %></a></h2>
+                <h2 style="right: unset; top: 0%; text-align: inherit;"><a class="slider_tittle" style="color: azure;background-color: grey;" href="/category/<%= itemsNews[i].group.slug %>"><%= itemsNews[i].group.name %></a></h2>
               </div>
             <% } %>
           </div>
@@ -23,7 +23,7 @@
           <ul class="featured_nav wow fadeInDown">
             <% for(let i = 4; i < itemsNews.length; i++){ %>
             <li><img src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>">
-              <div class="title_caption"><a href="/article/<%= itemsNews[i].id %>"><%= itemsNews[i].name %></a></div>
+              <div class="title_caption"><a href="/article/<%= itemsNews[i].slug %>"><%= itemsNews[i].name %></a></div>
             </li>
             <% } %>
           </ul>

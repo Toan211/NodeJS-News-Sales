@@ -108,7 +108,7 @@ router.post('/delete', (req, res, next) => {
 // FORM
 router.get(('/form(/:id)?'), async(req, res, next) => {
 	let id		= ParamsHelpers.getParam(req.params, 'id', '');
-	let item	= {name: '', slug: '',  ordering: 0, status: 'allvalue', group_id: '', group_name: '', content:' ',  special: 'allvalue'};
+	let item	= {name: '', slug: '',  ordering: 0, status: 'allvalue', group_id: '', group_name: '', group_slug: '', content:' ',  special: 'allvalue'};
 
 	let groupsItems	= [];
 	await GroupsModel.listItemsInSelectbox().then((items)=> {
@@ -123,6 +123,7 @@ router.get(('/form(/:id)?'), async(req, res, next) => {
 		MainModel.getItem(id).then((item) =>{
 			item.group_id = item.group.id;
 			item.group_name = item.group.name;
+			item.group_slug = item.group.slug;
 			res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, errors, groupsItems, controllerName});
 		});	
 	}
@@ -146,7 +147,7 @@ router.post('/save', async(req, res, next) => {
 			let groupsItems	= [];
 			await GroupsModel.listItemsInSelectbox().then((items)=> {
 				groupsItems = items;
-				groupsItems.unshift({_id: 'allvalue', name: 'All category'});
+				groupsItems.unshift({_id: 'allvalue', name: 'All category', slug:''});
 			});
 			
 			if (taskCurrent == "edit") item.avatar = item.image_old;

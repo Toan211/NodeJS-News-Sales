@@ -15,7 +15,7 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name slug status ordering created modified group.name avatar special')
+            .select('name slug status ordering created modified group.name group.slug avatar special')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -23,7 +23,7 @@ module.exports = {
 
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
-        let select = 'slug name created.user_name created.time group.id group.name avatar content';
+        let select = 'slug name created.user_name created.time group.id group.name group.slug avatar content';
         let limit;
         let sort = '';
 
@@ -89,7 +89,7 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name avatar status specisal ordering created modified group.name content')
+            .select('name avatar status specisal ordering created modified group.slug group.name content')
             .sort(sort)
             .limit(9);
     },
@@ -102,11 +102,11 @@ module.exports = {
 
     getItemFrontend: (id, options = null) => {
         return MainModel.findById(id)
-            .select('name avatar created content group.name group.id');
+            .select('name avatar created content group.slug group.name group.id');
     },
 
     getSlugArticle: (slug, option = null) => {
-        let select = 'name created.user_name created.time group.name group.id avatar content';
+        let select = 'name created.user_name created.time group.slug group.name group.id avatar content';
         return MainModel.find({slug: slug}).select(select);
     },
 
@@ -216,6 +216,7 @@ module.exports = {
             item.group = {
                 id: item.group_id,
                 name: item.group_name,
+                slug: item.group_slug,
             }
 			return new MainModel(item).save();
         }
@@ -232,6 +233,7 @@ module.exports = {
                 group: {
                     id: item.group_id,
                     name: item.group_name,
+                    slug: item.group_slug,
                 },
 				modified:{
                     user_id: user.id,
@@ -246,6 +248,7 @@ module.exports = {
 				group: {
                     id: item.id,
 					name: item.name,
+                    slug: item.slug,
 				},
 			});
         }

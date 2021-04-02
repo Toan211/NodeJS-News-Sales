@@ -48,7 +48,7 @@ module.exports = {
     },
 
     listItemsInSelectbox: (params, options = null) => {
-        return  MainModel.find({}, {_id: 1, name: 1});
+        return  MainModel.find({}, {_id: 1, name: 1, slug: 1});
     },
 
     
@@ -134,7 +134,7 @@ module.exports = {
 				content: item.content,
 				modified: {
 					user_id: user.id,
-                user_name: user.username,
+                    user_name: user.username,
         			time: Date.now()
 				}
 			});

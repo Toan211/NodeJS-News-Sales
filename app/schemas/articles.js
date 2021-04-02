@@ -14,7 +14,8 @@ var schema = new mongoose.Schema({
     username: String, 
     group: {
         id: String,
-        name: String
+        name: String,
+        slug: String,
     },
     created: {
         user_id: String,

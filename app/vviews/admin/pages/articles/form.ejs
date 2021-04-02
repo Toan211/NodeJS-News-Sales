@@ -32,7 +32,8 @@
 			<div class="col-12 col-sm-8 offset-sm-2">
 				<input class="form-control" name="id" value="<%= item.id %>" type="hidden" >
 				<input  name="image_old" value="<%= item.avatar%>" type="hidden" >
-				<input class="form-control" name="group_name" type="hidden" value="<%= item.group_name %>"/>
+				<input class="form-control" name="group_name"  value="<%= item.group_name %>"/>
+				<input  class="form-control" name="group_slug"  value="<%= item.group_slug %>"/>
 				<button type="submit" class="btn btn-sm btn-success mr-1"> Submit</button>
 				<a href="<%= linkPrefix %>" class="btn btn-sm btn-danger mr-1"> Cancel</a>
 			</div>

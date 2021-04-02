@@ -196,6 +196,12 @@ $(document).ready(function () { //deprecated
         $('input[name="slug"]').val(change_alias($(this).val()));
      });
 
+     //slug_category_in_article
+    $('select[name="group_id"]').change(function(){
+        let groupName = $(this).find('option:selected').text();
+        $('input[name="group_slug"]').val(change_alias(groupName));
+     });
+
     // fill avatar_name when choose group
     $('select[name=avatar]').change(function() {
         $('input[name=image_old]').val($(this).find('option:selected').text());
