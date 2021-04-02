@@ -3,12 +3,13 @@
  <% const folder_uploads = 'uploads/articles/';
 %>
 
+<%= JSON.stringify(itemMainCategory)  %> 
 <div class="col-lg-8 col-md-8">
 	<div class="content_bottom_left">
 		<div class="single_page_area">
 			<ol class="breadcrumb">
 				<li><a href="#">Home</a></li>
-				<li><a href="/category/<%= itemArticle.group.id %>"	><%= itemArticle.group.name %></a></li>
+				<li><a href="/category/<%= itemMainCategory.slug %>"	><%= itemArticle.group.name %></a></li>
 				<li class="active"><%= itemArticle.name %></li>
 			</ol>
 			<h2 class="post_titile"><%= itemArticle.name %></h2>
@@ -16,67 +17,17 @@
 				<div class="post_commentbox">
 					<a><i class="fa fa-user"></i><%= itemArticle.created.user_name %></a>
 					<span><i class="fa fa-calendar"></i><%- formatDate(itemArticle.created.time) %></span>
-					<a href="/category/<%= itemArticle.group.id %>"><i class="fa fa-tags"></i><%= itemArticle.group.name %></a>
+					<a href="/category/<%= itemMainCategory.slug %>"><i class="fa fa-tags"></i><%= itemArticle.group.name %></a>
 				</div>
 				<img class="img-center" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>" />
 				<p>
 					<%- itemArticle.content %>
 				</p>
-
-				<!-- <blockquote>
-					Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus.
-					
-				</blockquote> -->
-				
-                <!-- ---------TAG------- -->
-				<!-- <ul>
-					<li>Nunc sed aliquet nisi. Nullam ut magna</li>
-					<li>
-						Nunc sed aliquet nisi. Nullam ut magna non lacus adipiscing volutpat
-					</li>
-				</ul> 
-
-				<button class="btn">Default</button>
-				<button class="btn btn-primary">Primary</button>
-				<button class="btn btn-success">Success</button>
-				<button class="btn btn-info">Info</button>
-				<button class="btn btn-warning">Warning</button>
-				<button class="btn btn-danger">Danger</button>
-                -->
 			</div>
 		</div>
 	</div>
 
-    <!-- ----------PAGINATION---------- -->
-	<!-- <div class="post_pagination">
-		<div class="prev">
-			<a class="angle_left" href="#"><i class="fa fa-angle-double-left"></i></a>
-			<div class="pagincontent">
-				<span>Previous Post</span>
-				<a href="#">Aliquam quam orci in molestie a tempor nec</a>
-			</div>
-		</div>
-		<div class="next">
-			<div class="pagincontent">
-				<span>Next Post</span>
-				<a href="#">Aliquam quam orci in molestie a tempor nec</a>
-			</div>
-			<a class="angle_right" href="#"
-				><i class="fa fa-angle-double-right"></i
-			></a>
-		</div>
-	</div>
-	<div class="share_post">
-		<a class="facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
-		<a class="twitter" href="#"><i class="fa fa-twitter"></i>Twitter</a>
-		<a class="googleplus" href="#"><i class="fa fa-google-plus"></i>Google+</a>
-		<a class="linkedin" href="#"><i class="fa fa-linkedin"></i>LinkedIn</a>
-		<a class="stumbleupon" href="#"
-			><i class="fa fa-stumbleupon"></i>StumbleUpon</a
-		>
-		<a class="pinterest" href="#"><i class="fa fa-pinterest"></i>Pinterest</a>
-	</div> -->
-
+ 
 	<div class="similar_post">
         <% if(itemsOthers.length > 0) { %>
 		<h2>Similar Post You May Like <i class="fa fa-thumbs-o-up"></i></h2>
@@ -87,12 +38,12 @@
 					class="media wow fadeInDown animated"
 					style="visibility: visible; animation-name: fadeInDown"
 				>
-					<a class="media-left related-img" href="/article/<%= itemsOthers[i].id %>"
+					<a class="media-left related-img" href="/article/<%= itemsOthers[i].slug %>"
 						><img src="<%= folder_uploads + itemsOthers[i].avatar %>" alt="<%= itemsOthers[i].name %>"
 					/></a>
 					<div  style="float: left;" class="media-body">
 						<h4 class="media-heading">
-							<a href="/article/<%= itemsOthers[i].id %>"><%= itemsOthers[i].name %></a>
+							<a href="/article/<%= itemsOthers[i].slug %>"><%= itemsOthers[i].name %></a>
 						</h4>
 						
 					</div>

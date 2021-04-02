@@ -37,7 +37,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 	let idCategory;
 	let itemsInCategory	= [];
 	let itemsInArticle	= [];
-	console.log(slugCategory);
+	//console.log(slugCategory);
 	// find id of category
     await CategoryModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
 	// Article In Category
@@ -58,7 +58,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 
 router.get('/:id/json', async (req, res, next) => {
 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
-
+	//console.log(idCategory);
 	let itemsArticleJs	= [];
 	// Article In Category
 	
@@ -67,14 +67,14 @@ router.get('/:id/json', async (req, res, next) => {
 	res.json(itemsArticleJs);
 });
 
-router.get('/items/json', async (req, res, next) => {
-	let itemsCategory   = [];
+// router.get('/items/json', async (req, res, next) => {
+// 	let itemsCategory   = [];
 	
-	//category
-	await CategoryModel.listItemsFrontend(null,{task: 'items-in-menu'} ).then( (items) => { itemsCategory = items; });
-  
-	res.json(itemsCategory);
-  });
+// 	//category
+// 	await CategoryModel.listItemsFrontend(null,{task: 'items-in-menu'} ).then( (items) => { itemsCategory = items; });
+// 	console.log(itemsCategory);
+// 	res.json(itemsCategory);
+//   });
   
   
 

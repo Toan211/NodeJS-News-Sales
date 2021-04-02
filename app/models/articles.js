@@ -58,7 +58,7 @@ module.exports = {
         if (options.task == 'items-random'){
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
-                    { $project : {name : 1 , created : 1 ,avatar: 1, content: 1, slug: 1}  },
+                    { $project : {name : 1 , created : 1 ,avatar: 1, slug: 1}  },
                     { $sample: {size: 4}}
                 ]);
         }
@@ -94,10 +94,7 @@ module.exports = {
             .limit(9);
     },
 
-    getMainArticle: (id, option = null) => {
-        let select = 'name created group.name group.id avatar content';
-        return MainModel.findById(id).select(select);
-    },
+    
 
     getItem: (id, options = null) => {
         return MainModel.findById(id);
@@ -106,6 +103,11 @@ module.exports = {
     getItemFrontend: (id, options = null) => {
         return MainModel.findById(id)
             .select('name avatar created content group.name group.id');
+    },
+
+    getSlugArticle: (slug, option = null) => {
+        let select = 'name created.user_name created.time group.name group.id avatar content';
+        return MainModel.find({slug: slug}).select(select);
     },
 
     countItem: (params, options = null) => {
