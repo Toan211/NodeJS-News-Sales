@@ -120,13 +120,13 @@ function renderBox(items){
     for (let i = 1; i < items.length; i++) {
         righthtml+=`
         <li>
-            <div class="media wow fadeInDown"> <a class="media-left"  href="/article/${items[i]._id}">
+            <div class="media wow fadeInDown"> <a class="media-left"  href="/article/${items[i].slug}">
                 <img src="uploads/articles/${items[i].avatar}" alt="${items[i].name}"></a>
                 <div class="media-body">
-                <h4 class="media-heading"><a href="/article/${items[i]._id}">${items[i].name} </a></h4>
+                <h4 class="media-heading"><a href="/article/${items[i].slug}">${items[i].name} </a></h4>
                 <div class="comments_box">
                
-                    <span class="meta_more"><a  href="/category/${items[i].group.id}">${items[i].group.name}</a></span>
+                    <span class="meta_more"><a  href="/category/${items[i].group.slug}">${items[i].group.name}</a></span>
                     </div>
                 </div>
             </div>
@@ -142,11 +142,11 @@ function renderBox(items){
 
             <ul class="fashion_catgnav">
               <li>
-                <div class="catgimg2_container"> <a href="/article/${items[0]._id}"><img src="uploads/articles/${items[0].avatar}" alt="${items[0].name}"></a> </div>
-                <h2 class="catg_titile"><a href="/article/${items[0]._id}">${items[0].name}</a></h2>
+                <div class="catgimg2_container"> <a href="/article/${items[0].slug}"><img src="uploads/articles/${items[0].avatar}" alt="${items[0].name}"></a> </div>
+                <h2 class="catg_titile"><a href="/article/${items[0].slug}">${items[0].name}</a></h2>
                 <div class="comments_box">
                   
-                  <span class="meta_more"><a  href="/category/${items[0].group.id}">${items[0].group.name}</a></span> </div>
+                  <span class="meta_more"><a  href="/category/${items[0].group.slug}">${items[0].group.name}</a></span> </div>
                 <p>${formatSummary(items[0].content)}...</p>
               </li>
             </ul>

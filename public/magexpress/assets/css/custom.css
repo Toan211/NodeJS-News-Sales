@@ -87,6 +87,11 @@ span.highlight {
     
 }
 
+/* .top_img{    
+    margin: auto;
+    width: fit-content;
+} */
+
 /*---------- MEDIA--PHONE ----------*/
 @media(max-width:991px ){
     .header_top_right{

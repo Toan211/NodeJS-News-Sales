@@ -41,7 +41,7 @@ module.exports = {
         }
 
         if (options.task == 'items-news-category'){
-            limit = 5;
+            limit = 4;
             //select = ' name created.user_name created.time group.name group.id  avatar content';
             find = {status:'active','group.id': params.id};
             sort = {'created.time': 'desc'};   
