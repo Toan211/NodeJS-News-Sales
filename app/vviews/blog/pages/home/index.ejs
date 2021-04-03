@@ -11,7 +11,7 @@
     <% for (let i = 0; i < itemsCategory.length; i++) { %>   
 
       <div class="single_category wow fadeInDown">
-        <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a class="title_text" href="category/<%= itemsCategory[i].id %>"><%= itemsCategory[i].name %></a> </h2>  
+        <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <a class="title_text" href="category/<%= itemsCategory[i].slug %>"><%= itemsCategory[i].name %></a> </h2>  
           <div id="box-cate<%= i %>" data-url="category/<%= itemsCategory[i].id %>/json">
           
           </div>

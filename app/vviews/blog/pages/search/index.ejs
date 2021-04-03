@@ -17,10 +17,10 @@
                 <div class="single_archive wow fadeInDown">
                     <div class="archive_imgcontainer"><img src="<%= folder_uploads + item.avatar %>" alt="<%= item.name %>"> </div>
                     <div class="archive_caption">
-                        <h2><a href="/article/<%= item.id %>"><%- highlightHelper(item.name, params.keyword) %></a></h2>
+                        <h2><a href="/article/<%= item.slug %>"><%- highlightHelper(item.name, params.keyword) %></a></h2>
                         <p><%- formatSummary(item.content) %> ...</p>
                     </div>
-                    <a class="read_more" href="/category/<%= item.group.id %>"><span><%= item.group.name %></span></a> 
+                    <a class="read_more" href="/category/<%= item.group.slug %>"><span><%= item.group.name %></span></a> 
                 </div>
                 
                 <% }) %>

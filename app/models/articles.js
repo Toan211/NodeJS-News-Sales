@@ -89,9 +89,9 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name avatar status specisal ordering created modified group.slug group.name content')
-            .sort(sort)
-            .limit(9);
+            .select('name slug avatar group.slug group.name content')
+            .sort(sort);
+            
     },
 
     
