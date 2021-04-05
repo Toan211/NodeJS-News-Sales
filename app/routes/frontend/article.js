@@ -55,7 +55,8 @@ router.get('/:slug', async (req, res, next) => {
 		itemsOthers,
 		itemArticle,
 		itemMainCategory,
-		params
+		params,
+		titleHeader: itemArticle.name + " - BlackHOSTVN " ,
 	});
 });
 

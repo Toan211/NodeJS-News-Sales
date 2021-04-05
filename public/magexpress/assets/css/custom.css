@@ -41,7 +41,7 @@ h4, .h4 {
 .navbar-default .navbar-nav > li > a {
     color: #fff;
     font-family: 'Merriweather', serif;
-    font-size: 15px;
+    font-size: 16px;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
     margin-top: 0px;
@@ -118,6 +118,11 @@ span.highlight {
 
 .self-media-heading a {
     font-size: 19px;
+}
+
+.single_bottom_rightbar > h2 {
+    font-family: 'Merriweather', serif;
+    padding: 0 0 4px;
 }
 
 /*---------- MEDIA--PHONE ----------*/

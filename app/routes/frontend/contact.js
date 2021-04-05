@@ -19,7 +19,8 @@ router.get('/', async (req, res, next) => {
 		layout: layoutBlog,
 		top_post: false,
 		silde_bar: false,
-		params
+		params,
+		titleHeader: "Contact - BlackHOSTVN " ,
 	});
 });
 

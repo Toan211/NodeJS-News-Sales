@@ -52,6 +52,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 		itemsInCategory,
 		itemsInArticle,
 		params,
+		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
 		
 	});
 });

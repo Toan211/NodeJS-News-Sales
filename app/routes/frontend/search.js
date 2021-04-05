@@ -20,7 +20,8 @@ router.get('/', async (req, res, next) => {
     top_post:false,
 	silde_bar: true,
     itemsSearch,
-    params
+    params,
+		titleHeader: "Tìm kiếm : " + params.keyword + " - BlackHOSTVN" ,
   });
 });
 

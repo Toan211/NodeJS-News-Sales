@@ -24,6 +24,7 @@ router.get('/', async (req, res, next)=> {
 		silde_bar: true,
 		params,
 		itemsNews,
+		titleHeader: "Home-BlackHOSTVN",
 	});
 });
 

@@ -93,21 +93,24 @@ ajax -done 29/3
 fix logo ?
 menu active -done 30/3
 thống kê dasboard' -done 30/3
+chi tiết url 1-3/4
+in đậm search --done 30/3
+fix lại layout blog category--sửa hình bị móp trong cate 5/4
 
 
 sửa about us
-
-chi tiết url
 phân trang trong tin tức tổng hợp
 total item nếu dc
 fix lại tin tưc tổng hợp
 pav shop
-in đậm search --done 30/3
 không có bài viết nào
-fix lại layout blog category--sửa hình bị móp trong cate
 slider -- hiển thị status-link--hình quảng cáo sp != hình sản phầm
 lọc theo status
 subcribe-- name email status time -- quản lý subcribe
+tạo gmail nghiêm túc lol
+header
+sửa lại sidebar
+
 
 A 
     size{

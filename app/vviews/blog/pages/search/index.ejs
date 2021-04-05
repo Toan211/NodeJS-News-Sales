@@ -12,7 +12,7 @@
           <div class="single_category">
             <div class="archive_style_1">
               <% if(itemsSearch.length > 0) { %>
-              <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <span class="title_text">keyword: <%= params.keyword %></span> </h2>
+              <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <span class="title_text">Tìm kiếm : <%= params.keyword %></span> </h2>
               <% itemsSearch.forEach((item)=> { %>
               <div class="business_category_right self-category">
                 <ul class="small_catg wow fadeInDown">
@@ -31,7 +31,7 @@
               </div>
               <% }) %>
               <% } else { %>
-                <tr ><td colspan="9"><h3>Không có dữ liệu</h3></td></tr>
+                <h2>  <span class="solid_line"></span> <span class="title_text">Không có dữ liệu</span> </h2>
             <% } %>
             </div>
           </div>

@@ -56,7 +56,8 @@ router.get('/', async (req, res, next) => {
 				CoinItems,
 				CoinUpdateTime,
 				GoldItems, 
-				params
+				params,
+				titleHeader: "Tin tức tổng hợp - BlackHOSTVN" ,
 			});
 		  }).catch((err) => {
 			console.log('API call error:', err.message);
