@@ -3,10 +3,6 @@ body {
     
 }
 
-.media-heading a {
-    font-family: 'Merriweather';
-    font-size: 21px;
-}
 
 h2 {
     font-family: 'Merriweather', serif;
@@ -15,7 +11,7 @@ h2 {
 
 .media-heading a {
     font-family: 'Merriweather';
-    font-size: 19px;
+    font-size: 17px;
 }
 
 .catg_titile a {
@@ -45,12 +41,21 @@ h4, .h4 {
 .navbar-default .navbar-nav > li > a {
     color: #fff;
     font-family: 'Merriweather', serif;
-    font-size: 13px;
+    font-size: 15px;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
     margin-top: 0px;
     margin-bottom: -4px;
     padding-bottom: 17px;
+}
+
+.nav>li>a {
+    
+     padding: 10px 11spx; 
+}
+
+.navbar-nav>li>a {
+    line-height: 25px;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -91,6 +96,29 @@ span.highlight {
     margin: auto;
     width: fit-content;
 } */
+
+/* -----------CATEGORY----------- */
+.self-category{
+    float: none; 
+    
+}
+
+.self-category ul{
+    padding-top: 5px;
+}
+
+.self-media-left{
+    width: 30%;
+    height: 172px;
+}
+
+.self-media-heading{
+    margin-top: 1px;
+}
+
+.self-media-heading a {
+    font-size: 19px;
+}
 
 /*---------- MEDIA--PHONE ----------*/
 @media(max-width:991px ){
