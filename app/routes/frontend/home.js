@@ -22,6 +22,7 @@ router.get('/', async (req, res, next)=> {
 		layout: layoutBlog,
 		top_post: true,
 		silde_bar: true,
+		random_bar: true,
 		params,
 		itemsNews,
 		titleHeader: "Home-BlackHOSTVN",

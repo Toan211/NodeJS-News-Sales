@@ -96,7 +96,7 @@ thống kê dasboard' -done 30/3
 chi tiết url 1-3/4
 in đậm search --done 30/3
 fix lại layout blog category--sửa hình bị móp trong cate 5/4
-
+header -- 5/4
 
 sửa about us
 phân trang trong tin tức tổng hợp
@@ -108,9 +108,8 @@ slider -- hiển thị status-link--hình quảng cáo sp != hình sản phầm
 lọc theo status
 subcribe-- name email status time -- quản lý subcribe
 tạo gmail nghiêm túc lol
-header
 sửa lại sidebar
-
+thêm ggmap
 
 A 
     size{

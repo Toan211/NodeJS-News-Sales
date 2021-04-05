@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
 		layout: layoutBlog,
 		top_post: false,
 		silde_bar: false,
+		random_bar: true,
 		params,
 		titleHeader:"About - BlackHOSTVN " ,
 	});

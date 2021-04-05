@@ -49,10 +49,12 @@ router.get('/(:slug)?', async (req, res, next) => {
 		layout: layoutBlog,
 		top_post: false,
 		silde_bar: true,
+		random_bar: false,
 		itemsInCategory,
 		itemsInArticle,
 		params,
 		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
+		
 		
 	});
 });

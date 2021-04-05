@@ -52,6 +52,7 @@ router.get('/:slug', async (req, res, next) => {
 		layout: layoutBlog,
 		top_post: false,
 		silde_bar: true,
+		random_bar: true,
 		itemsOthers,
 		itemArticle,
 		itemMainCategory,

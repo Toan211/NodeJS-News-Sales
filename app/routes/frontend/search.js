@@ -19,6 +19,7 @@ router.get('/', async (req, res, next) => {
     layout:layoutBlog,
     top_post:false,
 	silde_bar: true,
+  random_bar: true,
     itemsSearch,
     params,
 		titleHeader: "Tìm kiếm : " + params.keyword + " - BlackHOSTVN" ,
