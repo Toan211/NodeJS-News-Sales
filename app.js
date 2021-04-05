@@ -99,6 +99,10 @@ app.use(`/${systemConfig.prefixAdmin}`, require(__path_routers + 'backend/index'
 app.use(`/${systemConfig.prefixBlog}`, require(__path_routers + 'frontend/index'));
 app.use(`/${systemConfig.prefixSales}`, require(__path_routers + 'frontend-sales/index'));
 
+// -------ERROR PAGE------------
+
+const ParamsHelpers = require(__path_helpers + 'params');
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -109,22 +113,29 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  let params 		 	 = ParamsHelpers.createParam(req);
   if(systemConfig.env == "dev") {
     res.status(err.status || 500);
-    res.render(__path_views_admin +  'pages/error', { pageTitle   : 'Page Not Found ' });
+    res.render(__path_views_admin +  'pages/error', { 
+      pageTitle   : 'Page Not Found ',
+      
+       });
   }
 
   // render the error page
   if(systemConfig.env == "production") {
     res.status(err.status || 500);
     res.render(__path_views_blog +  'pages/error', {
+      layout: __path_views_blog + 'frontend',
       top_post: false,
-      silde_bar: true,
-      layout: __path_views_blog + 'frontend'
+      silde_bar: false,
+      params,
+      titleHeader: "Không thấy trang",
+      
     });
   }
 });
+
 
 module.exports = app;
 

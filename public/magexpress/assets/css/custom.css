@@ -92,6 +92,15 @@ span.highlight {
     
 }
 
+.single_footer_top > h2 {
+    color: aliceblue;
+}
+
+.error_page_content h2 {
+    color: black;
+    margin-top: 30px; 
+}
+
 /* .top_img{    
     margin: auto;
     width: fit-content;

@@ -5,7 +5,7 @@ module.exports = {
     prefixSales: 'sales',
     format_long_time: 'DD-MM-YYYY hh:mm:ss',
     format_date: 'DD-MM-YYYY',
-    env: 'dev', // production dev
+    env: 'production', // production dev
     status_value: [
         {id: 'allvalue', name: 'Choose Status'},
 		{id: 'active', name: 'Active'},
