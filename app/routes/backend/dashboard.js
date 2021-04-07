@@ -8,6 +8,7 @@ const GroupsModel 	= require(__path_schemas + 'groups');
 const UsersModel 	= require(__path_schemas + 'users');
 const CategoryModel = require(__path_schemas + 'categories');
 const ArticleModel 	= require(__path_schemas + 'articles');
+const SliderModel 	= require(__path_schemas + 'slider');
 const ContactModel 	= require(__path_schemas + 'contact');
 const RSSModel 	= require(__path_schemas + 'rss');
 const ProductModel 	= require(__path_schemas + 'products');
@@ -35,7 +36,8 @@ router.get('/', async(req, res, next) => {
 	totalContacts = await countItemHelpers.countItems2(ContactModel);
 	let totalRss = 0;
 	totalRss = await countItemHelpers.countItems2(RSSModel);
-
+	let totalSliders = 0;
+	totalSliders = await countItemHelpers.countItems2(SliderModel);
 
 	res.render(`${folderView}index`, { 
 		pageTitle: 'Dashboard Page', 
@@ -48,6 +50,7 @@ router.get('/', async(req, res, next) => {
 		totalTypes,
 		totalContacts,
 		totalRss,
+		totalSliders,
 	});
 });
 

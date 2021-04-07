@@ -23,4 +23,6 @@ module.exports = {
     col_articles: 'articles',
     col_products: 'products',
     col_types: 'types',
+    col_slider:'slider',
+    
 };

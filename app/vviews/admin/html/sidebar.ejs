@@ -19,6 +19,11 @@
         {name: 'Types', icon: 'fa-th-list', link: `${systemConfig.prefixAdmin}/types`, activeValue: 'types'},
         {name: 'Products', icon: 'fa-star', link: `${systemConfig.prefixAdmin}/products`, activeValue: 'products'},
     ];
+    let nopeManagement = [
+        {name: 'Item', icon: 'fa-file', link: `${systemConfig.prefixAdmin}/items`, activeValue: 'types'},
+        {name: 'Contact', icon: 'fa-user-plus', link: `${systemConfig.prefixAdmin}/contact`, activeValue: 'contact'},
+        {name: 'Slider', icon: 'fa-table', link: `${systemConfig.prefixAdmin}/slider`, activeValue: 'slider'},
+    ];
 
 %>
 
@@ -50,18 +55,7 @@
                       <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/<%=systemConfig.prefixAdmin%>/items" class="nav-link" data-active="items">
-                        <i class="nav-icon fas fa-file"></i>
-                        <p>Items</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/<%= systemConfig.prefixAdmin %>/contact" class="nav-link" data-active="contact">
-                        <i class="nav-icon fas fa-user-plus"></i>
-                        <p>Contact</p>
-                    </a>
-                </li>
+                    <%- menuSidebarHelper('Quản lý khác', nopeManagement, 'fa-cog') %>
                     <%- menuSidebarHelper('Quản lý user', userManagement, 'fa-male') %>
                     <%- menuSidebarHelper('Quản lý bài viết', articleManagement, 'fa-newspaper') %>
                     <%- menuSidebarHelper('Quản lý sản phẩm', shopManagement, 'fa-shopping-cart') %>

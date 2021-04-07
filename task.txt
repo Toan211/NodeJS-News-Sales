@@ -111,6 +111,8 @@ subcribe-- name email status time -- quản lý subcribe
 tạo gmail nghiêm túc lol
 sửa lại sidebar 5/4
 thêm ggmap
+fix avatar
+
 
 A 
     size{
