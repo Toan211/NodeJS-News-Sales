@@ -9,7 +9,7 @@
         {name: 'Categories', icon: 'fa-table', link: `${systemConfig.prefixAdmin}/categories`, activeValue: 'categories'},
         {name: 'Articles', icon: 'fa-book-open', link: `${systemConfig.prefixAdmin}/articles`, activeValue: 'articles'},
         {name: 'Rss', icon: 'fa-tag', link: `${systemConfig.prefixAdmin}/rss`, activeValue: 'rss'},
-        {name: 'Contact', icon: 'fa-user-plus', link: `${systemConfig.prefixAdmin}/contact`, activeValue: 'contact'},
+       
     ];
     let userManagement = [
         {name: 'Groups', icon: 'fa-users', link: `${systemConfig.prefixAdmin}/groups`, activeValue: 'groups'},
@@ -54,6 +54,12 @@
                     <a href="/<%=systemConfig.prefixAdmin%>/items" class="nav-link" data-active="items">
                         <i class="nav-icon fas fa-file"></i>
                         <p>Items</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/<%= systemConfig.prefixAdmin %>/contact" class="nav-link" data-active="contact">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Contact</p>
                     </a>
                 </li>
                     <%- menuSidebarHelper('Quản lý user', userManagement, 'fa-male') %>

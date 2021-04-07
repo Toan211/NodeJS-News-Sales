@@ -4,7 +4,7 @@ var router = express.Router();
 const middleAuthentication = require(__path_middleware + 'auth');
 const userInfo  	= require(__path_middleware + 'get-user-info');
 
-router.use('/', middleAuthentication ,userInfo , require('./home'));
+router.use('/' ,userInfo , require('./home'));
 router.use('/dashboard', require('./dashboard'));
 router.use('/items', require('./items'));
 router.use('/categories', require('./categories'));
