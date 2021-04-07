@@ -6,3 +6,12 @@
         return `<img style="width: 60px; vertical-align: middle; " class="${className}" src="${folder + imageName}" alt="${alt}" />`;
     }
 %>
+
+<% 
+    imageHelper2 = (folder, imageName,imageDefault, alt = "Image", className = "img-responsive img-avatar") => {
+        if(imageName == null){ 
+            imageName = imageDefault;
+        }
+        return `<img style="width: 100%; vertical-align: middle; " class="${className}" src="${folder + imageName}" alt="${alt}" />`;
+    }
+%>

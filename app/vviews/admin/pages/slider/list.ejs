@@ -60,24 +60,25 @@
 			
 			<!-- List Content -->
 		
-			<table class="table table-bordered table-hover text-nowrap btn-table mb-0">
+			<table style="table-layout: fixed;" class="table table-bordered table-hover text-nowrap btn-table mb-0">
 				<thead>
 					<tr>
-						<th class="text-center">
+						<th style="width: 5%;" class="text-center">
 							<div class="custom-control custom-checkbox">
 								<input class="custom-control-input cbAll" type="checkbox" id="cbAll">
 								<label for="cbAll" class="custom-control-label"></label>
 							</div>
 						</th>
-						<th class="text-center">#</a></th>
+						<th style="width: 5%;" class="text-center">#</a></th>
 						<%- sortHelper(linkPrefix, 'Name', 'name', params.sortField, params.sortType, 'width:20%') %>
 						
+						<th class="text-center" style="width:20%;">Slider</th>
+
+						<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType, 'width:9%') %>
+						<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType, 'width:10%') %>
 						
-						<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType, 'width:15%') %>
-						<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType, 'width:15%') %>
-						
-						<th class="text-center">Created</a></th>
-						<th class="text-center">Action</th>
+						<th class="text-center pointer" style="width:15%;">Created</a></th>
+						<th class="text-center" style="width:10%;">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -87,13 +88,12 @@
 						<td class="text-center"><%- checkboxHelper(item.id) %></td>
 						<td class="text-center"><%= index+1 %></td>
 
-						<td class="text-center" style="text-align-last: left;">
-							<b>Name  :</b><%- highlightHelper(item.name, params.keyword) %> <br>
-							<b>Link  - :</b><%= item.link%> <br>
-							<b>Thumb:</b><%- imageHelper(folderUpload, item.avatar, item.name) %>
+						<td class="text-center" style="text-align-last: left; white-space: pre-wrap;"><b>Name  :</b><%- highlightHelper(item.name, params.keyword) %> 
+							<b>Link  - :</b><%= item.link%>
 						</td>
 						
-						
+						<td><%- imageHelper2(folderUpload, item.avatar, item.name) %></td>
+
 						<td class="text-center position-relative">
 							<%- statusHelper(linkPrefix, item.status, item.id) %>
 						</td>
@@ -102,7 +102,9 @@
 							<input type="number" value="<%= item.ordering %>" class="text-center ordering" style="width: 60%;">
 						</td>
 						
-						<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
+						<td style="white-space: pre-wrap;" class="text-center">
+							<p class="mb-0 history-time"><i class="far fa-clock"></i> <%- moment(item.created.time).format(systemConfig.format_date) %></p>
+						</td>
 						
 						
 						<td class="text-center">
