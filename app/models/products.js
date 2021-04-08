@@ -15,7 +15,7 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name slug status ordering created modified group.name avatar special price')
+            .select('name slug status ordering created modified group.name group.slug avatar special price')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -23,7 +23,7 @@ module.exports = {
 
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
-        let select = 'name created.user_name created.time group.id group.name avatar content price';
+        let select = 'name created.user_name created.time group.id group.name group.slug avatar content price';
         let limit = 4;
         let sort = '';
 
@@ -46,6 +46,13 @@ module.exports = {
             limit = 8;
         }
 
+        if (options.task == 'items-news-category'){
+            limit = 4;
+            //select = ' name created.user_name created.time group.name group.id  avatar content';
+            find = {status:'active','group.id': params.id};
+            sort = {'created.time': 'desc'};   
+        }
+
         if (options.task == 'items-in-category'){
             select = 'name created.user_name created.time group.name avatar content price';
             find = {status:'active', 'group.id': params.id};
@@ -56,20 +63,20 @@ module.exports = {
         if (options.task == 'items-random'){
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
-                    { $project : {name : 1 , created : 1 ,avatar: 1, content: 1}  },
+                    { $project : {name : 1 , created : 1 ,avatar: 1, content: 1, price: 1}  },
                     { $sample: {size: 4}}
                 ]);
         }
 
         if (options.task == 'items-article-in-category'){
             find = {status:'active'};
-            select = 'name created.user_name created.time group.name group.id avatar content price';
+            //select = 'name created.user_name created.time group.name group.id avatar content price';
             sort = {'created.time': 'desc'};
             limit= 4; 
         }
 
         if (options.task == 'items-others'){
-            select = 'name created.user_name created.time group.id group.name avatar content price';
+            //select = 'name created.user_name created.time group.id group.name avatar content price';
             find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
             sort = {'created.time': 'desc'};
         }
@@ -78,8 +85,21 @@ module.exports = {
 
     },
 
+    listItemsSearch: (params, options = null) =>{
+        let objWhere    = {status:'active'};
+        let sort		= {};
+        if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
+        
+
+        return MainModel
+            .find(objWhere)
+            .select('name slug avatar group.slug group.name content price')
+            .sort(sort);
+            
+    },
+
     getMainArticle: (id, option = null) => {
-        let select = 'name created group.name group.id avatar content price';
+        let select = 'name created group.name group.id group.slug avatar content price';
         return MainModel.findById(id).select(select);
     },
 
@@ -89,7 +109,12 @@ module.exports = {
 
     getItemFrontend: (id, options = null) => {
         return MainModel.findById(id)
-            .select('name avatar created content group.name group.id price');
+            .select('name avatar created content group.name group.id group.slug price');
+    },
+
+    getSlugArticle: (slug, option = null) => {
+        let select = 'name created.user_name created.time group.slug group.name group.id avatar content';
+        return MainModel.find({slug: slug}).select(select);
     },
 
     countItem: (params, options = null) => {
@@ -219,6 +244,7 @@ module.exports = {
             item.group = {
                 id: item.group_id,
                 name: item.group_name,
+                slug: item.group_slug,
             }
 			return new MainModel(item).save();
         }
@@ -236,6 +262,7 @@ module.exports = {
                 group: {
                     id: item.group_id,
                     name: item.group_name,
+                    slug: item.group_slug,
                 },
 				modified:{
                     user_id: user.id,
@@ -250,6 +277,7 @@ module.exports = {
 				group: {
                     id: item.id,
 					name: item.name,
+                    slug: item.slug,
 				},
 			});
         }

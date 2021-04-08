@@ -10,9 +10,8 @@
     
     <!-- Main Heading -->
     <div class="heading text-center">
-      <h4>new arrival</h4>
-      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-      Sed feugiat, tellus vel tristique posuere, diam</span> </div>
+      <h4>Trang sức mới</h4>
+      <span>Những món trang sức mới được lấy về,   mại dô mại dô</span> </div>
   </div>
   <%= //JSON.stringify(itemsNews)  %>
 
@@ -20,9 +19,11 @@
   <div class="arrival-block"> 
     <% for(let i = 0; i < itemsNews.length; i++){ %>
     <!-- Item -->
-    <div class="item"> 
+    <div style="border-top: 2px solid #d1d5db;
+    border-bottom:none;
+    border-left:1px solid #d1d5db;" class="item"> 
       <!-- Images --> 
-      <img class="img-1" src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsNews[i].avatar %>" alt=""> 
+      <img  class="img-1" src="<%= folder_uploads + itemsNews[i].avatar %>" alt="<%= itemsNews[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsNews[i].avatar %>" alt=""> 
       <!-- Overlay  -->
       <div class="overlay"> 
         <!-- Price --> 
@@ -40,7 +41,64 @@
   
    
   </div>
+
+  <div style="border-top: 1px solid #d1d5db;    padding-top: 4%;" class="container" style="padding-top: 4%;"> 
+    
+    <!-- Main Heading -->
+    <div class="heading text-center">
+      <h4>Đồng hồ mới</h4>
+      <span>Các đồng hồ mới được bày bán,   mại dô mại dô</span> </div>
+  </div>
+
+  <div class="top-shop-feature">
+    <div class="container">
+      <div class="row"> 
+        
+        <!-- Item 1  -->
+        <div class="col-md-6">
+          <div class="text-right"> <img src="images/feature-img-1.png" alt="" >
+            <article> <span class="price"><small>$</small>299</span>
+              <h4>ECO FRIENDLY</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
+              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
+          </div>
+        </div>
+        
+        <!-- Item 2  -->
+        <div class="col-md-6 light">
+          <div class="text-left"> <img src="images/feature-img-2.png" alt="" >
+            <article> <span class="price"><small>$</small>489</span>
+              <h4>Concrete Shaving Kit</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
+              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
+          </div>
+        </div>
+        
+        <!-- Item 3  -->
+        <div class="col-md-6 left light ">
+          <div class="text-right"> <img src="images/feature-img-3.png" alt="" >
+            <article> <span class="price"><small>$</small>954</span>
+              <h4>wooden chair</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
+              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
+          </div>
+        </div>
+        
+        <!-- Item 4  -->
+        <div class="col-md-6">
+          <div class="text-left"> <img src="images/feature-img-4.png" alt="" >
+            <article> <span class="price"><small>$</small>99</span>
+              <h4>CERAMIC STONE VASE</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
+              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
+
 
 
 

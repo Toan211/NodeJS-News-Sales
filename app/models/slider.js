@@ -21,60 +21,11 @@ module.exports = {
     },
 
     listItemsFrontend: (params = null, options = null) => {
-        let find = {};
-        let select = 'link name created avatar content';
+        let find = {status:'active'};
+        let select = 'link name created ordering avatar content';
         let limit;
-        let sort = '';
+        let sort = {ordering: 'asc'};
 
-        if (options.task == 'items-special'){
-            find = {special: 'active'};
-            sort = {ordering: 'asc'};
-            limit = 4;
-        }
-
-        if (options.task == 'items-news'){
-            //select = ' name created.user_name created.time group.name group.id  avatar content';
-            find = {status:'active'};
-            sort = {'created.time': 'desc'};
-            limit = 8;
-        }
-
-        if (options.task == 'items-news-category'){
-            limit = 4;
-            //select = ' name created.user_name created.time group.name group.id  avatar content';
-            find = {status:'active','group.id': params.id};
-            sort = {'created.time': 'desc'};   
-        }
-
-        if (options.task == 'items-in-category'){
-            //select = 'name created.user_name created.time group.name avatar content slug';
-            find = {status:'active', 'group.id': params.id};
-            sort = {'created.time': 'desc'};
-            
-        }
-
-
-        if (options.task == 'items-random'){
-            return MainModel.aggregate([
-                    { $match: { status: 'active' }},
-                    { $project : {name : 1 , created : 1 ,avatar: 1, slug: 1}  },
-                    { $sample: {size: 4}}
-                ]);
-        }
-
-        if (options.task == 'items-article-in-category'){
-            find = {status:'active'};
-            //select = 'name created.user_name created.time group.name group.id avatar content';
-            sort = {'created.time': 'desc'};
-            limit= 4; 
-        }
-
-        if (options.task == 'items-others'){
-            //select = 'name created.user_name created.time group.id group.name avatar content';
-            find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
-            sort = {'created.time': 'desc'};
-            limit = 3;
-        }
 
         return MainModel.find(find).select(select).limit(limit).sort(sort);
 
