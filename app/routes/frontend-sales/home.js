@@ -24,6 +24,7 @@ router.get('/', async (req, res, next)=> {
 		top_post: true,
 		silde_bar: true,
 		about_me: true,
+		top_post1st: true,
 		params,
 		itemsNews,
 		sliderNumber,

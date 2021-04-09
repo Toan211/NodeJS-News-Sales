@@ -25,7 +25,7 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
               <ul class="dropdown-menu">
                 <% itemsCategory.forEach((category) => { %>  
                   <li>
-                      <a href="/sales/type/<%= category.id %>"><%= category.name %></a>
+                      <a href="/sales/type/<%= category.slug %>"><%= category.name %></a>
                   </li>
               <%})%>
               </ul>
