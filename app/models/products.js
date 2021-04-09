@@ -23,8 +23,8 @@ module.exports = {
 
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
-        let select = 'name created.user_name created.time group.id group.name group.slug avatar content price';
-        let limit = 4;
+        let select = 'name slug created group avatar content price';
+        let limit;
         let sort = '';
 
         if (options.task == 'items-special'){
@@ -40,7 +40,7 @@ module.exports = {
         }
 
         if (options.task == 'items-news'){
-            select = 'name created.user_name created.time group.name group.id  avatar content price';
+            //select = 'name created.user_name created.time group.name group.id  avatar content price';
             find = {status:'active'};
             sort = {'created.time': 'desc'};
             limit = 8;
@@ -54,7 +54,7 @@ module.exports = {
         }
 
         if (options.task == 'items-in-category'){
-            select = 'name created.user_name created.time group.name avatar content price';
+            //select = 'name created.user_name created.time group.name avatar content price';
             find = {status:'active', 'group.id': params.id};
             sort = {'created.time': 'desc'};
         }
@@ -63,7 +63,7 @@ module.exports = {
         if (options.task == 'items-random'){
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
-                    { $project : {name : 1 , created : 1 ,avatar: 1, content: 1, price: 1}  },
+                    { $project : {name : 1, slug:1 , created : 1 ,avatar: 1, content: 1, price: 1}  },
                     { $sample: {size: 4}}
                 ]);
         }
@@ -79,6 +79,7 @@ module.exports = {
             //select = 'name created.user_name created.time group.id group.name avatar content price';
             find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
             sort = {'created.time': 'desc'};
+            limit = 3;
         }
 
         return MainModel.find(find).select(select).limit(limit).sort(sort);
@@ -98,22 +99,17 @@ module.exports = {
             
     },
 
-    getMainArticle: (id, option = null) => {
-        let select = 'name created group.name group.id group.slug avatar content price';
-        return MainModel.findById(id).select(select);
-    },
-
     getItem: (id, options = null) => {
         return MainModel.findById(id);
     },
 
     getItemFrontend: (id, options = null) => {
         return MainModel.findById(id)
-            .select('name avatar created content group.name group.id group.slug price');
+            .select('name avatar created content group price');
     },
 
     getSlugArticle: (slug, option = null) => {
-        let select = 'name created.user_name created.time group.slug group.name group.id avatar content';
+        let select = 'name slug created group avatar content price';
         return MainModel.find({slug: slug}).select(select);
     },
 
