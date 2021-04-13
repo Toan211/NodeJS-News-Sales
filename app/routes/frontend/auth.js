@@ -5,10 +5,11 @@ var passport = require('passport');
 
 const StringHelpers 	= require(__path_helpers + 'string');
 const systemConfig  = require(__path_configs + 'system');
+const middleBlog = 'blog/';
 
 const middleGetUserInfo         = require(__path_middleware + 'get-user-info');
-const middleGetCategoryForMenu  = require(__path_middleware + 'get-category-for-menu');
-const middleArticleRandom       = require(__path_middleware + 'get-article-random');
+const middleGetCategoryForMenu  = require(__path_middleware + middleBlog + 'get-category-for-menu');
+const middleArticleRandom       = require(__path_middleware + middleBlog + 'get-article-random');
 
 const folderView	= __path_views_blog + 'pages/auth/';
 const layoutLogin   = __path_views_blog + 'login';
