@@ -34,9 +34,9 @@
   <div id="content"> 
     
     <%- body %> 
-    
+    <% if(popular == true){ %>
     <% include ./elements/popular %>
-
+    <% } %>
     
     <% if(about_me == true){ %>
 			<% include ./elements/about_me %>

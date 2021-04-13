@@ -58,6 +58,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 		silde_bar: true,
 		about_me: false,
 		sub_banner: true,
+		popular: true,
 		itemsInCategory,
 		itemsInArticle,
 		itemsRandom,

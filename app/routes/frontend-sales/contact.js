@@ -14,7 +14,10 @@ router.get('/', async (req, res, next) => {
 	res.render(`${folderView}index`, {
 		layout: layoutBlog,
 		top_post: false,
+		popular: false,
 		silde_bar: true,
+		about_me: false,
+		sub_banner: true,
 		params
 	});
 });

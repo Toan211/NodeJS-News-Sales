@@ -13,7 +13,7 @@ const middleArticleRandom       = require(__path_middleware + 'get-article-rando
 const folderView	= __path_views_blog + 'pages/auth/';
 const layoutLogin   = __path_views_blog + 'login';
 const layoutBlog   	= __path_views_blog + 'frontend';
-const linkIndex		= StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/'); 
+const linkIndex		= StringHelpers.formatLink('/' + systemConfig.prefixAdmin + '/dashboard'); 
 const linkLogin		= StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/auth/login/'); 
 const ValidateLogin	= require(__path_validates + 'login');
 

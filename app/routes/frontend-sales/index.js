@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+const middleShop = 'shop/';
+
 const middleGetUserInfo         = require(__path_middleware + 'get-user-info');
-const middleGetTypeForMenu  = require(__path_middleware + 'get-type-for-menu');
-const middleGetSlider  = require(__path_middleware + 'get-slider-shop');
-const middleProductSpecial      = require(__path_middleware + 'get-product-special');
+const middleGetTypeForMenu  = require(__path_middleware + middleShop + 'get-type-for-menu');
+const middleGetSlider  = require(__path_middleware + middleShop + 'get-slider-shop');
+const middleProductSpecial      = require(__path_middleware + middleShop + 'get-product-special');
 //const middleArticleInCategory   = require(__path_middleware + 'get-article-in-category'); // do thg này mà bị lỗi js .me??? lolololol
 
 router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu , middleProductSpecial, require('./home'));

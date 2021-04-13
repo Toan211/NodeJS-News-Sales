@@ -8,10 +8,7 @@ var schema = new mongoose.Schema({
     slug: String,
     special: String,
     ordering: Number,
-    price: Number,
-    discount: Number,
-    content: String,
-    avatar: String,
+    
     password: String,
     username: String, 
     group: {
@@ -19,6 +16,26 @@ var schema = new mongoose.Schema({
         name: String,
         slug: String,
     },
+    brand: {
+        id: String,
+        name: String,
+        slug: String,
+    },
+    price: Number,
+    discount: Number,
+    quantity: Number,
+    content: String,
+    avatar: String,
+    tags: String,
+    size: String,
+    color: String,
+    reviews: [{
+        name: String,
+        email: String,
+        time: Date,
+        rating: String,
+        content: String
+    }],
     created: {
         user_id: String,
         user_name: String,
