@@ -1,4 +1,4 @@
-const MainModel 	= require(__path_schemas + 'brand');
+const MainModel 	= require(__path_schemas + 'brands');
 
 module.exports = {
     listItems: (params, options = null) => {

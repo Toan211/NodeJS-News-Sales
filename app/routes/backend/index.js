@@ -14,6 +14,7 @@ router.use('/users', require('./users'));
 router.use('/articles', require('./articles'));
 router.use('/products', require('./products'));
 router.use('/types', require('./types'));
+router.use('/brands', require('./brands'));
 router.use('/contact', require('./contact'));
 router.use('/slider', require('./slider'));
 

@@ -13,6 +13,7 @@ const ContactModel 	= require(__path_schemas + 'contact');
 const RSSModel 	= require(__path_schemas + 'rss');
 const ProductModel 	= require(__path_schemas + 'products');
 const TypeModel 	= require(__path_schemas + 'types');
+const BrandModel 	= require(__path_schemas + 'brands');
 
 const countItemHelpers 	= require(__path_helpers + 'count-items');
 
@@ -32,6 +33,8 @@ router.get('/', async(req, res, next) => {
 	totalProducts = await countItemHelpers.countItems2(ProductModel);
 	let totalTypes = 0;
 	totalTypes = await countItemHelpers.countItems2(TypeModel);
+	let totalBrands = 0;
+	totalBrands = await countItemHelpers.countItems2(BrandModel);
 	let totalContacts = 0;
 	totalContacts = await countItemHelpers.countItems2(ContactModel);
 	let totalRss = 0;
@@ -51,6 +54,7 @@ router.get('/', async(req, res, next) => {
 		totalContacts,
 		totalRss,
 		totalSliders,
+		totalBrands,
 	});
 });
 
