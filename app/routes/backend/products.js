@@ -2,19 +2,19 @@ var express = require('express');
 var router 	= express.Router();
 const fs = require('fs');
 
+const controllerName = "products";
+const folderImage 		= __path_uploads + `/${controllerName}/`;
 
 const systemConfig  = require(__path_configs + 'system');
-const MainModel 	= require(__path_models + 'products');
+const MainModel 	= require(__path_models + controllerName);
 const GroupsModel 	= require(__path_models + 'types');
-const MainValidate	= require(__path_validates + 'products');
+const BrandModel 	= require(__path_models + 'brands');
+const MainValidate	= require(__path_validates + controllerName);
 const UtilsHelpers 	= require(__path_helpers + 'utils');
 const NotifyHelpers = require(__path_helpers + 'notify');
 const ParamsHelpers = require(__path_helpers + 'params');
-const FileHelpers = require(__path_helpers + 'file');
+const FileHelpers	= require(__path_helpers + 'file');
 const notify  		= require(__path_configs + 'notify');
-
-const controllerName = "products";
-const folderImage 		= __path_uploads + `/${controllerName}/`;
 
 const linkIndex		 = '/' + systemConfig.prefixAdmin + `/${controllerName}/`;
 const pageTitleIndex = UtilsHelpers.capitalize(controllerName) + ' Management';
@@ -37,6 +37,16 @@ router.get('(/status/:status)?', async (req, res, next) => {
 		groupsItems.unshift({_id: 'allvalue', name: 'All Category'});
 	});
 
+	let brandsItems	= [];
+	await BrandModel.listItemsInSelectbox().then((items)=> {
+		brandsItems = items;
+		brandsItems.unshift({_id: 'allvalue', name: 'All Brand'});
+	});
+
+	await MainModel.countItems(params).then( (data) => {
+		params.pagination.totalItems = data;
+	});
+
 	//console.log(params);
 	
 	MainModel.listItems(params)
@@ -48,6 +58,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 				statusFilter,
 				params,
 				groupsItems,
+				brandsItems,
 			});
 		});
 });
@@ -101,8 +112,13 @@ router.post('/change-price', (req, res, next) => {
 
 
 // Delete
-router.get('/delete/:id', (req, res, next) => {
+router.get('/delete/:id', async (req, res, next) => {
 	let id				= ParamsHelpers.getParam(req.params, 'id', '');
+	let idCategory = '';
+	let idBrand = '';
+	await MainModel.getItem(id, null).then( (item) => { idCategory = item.group.id; idBrand = item.brand.id;});
+	await BrandModel.updateAmountOfItem(idBrand, -1).then( (result) => { }); 
+	await GroupsModel.updateAmountOfItem(idCategory, -1).then( (result) => { });
 
 	MainModel.deleteItem(id, {task: 'delete-one'} )
 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'delete'}));
@@ -110,6 +126,14 @@ router.get('/delete/:id', (req, res, next) => {
 
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
+	let id = req.body.cid;
+	id.forEach( async (i) => {
+		let idCategory = '';
+		let idBrand = '';
+		await MainModel.getItem(i, null).then( (item) => { idCategory = item.group.id; idBrand = item.brand.id;});
+		await BrandModel.updateAmountOfItem(idBrand, -1).then( (result) => { }); 
+		await GroupsModel.updateAmountOfItem(idCategory, -1).then( (result) => { });
+	});
 	MainModel.deleteItem(req.body.cid, {task: 'delete-mutli'} )
 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {total: result.n ,task: 'delete-multi'}));
 });
@@ -117,23 +141,34 @@ router.post('/delete', (req, res, next) => {
 // FORM
 router.get(('/form(/:id)?'), async(req, res, next) => {
 	let id		= ParamsHelpers.getParam(req.params, 'id', '');
-	let item	= {name: '', slug: '', price: 0,  ordering: 0, status: 'allvalue', group_id: '', group_name: '', group_slug:'', content:' ',  special: 'allvalue'};
+	let item	= {name: '', slug: '', price: 0,  ordering: 0, status: 'allvalue',
+				 group_id: '', group_name: '', group_slug:'', content:' ',  special: 'allvalue',
+				 brand_id: '', brand_name: '', brand_slug:'', quantity: 0, color: '', tag: '', discount: 0 };
 
 	let groupsItems	= [];
 	await GroupsModel.listItemsInSelectbox().then((items)=> {
 		groupsItems = items;
 		groupsItems.unshift({_id: 'allvalue', name: 'All category'});
 	});
+
+	let brandsItems	= [];
+	await BrandModel.listItemsInSelectbox().then((items)=> {
+		brandsItems = items;
+		brandsItems.unshift({_id: 'allvalue', name: 'All brand'});
+	});
 	
 	let errors   = null;
 	if(id === '') { // ADD
-		res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item, errors, groupsItems, controllerName});
+		res.render(`${folderView}form`, { pageTitle: pageTitleAdd, item, errors, groupsItems, brandsItems, controllerName});
 	}else { // EDIT
 		MainModel.getItem(id).then((item) =>{
 			item.group_id = item.group.id;
 			item.group_name = item.group.name;
 			item.group_slug = item.group.slug;
-			res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, errors, groupsItems, controllerName});
+			item.brand_id = item.brand.id;
+			item.brand_name = item.brand.name;
+			item.brand_slug = item.brand.slug;
+			res.render(`${folderView}form`, { pageTitle: pageTitleEdit, item, errors, groupsItems, brandsItems, controllerName});
 		});	
 	}
 	
@@ -158,9 +193,15 @@ router.post('/save', async(req, res, next) => {
 				groupsItems = items;
 				groupsItems.unshift({_id: 'allvalue', name: 'All category', slug:''});
 			});
+
+			let brandsItems	= [];
+			await BrandModel.listItemsInSelectbox().then((items)=> {
+				brandsItems = items;
+				brandsItems.unshift({_id: 'allvalue', name: 'All brand', slug:''});
+			});
 			
 			if (taskCurrent == "edit") item.avatar = item.image_old;
-			res.render(`${folderView}form`, { pageTitle, item, errors, groupsItems});
+			res.render(`${folderView}form`, { pageTitle, item, errors,brandsItems, groupsItems});
 		}else {
 			let message = (taskCurrent == "add") ? 'add' : 'edit';
 			if(req.file == undefined){ // không có upload lại hình
@@ -169,6 +210,21 @@ router.post('/save', async(req, res, next) => {
 				item.avatar = req.file.filename;
 				if(taskCurrent == "edit") FileHelpers.remove(folderImage, item.image_old);
 			}
+
+			if(taskCurrent == 'add') {
+				await BrandModel.updateAmountOfItem(item.brand_id, 1).then( (result) => { }); 
+				await GroupsModel.updateAmountOfItem(item.group_id, 1).then( (result) => { });
+			} else if (taskCurrent == 'edit') {
+				if(item.brandID_old != item.brand_id) { // cập nhật category
+					await BrandModel.updateAmountOfItem(item.brandID_old, -1).then( (result) => { });
+					await BrandModel.updateAmountOfItem(item.brand_id, 1).then( (result) => { });
+				}
+				if(item.groupID_old != item.group_id) { // cập nhật category
+					await GroupsModel.updateAmountOfItem(item.groupID_old, -1).then( (result) => { });
+					await GroupsModel.updateAmountOfItem(item.group_id, 1).then( (result) => { });
+				}
+			}
+
 			MainModel.saveItem(item, req.user, {task: taskCurrent} )
 			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: message}));
 		}
@@ -188,7 +244,11 @@ router.get(('/filter-group/:group_id'), (req, res, next) => {
 	res.redirect(linkIndex);
 });
 
-
+// FILTER BRAND
+router.get(('/filter-brand/:brand_id'), (req, res, next) => {
+	req.session.brand_id		= ParamsHelpers.getParam(req.params, 'brand_id', '');
+	res.redirect(linkIndex);
+});
 
 
 module.exports = router;

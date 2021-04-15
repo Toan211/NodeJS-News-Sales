@@ -15,7 +15,7 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name slug status ordering created modified group.name group.slug avatar special price')
+            .select('name slug status ordering created modified group avatar special price quantity discount brand color tags')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -23,14 +23,21 @@ module.exports = {
 
     listItemsFrontend: (params = null, options = null) => {
         let find = {};
-        let select = 'name slug created group avatar content price';
+        let select = 'name slug created group avatar content price brand quantity discount';
         let limit;
         let sort = '';
 
-        if (options.task == 'items-special'){
-            find = {special: 'active'};
+        if(option.task == 'all-items'){
+            find = {status:'active'};
+            limit = 50;
+            sort = {'created.time': 'desc'};
+            //select += '';
+        }
+
+        if(option.task == 'items-special'){
+            find = {status:'active', special: 'active'};
             sort = {ordering: 'asc'};
-            limit = 4;
+            limit = 8;
         }
 
         if (options.task == 'items-sales'){
@@ -82,6 +89,18 @@ module.exports = {
             limit = 3;
         }
 
+        if(option.task == 'filter-price'){
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max}};
+            limit = 50;
+            sort = {ordering: 'asc'};
+        }
+
+        if(option.task == 'items-search'){
+            return MainModel.find({$text: {$search: params.keyword}, status:'active'})
+                    .limit(5)
+                    .exec();
+        }
+
         return MainModel.find(find).select(select).limit(limit).sort(sort);
 
     },
@@ -94,7 +113,7 @@ module.exports = {
 
         return MainModel
             .find(objWhere)
-            .select('name slug avatar group.slug group.name content price')
+            .select('name slug created modified group avatar price quantity discount brand color tags')
             .sort(sort);
             
     },
@@ -105,11 +124,11 @@ module.exports = {
 
     getItemFrontend: (id, options = null) => {
         return MainModel.findById(id)
-            .select('name avatar created content group price');
+            .select('name slug created modified group avatar price quantity discount brand color tags');
     },
 
     getSlugArticle: (slug, option = null) => {
-        let select = 'name slug created group avatar content price';
+        let select = 'name slug created brand group avatar content price discount tags color reviews';
         return MainModel.find({slug: slug}).select(select);
     },
 
@@ -119,6 +138,15 @@ module.exports = {
         if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
         return MainModel.count(objWhere);
+    },
+
+    countItems: (params, option = null) => {
+        let objWhere	 = {};
+        if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
+        if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
+        if(params.groupID !== '') objWhere.groupID = params.groupID;
+        
+        return MainModel.countDocuments(objWhere);
     },
 
     changeStatus: (id, currentStatus, user, options = null) => {
@@ -242,19 +270,29 @@ module.exports = {
                 name: item.group_name,
                 slug: item.group_slug,
             }
+            item.brand = {
+                id: item.brand_id,
+                name: item.brand_name,
+                slug: item.brand_slug,
+            }
 			return new MainModel(item).save();
         }
 
         if(options.task == "edit") {
             return MainModel.updateOne({_id: item.id}, {
 				ordering: parseInt(item.ordering),
-                price: parseInt(item.price),
 				name: item.name,
                 status: item.status,
                 special: item.special,
 				content: item.content,
                 slug: item.slug,
                 avatar: item.avatar,
+                price: parseInt(item.price),
+                quantity: item.quantity,
+                discount: item.discount,
+                
+                color: item.color,
+                tags: item.tags,
                 group: {
                     id: item.group_id,
                     name: item.group_name,
@@ -264,7 +302,12 @@ module.exports = {
                     user_id: user.id,
                     user_name: user.username,
 					time: Date.now()
-				}
+				},
+                brand : {
+                    id: item.brand_id,
+                    name: item.brand_name,
+                    slug: item.brand_slug,
+                }
 			});
         }
 
@@ -275,7 +318,19 @@ module.exports = {
 					name: item.name,
                     slug: item.slug,
 				},
+                brand: {
+                    id: item.id,
+					name: item.name,
+                    slug: item.slug,
+				},
 			});
         }
-    }
+    },
+
+    saveReview: (id, item) => {
+        return MainModel.update(
+            { _id: id }, 
+            { $push: { reviews: item } }
+        );
+    },
 }

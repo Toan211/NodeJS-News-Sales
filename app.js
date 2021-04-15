@@ -44,8 +44,8 @@ const databaseConfig = require(__path_configs + 'database');
 
 // mongoose.connect(`mongodb://${databaseConfig.username}:${databaseConfig.password}@ds117590.mlab.com:17590/${databaseConfig.database}`);
 
-mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0.3qeuo.mongodb.net/${databaseConfig.database}?retryWrites=false&w=majority`);
-
+mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0.3qeuo.mongodb.net/${databaseConfig.database}?retryWrites=false&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.set('useFindAndModify', false);
 
 var app = express();
 app.use(cookieParser());
@@ -54,7 +54,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    maxAge: 5*60*1000
+    maxAge: 30*60*1000
   }
 }
 ));

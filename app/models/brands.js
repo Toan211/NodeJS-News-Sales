@@ -11,7 +11,7 @@ module.exports = {
     
         return MainModel
             .find(objWhere)
-            .select('name status ordering created modified slug')
+            .select('name status ordering created modified slug amount')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -45,6 +45,10 @@ module.exports = {
         if(option.task == 'get-items-by-slug'){
             return MainModel.find({slug: params.slug}).select('name slug');
         }
+    },
+
+    updateAmountOfItem: (id, state) => {
+        return MainModel.findOneAndUpdate({_id :id}, {$inc : {'amount' : state}}).exec();
     },
 
 
@@ -135,7 +139,7 @@ module.exports = {
 				content: item.content,
 				modified: {
 					user_id: user.id,
-                user_name: user.username,
+                    user_name: user.username,
         			time: Date.now()
 				}
 			});

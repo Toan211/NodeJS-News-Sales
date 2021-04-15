@@ -17,7 +17,12 @@
 		{ for: 'Show-avatar', label: 'Preview', input: imageHelper(folderUpload, item.avatar, 'no-image.jpg', item.name, 'img-avatar-form preview-avatar' ) },
 		{ for: 'status', label: 'Status', input: selectboxHelper('status', systemConfig.status_value, item.status) },
 		{ for: 'special', label: 'Special', input: selectboxHelper('special', systemConfig.special_value, item.special) },
+		{for: 'color', label: 'Color', input: inputHelper('color', item.color, 'text', 'tags-input')},
+		{for: 'tags', label: 'Tags', input: inputHelper('tags', item.tags, 'text', 'tags-input')},
+		{for: 'discount', label: 'Discount', input: inputHelper('discount', item.discount)},
+		{for: 'quantity', label: 'Quantity', input: inputHelper('quantity', item.quantity)},
 		{ for: 'group_id', label: 'Category', input: selectboxHelper('group_id', groupsItems, item.group_id) },
+		{ for: 'brand_id', label: 'Brand', input: selectboxHelper('brand_id', brandsItems, item.brand_id)},
 		{ for: 'content', label: 'Content', input:  textareaHelper('content', item.content ) },
 	];
 
@@ -35,6 +40,10 @@
 				<input  name="image_old" value="<%= item.avatar%>" type="hidden" >
 				<input class="form-control" name="group_name" type="hidden" value="<%= item.group_name %>"/>
 				<input  class="form-control" name="group_slug" type="hidden" value="<%= item.group_slug %>"/>
+				<input class="form-control" name="brand_name" type="hidden" value="<%= item.brand_name %>"/>
+				<input  class="form-control" name="brand_slug" type="hidden" value="<%= item.brand_slug %>"/>
+				<input name="brandID_old" value="<%= item.brand_id %>" type="hidden"  /> 
+				<input name="groupID_old" value="<%= item.group_id %>" type="hidden"  /> 
 				<button type="submit" class="btn btn-sm btn-success mr-1"> Submit</button>
 				<a href="<%= linkPrefix %>" class="btn btn-sm btn-danger mr-1"> Cancel</a>
 			</div>

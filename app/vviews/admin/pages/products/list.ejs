@@ -74,14 +74,15 @@
 							</div>
 						</th>
 						<th style="width: 4%;" class="text-center">#</a></th>
-						<%- sortHelper(linkPrefix, 'Info', 'name', params.sortField, params.sortType, 'width:40%') %>
-						<%- sortHelper(linkPrefix, 'Price', 'price', params.sortField, params.sortType, 'width:13%') %>
+						<%- sortHelper(linkPrefix, 'Info', 'name', params.sortField, params.sortType, 'width:30%') %>
+						<%- sortHelper(linkPrefix, 'Detail', 'price', params.sortField, params.sortType, 'width:30%') %>
+						
 						
 						<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType, 'width:8%') %>
 						<%- sortHelper(linkPrefix, 'Special', 'special', params.sortField, params.sortType, 'width:9%') %>
 						<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType, 'width:10%') %>
 						
-						<th style="width:12%" class="text-center">Created</a></th>
+						<th style="width:12%" class="text-center">Change</a></th>
 						
 						<th style="width: 10%;" class="text-center">Action</th>
 					</tr>
@@ -93,15 +94,30 @@
 						<td class="text-center"><%- checkboxHelper(item.id) %></td>
 						<td class="text-center"><%= index+1 %></td>
 						<td class="text-center"  style="text-align-last: left;
-						white-space: pre-wrap; display: grid;"><b>Name :</b><%- highlightHelper(item.name, params.keyword)%>
-						<b>Slug - :</b><%= item.slug%> 
-						<b>Group : </b><%= item.group.name%>
-						<b>Thumb: </b><%- imageHelper(folderUpload, item.avatar, item.name) %>
+						white-space: pre-line;"><b>Name :</b>
+						<%- highlightHelper(item.name, params.keyword)%>
+						<b>Slug - :</b>
+						<%= item.slug%> 
+						<b>Group : </b>
+						<%= item.group.name%>
+						<b>Brand: </b>
+						<%= item.brand.name %> 
+						<b>Thumb: </b>
+						<%- imageHelper(folderUpload, item.avatar, item.name) %>
 						</td>
+
+						<td class="text-center" style="text-align-last: left;
+						white-space: pre-line;"><b>Price</b>: <%= item.price %>
+						<b>Discount :</b><%= item.discount %>
+						<b>Quantity:</b>
+						 <%= item.quantity%> 
+						<b>Color:</b> 
+						<%= item.color%> 
+						<b>Tags:</b> 
+						<%= item.tags%> 
+						</td>
+
 						
-						<td class="text-center">
-							<input style="width: 100%;" type="number" value="<%= item.price %>" class="text-center price">
-						</td>
 
 						<td class="text-center position-relative">
 							<%- statusHelper(linkPrefix, item.status, item.id) %>
@@ -115,8 +131,12 @@
 							<input type="number" style="width: 80%;" value="<%= item.ordering %>" class="text-center ordering">
 						</td>
 						
-						<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
 						
+						<% if(item.modified.user_name === undefined) { %>
+							<td class="text-center"><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
+						<% } else { %>
+							<td class="text-center"><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
+						<% } %>
 						
 						<td class="text-center">
 							<a href="<%= linkPrefix %>form/<%= item.id %>" class="rounded-circle btn btn-sm btn-info" title="Edit">

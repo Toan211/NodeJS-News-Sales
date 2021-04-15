@@ -52,7 +52,9 @@ module.exports = {
         return  MainModel.find({}, {_id: 1, name: 1});
     },
 
-    
+    updateAmountOfItem: (id, state) => {
+        return MainModel.findOneAndUpdate({_id :id}, {$inc : {'amount' : state}}).exec();
+    },
 
     countItem: (params, options = null) => {
         let objWhere    = {};
