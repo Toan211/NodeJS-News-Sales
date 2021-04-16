@@ -5,5 +5,11 @@
 
 
 %>
-				
+		
+<% 
+    inputMultiImageHelper = (name, value, id = '') => {
+        return 	`<input type="file" multiple name="${name}" value="${value}" class="form-control form-control-sm" id='${id}'>`;
+    }
+%>
+
 

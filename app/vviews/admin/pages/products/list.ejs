@@ -103,7 +103,7 @@
 						<b>Brand: </b>
 						<%= item.brand.name %> 
 						<b>Thumb: </b>
-						<%- imageHelper(folderUpload, item.avatar, item.name) %>
+						<%- imageHelper(folderUpload, item.avatar[0], 'no-image.jpg', item.name) %>
 						</td>
 
 						<td class="text-center" style="text-align-last: left;

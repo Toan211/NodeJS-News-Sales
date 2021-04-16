@@ -37,6 +37,37 @@ let uploadFile = (field, folderDes = 'users', fileNameLength = 10, fileSizeMb = 
 	return upload;
 }
 
+let uploadMultiFile = (field, folderDes = 'products', nFile = 10, fileNameLength = 10, fileSizeMb = 5, fileExtension = 'jpeg|jpg|png|gif') => {
+	const storage = multer.diskStorage({
+		destination: (req, file, cb) => {
+			cb(null, __path_uploads + folderDes + '/')
+		},
+		filename: (req, file, cb) =>  {
+			cb(null,  randomstring.generate(fileNameLength) + path.extname(file.originalname));
+		}
+	});
+
+	const upload = multer({ 
+		storage: storage,
+		limits: {
+			fileSize: fileSizeMb * 1024 * 1024,
+		},
+		fileFilter: (req, file, cb) => {
+			const filetypes = new RegExp(fileExtension);
+			const extname 	= filetypes.test(path.extname(file.originalname).toLowerCase());
+			const mimetype  = filetypes.test(file.mimetype);
+	
+			if(mimetype && extname){
+				return cb(null,true);
+			}else {
+				cb(notify.ERROR_FILE_EXTENSION);
+			}			
+		}
+	}).array(field, nFile);
+
+	return upload;
+}
+
 let removeFile = (folder, fileName) => {
 	if(fileName != "" && fileName != undefined ){
 		let path = folder + fileName;
@@ -46,5 +77,6 @@ let removeFile = (folder, fileName) => {
 
 module.exports = {
 	upload: uploadFile,
+	uploadMulti: uploadMultiFile,
 	remove: removeFile
 }

@@ -227,6 +227,24 @@ $(document).ready(function () { //deprecated
         readURL(this, 'img.preview-avatar');
     });
     
+     // show multi image
+    let imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    let imageTag = `<img src="${event.target.result}" alt="${event.target.result}" style="width: 100px;">`;
+                    $('<li>' + imageTag + '</li>').appendTo(placeToInsertImagePreview);
+                };
+                reader.readAsDataURL(input.files[i]);
+            }
+        };
+    };
+    $("#input-multi-files").on("change", function() {
+        imagesPreview(this, "ul#box-multi-image");
+    });
+
     //tags
     if($('input#tags-input').val() !== '') {    //edit
         // $('input#tags-input[name=size]').tagEditor({ initialTags: $('input#tags-input[name=size]').val().split(',') });

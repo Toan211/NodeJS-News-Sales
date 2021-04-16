@@ -3,13 +3,16 @@ const notify= require(__path_configs + 'notify');
 
 const options = {
     name: { min: 5, max: 80  },
-    ordering: { min: 0, max: 100 },
-    price: { min: 1000, max: 10000000000 },
+    slug: { min: 5, max: 80 },
+    ordering: { min: 0, max: 1000 },
     status: { value: 'allvalue' },
     special: { value: 'allvalue' },
     content: { min: 5, max: 1000000 },
     group: { value: 'allvalue' },
-    slug: { min: 5, max: 80 },
+    brand: { value: 'allvalue' },
+    color: { min: 1},
+    price: { min: 1000 },
+    quantity: { min: 0 },
 }
 
 module.exports = {
@@ -26,8 +29,8 @@ module.exports = {
             .isInt({gt: options.ordering.min, lt: options.ordering.max});
         
         // PRICE
-        req.checkBody('price', util.format(notify.ERROR_ORDERING, options.price.min, options.price.max))
-            .isInt({gt: options.price.min, lt: options.price.max});
+        req.checkBody('price', util.format(notify.ERROR_ORDERING, options.price.min))
+            .isInt({gt: options.price.min});
 
             // STATUS
         req.checkBody('status', notify.ERROR_STATUS)
@@ -45,6 +48,14 @@ module.exports = {
         req.checkBody('group_id', notify.ERROR_GROUP)
         .isNotEqual(options.group.value);
 
+        // GROUP
+        req.checkBody('brand_id', notify.ERROR_GROUP)
+        .isNotEqual(options.brand.value);
+
+        // COLOR
+        req.checkBody('color', util.format(notify.ERROR_COLOR, options.color.min))
+            .isLength({ min: options.color.min});
+
         let errors = req.validationErrors() !== false ? req.validationErrors() : [];
 
         if (errUpload) {
@@ -53,7 +64,7 @@ module.exports = {
 			};
 			errors.push({param: 'avatar', msg: errUpload});
 		}else {
-			if(req.file == undefined && taskCurrent == "add"){
+			if(req.files == undefined && taskCurrent == "add"){
 				errors.push({param: 'avatar', msg: notify.ERROR_FILE_REQUIRE});
 			}
         }

@@ -70,7 +70,7 @@ module.exports = {
         if (options.task == 'items-random'){
             return MainModel.aggregate([
                     { $match: { status: 'active' }},
-                    { $project : {name : 1, slug:1 , created : 1 ,avatar: 1, content: 1, price: 1}  },
+                    { $project : {_id: 1,name : 1, slug:1 , created : 1 ,avatar: 1, content: 1, price: 1}  },
                     { $sample: {size: 4}}
                 ]);
         }
@@ -237,7 +237,9 @@ module.exports = {
     deleteItem: async (id, options = null) => {
         if(options.task == "delete-one") {
             await MainModel.findById(id).then((item) => {
-                FileHelpers.remove(uploadFolder, item.avatar);
+                for(let idx = 0; idx < item.avatar.length; idx++) {
+					FileHelpers.remove(uploadFolder, item.avatar[idx]);
+				}
             });
             return MainModel.deleteOne({_id: id});
         }
@@ -246,12 +248,16 @@ module.exports = {
             if(Array.isArray(id)){
                 for(let index = 0; index < id.length; index++){
                     await MainModel.findById(id[index]).then((item) => {
-                        FileHelpers.remove(uploadFolder, item.avatar);
+                        for(let idx = 0; idx < item.avatar.length; idx++) {
+                            FileHelpers.remove(uploadFolder, item.avatar[idx]);
+                        }
                     });
                 }
             }else{
                 await MainModel.findById(id).then((item) => {
-                    FileHelpers.remove(uploadFolder, item.avatar);
+                    for(let idx = 0; idx < item.avatar.length; idx++) {
+                        FileHelpers.remove(uploadFolder, item.avatar[idx]);
+                    }
                 });
             }
             return MainModel.deleteMany({_id: {$in: id } });

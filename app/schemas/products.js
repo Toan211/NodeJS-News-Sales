@@ -25,7 +25,7 @@ var schema = new mongoose.Schema({
     discount: Number,
     quantity: Number,
     content: String,
-    avatar: String,
+    avatar: [String],
     tags: String,
     size: String,
     color: String,

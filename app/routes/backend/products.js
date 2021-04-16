@@ -15,13 +15,14 @@ const NotifyHelpers = require(__path_helpers + 'notify');
 const ParamsHelpers = require(__path_helpers + 'params');
 const FileHelpers	= require(__path_helpers + 'file');
 const notify  		= require(__path_configs + 'notify');
+const StringHelpers = require(__path_helpers + 'string');
 
 const linkIndex		 = '/' + systemConfig.prefixAdmin + `/${controllerName}/`;
 const pageTitleIndex = UtilsHelpers.capitalize(controllerName) + ' Management';
 const pageTitleAdd   = pageTitleIndex + ' - Add';
 const pageTitleEdit  = pageTitleIndex + ' - Edit';
 const folderView	 = __path_views_admin + `pages/${controllerName}/`;
-const uploadAvatar	 = FileHelpers.upload('avatar', 'products');
+const uploadAvatar	 = FileHelpers.uploadMulti('avatar', 'products');
 
 
 // List items
@@ -186,7 +187,11 @@ router.post('/save', async(req, res, next) => {
 		
 		if(errors.length > 0) { 
 			let pageTitle = (taskCurrent == "add") ? pageTitleAdd : pageTitleEdit;
-			if(req.file != undefined) FileHelpers.remove(folderImage, req.file.filename); // xóa tấm hình khi form không hợp lệ
+			if(req.files != undefined){
+				for(let idx = 0; idx < req.files.length; idx++) {
+					FileHelpers.remove(folderImage, req.files[idx].filename);
+				}
+			} // xóa tấm hình khi form không hợp lệ
 		
 			let groupsItems	= [];
 			await GroupsModel.listItemsInSelectbox().then((items)=> {
@@ -200,15 +205,31 @@ router.post('/save', async(req, res, next) => {
 				brandsItems.unshift({_id: 'allvalue', name: 'All brand', slug:''});
 			});
 			
-			if (taskCurrent == "edit") item.avatar = item.image_old;
+			if (taskCurrent == "edit") item.avatar = StringHelpers.getNameImage(item.image_old);
 			res.render(`${folderView}form`, { pageTitle, item, errors,brandsItems, groupsItems});
 		}else {
 			let message = (taskCurrent == "add") ? 'add' : 'edit';
-			if(req.file == undefined){ // không có upload lại hình
-				item.avatar = item.image_old;
+			if(req.files.length <= undefined){ // không có upload lại hình
+				item.avatar = StringHelpers.getNameImage(item.image_old);
 			}else{
-				item.avatar = req.file.filename;
-				if(taskCurrent == "edit") FileHelpers.remove(folderImage, item.image_old);
+				let arrayAvatar = [];
+				for(let idx = 0; idx < req.files.length; idx++) {
+					arrayAvatar.push(req.files[idx].filename);
+				}
+				item.avatar = arrayAvatar;
+				let avatarOldArray = StringHelpers.getNameImage(item.image_old);
+				if(taskCurrent == "edit") {
+					for(let i = 0; i < avatarOldArray.length; i++) {
+						FileHelpers.remove(folderImage, avatarOldArray[i]);
+					}
+				}
+			}
+			if(req.files.length > 0){
+				let arrayAvatar = [];
+				for(let idx = 0; idx < req.files.length; idx++) {
+					arrayAvatar.push(req.files[idx].filename);
+				}
+				item.avatar = arrayAvatar;
 			}
 
 			if(taskCurrent == 'add') {
