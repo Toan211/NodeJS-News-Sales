@@ -27,14 +27,14 @@ module.exports = {
         let limit;
         let sort = '';
 
-        if(option.task == 'all-items'){
+        if(options.task == 'all-items'){
             find = {status:'active'};
             limit = 50;
             sort = {'created.time': 'desc'};
             //select += '';
         }
 
-        if(option.task == 'items-special'){
+        if(options.task == 'items-special'){
             find = {status:'active', special: 'active'};
             sort = {ordering: 'asc'};
             limit = 8;
@@ -89,13 +89,13 @@ module.exports = {
             limit = 3;
         }
 
-        if(option.task == 'filter-price'){
+        if(options.task == 'filter-price'){
             find = {status:'active', 'price': {$gt : params.min, $lt : params.max}};
             limit = 50;
             sort = {ordering: 'asc'};
         }
 
-        if(option.task == 'items-search'){
+        if(options.task == 'items-search'){
             return MainModel.find({$text: {$search: params.keyword}, status:'active'})
                     .limit(5)
                     .exec();

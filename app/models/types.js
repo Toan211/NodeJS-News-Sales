@@ -11,7 +11,7 @@ module.exports = {
     
         return MainModel
             .find(objWhere)
-            .select('name status ordering created modified slug')
+            .select('name status ordering created modified slug amount')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -19,7 +19,7 @@ module.exports = {
 
     listItemsFrontend: (params= null, options = null) => {
         let find = {};
-        let select = 'name slug';
+        let select = 'name slug amount';
         let limit = 10;
         let sort = '';
 
