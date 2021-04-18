@@ -14,7 +14,7 @@ router.use('/type', require('./type'));
 router.use('/product', require('./product'));
 router.use('/about', require('./about'));
 router.use('/contact', require('./contact'));
-router.use('/cart', require('./cart'));
+//router.use('/cart', require('./cart'));
 // router.use('/auth', require('./auth'));
 
 module.exports = router;

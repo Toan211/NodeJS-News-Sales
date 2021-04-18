@@ -13,7 +13,7 @@ router.get('/', async (req, res, next)=> {
 	
 	let itemsNews 	 	= [];
 	let params 		 	 = ParamsHelpers.createParam(req);
-	let sliderNumber = [0,1];
+	let sliderNumber = [0,1,2];
 
 	// Latest News
 	await ProductModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });

@@ -11,7 +11,7 @@ module.exports = {
     
         return MainModel
             .find(objWhere)
-            .select('name status ordering created modified slug amount')
+            .select('name status ordering created group brand modified slug amount')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);

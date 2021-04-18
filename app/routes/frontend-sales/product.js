@@ -29,7 +29,7 @@ const layoutBlog    = __path_views_sales + 'frontend';
 // 	});
 // });
 
-router.get('/:slug', async (req, res, next) => {
+router.get('/(:slug)?', async (req, res, next) => {
 	let slugArticle 		= ParamsHelpers.getParam(req.params, 'slug', '');
 	let itemArticle		= {};
 	let itemsOthers		= [];
@@ -45,6 +45,7 @@ router.get('/:slug', async (req, res, next) => {
 	// Article In Category
 	await ProductModel.listItemsFrontend(itemArticle, {task: 'items-others'} ).then( (items) => { itemsOthers = items; });
 	
+
 	res.render(`${folderView}index`, {
 		layout: layoutBlog,
 		top_post: false,
@@ -56,7 +57,7 @@ router.get('/:slug', async (req, res, next) => {
 		itemArticle,
 		itemMainCategory,
 		params,
-		titleHeader: itemArticle.name + " - BlackHOSTVN " ,
+		//titleHeader: itemArticle.name + " - BlackHOSTVN " ,
 	});
 });
 
