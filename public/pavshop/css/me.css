@@ -3,3 +3,11 @@
     width: 90%;
     margin-left: 5%;
 }
+
+.arrival-block .overlay {
+    background: rgba(240,245,249,0.5);
+}
+
+.papular-block .item-name a {
+    font-size: 18px;
+}

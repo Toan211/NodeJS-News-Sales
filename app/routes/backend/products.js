@@ -209,7 +209,7 @@ router.post('/save', async(req, res, next) => {
 			res.render(`${folderView}form`, { pageTitle, item, errors,brandsItems, groupsItems});
 		}else {
 			let message = (taskCurrent == "add") ? 'add' : 'edit';
-			if(req.files.length <= undefined){ // không có upload lại hình
+			if(req.files.length <= 0){ // không có upload lại hình
 				item.avatar = StringHelpers.getNameImage(item.image_old);
 			}else{
 				let arrayAvatar = [];

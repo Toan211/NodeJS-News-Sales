@@ -203,7 +203,7 @@
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
-            <div class="item-img"> <img class="img-1" src="<%= folder_uploads + itemsOthers[i].avatar %>" alt="<%= itemsOthers[i].name %>" > <img class="img-2" src="<%= folder_uploads + itemsOthers[i].avatar %>" alt="<%= itemsOthers[i].name %>" > 
+            <div class="item-img"> <img class="img-1" src="<%= folder_uploads + itemsOthers[i].avatar[0] %>" alt="<%= itemsOthers[i].name %>" > <img class="img-2" src="<%= folder_uploads + itemsOthers[i].avatar[1] %>" alt="<%= itemsOthers[i].name %>" > 
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
@@ -213,7 +213,7 @@
             </div>
             <!-- Item Name -->
             <div class="item-name"> <a href="sales/product/<%= itemsOthers[i]._id %>"><%= itemsOthers[i].name %></a>
-              <p><%- formatSummary(itemsOthers[i].content) %> ...</p>
+              
             </div>
             <!-- Price --> 
             <span class="price"><small>đ</small><%= itemsOthers[i].price %></span> </div>

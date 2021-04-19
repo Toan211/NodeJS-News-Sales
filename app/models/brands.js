@@ -121,6 +121,7 @@ module.exports = {
 
     saveItem: (item, user, options = null) => {
         if(options.task == "add") {
+            
             item.created = {
 				user_id: user.id,
                 user_name: user.username,

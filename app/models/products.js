@@ -148,6 +148,7 @@ module.exports = {
         
         return MainModel.countDocuments(objWhere);
     },
+    
 
     changeStatus: (id, currentStatus, user, options = null) => {
         let status			= (currentStatus === "active") ? "inactive" : "active";

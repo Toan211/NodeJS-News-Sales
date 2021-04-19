@@ -82,7 +82,7 @@ router.post('/delete', (req, res, next) => {
 // FORM
 router.get(('/form(/:id)?'), (req, res, next) => {
 	let id		= ParamsHelpers.getParam(req.params, 'id', '');
-	let item	= {name: '', ordering: 0, status: 'allvalue', content: '', slug: ''};
+	let item	= {name: '', ordering: 0, status: 'allvalue', content: '', slug: '', amount: 0};
 	let errors   = null;
 	if(id === '') { // ADD
 		res.render(`${folderView}form`, { pageTitle: pageTitleAdd, controllerName, item, errors});

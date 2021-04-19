@@ -21,7 +21,7 @@
         {name: 'Products', icon: 'fa-star', link: `${systemConfig.prefixAdmin}/products`, activeValue: 'products'},
     ];
     let nopeManagement = [
-        {name: 'Item', icon: 'fa-file', link: `${systemConfig.prefixAdmin}/items`, activeValue: 'types'},
+        {name: 'Item', icon: 'fa-file', link: `${systemConfig.prefixAdmin}/items`, activeValue: 'item'},
         {name: 'Contact', icon: 'fa-user-plus', link: `${systemConfig.prefixAdmin}/contact`, activeValue: 'contact'},
         {name: 'Slider', icon: 'fa-table', link: `${systemConfig.prefixAdmin}/slider`, activeValue: 'slider'},
     ];
@@ -65,10 +65,11 @@
                       <p>Dashboard</p>
                     </a>
                 </li>
-                    <%- menuSidebarHelper('Quản lý khác', nopeManagement, 'fa-cog') %>
+                    
                     <%- menuSidebarHelper('Quản lý user', userManagement, 'fa-male') %>
                     <%- menuSidebarHelper('Quản lý bài viết', articleManagement, 'fa-newspaper') %>
                     <%- menuSidebarHelper('Quản lý sản phẩm', shopManagement, 'fa-shopping-cart') %>
+                    <%- menuSidebarHelper('Quản lý khác', nopeManagement, 'fa-cog') %>
                 </li>
             </ul>
         </nav>
