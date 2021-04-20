@@ -30,6 +30,7 @@
     "request-promise": "^4.2.6",
     "rss-combiner": "0.0.5",
     "rss-parser": "^3.10.0",
+    "sweetalert2": "^10.16.4",
     "xml2js": "^0.4.23"
   }
 }

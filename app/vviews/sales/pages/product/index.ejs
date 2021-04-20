@@ -1,6 +1,9 @@
 <% include ./../../helpers/format-date %> 
 <% include ./../../helpers/format-summary %>
-<% const folder_uploads = 'uploads/products/'; %>
+<% const folder_uploads = 'uploads/products/'; 
+  const linkPrefix     = systemConfig.prefixSales + '/';
+  const linkProduct    = systemConfig.prefixSales + '/product/';
+  %>
 
 
     
@@ -18,84 +21,103 @@
               <!-- Place somewhere in the <body> of your page -->
               <div id="slider-shop" class="flexslider">
                 <ul class="slides">
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[0] %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[1] %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[2] %>" alt="<%= itemArticle.name %>"> </li>
                 </ul>
               </div>
               <div id="shop-thumb" class="flexslider">
                 <ul class="slides">
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[0] %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[1] %>" alt="<%= itemArticle.name %>"> </li>
+                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[2] %>" alt="<%= itemArticle.name %>"> </li>
                 </ul>
               </div>
             </div>
             
             <!-- COntent -->
-            <div class="col-md-5">
-              <h4><%= itemArticle.name %></h4>
-              <span class="price"><small>đ</small><%= itemArticle.price %></span> 
-              
-              <!-- Sale Tags -->
-              <div class="on-sale"> 10% <span>OFF</span> </div>
-              <ul class="item-owner">
-                <li>Designer :<span> <%= itemArticle.created.user_name %> </span></li>
-                <li>Brand:<span> <%= itemArticle.group.name %> </span></li>
-              </ul>
-              
-              <!-- Item Detail -->
-              <p>Item detail? </p>
-              
-              <!-- Short By -->
-              <div class="some-info">
-                <ul class="row margin-top-30">
-                  <li class="col-xs-4">
-                    <div class="quinty"> 
-                      <!-- QTY -->
-                      <select class="selectpicker">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select>
-                    </div>
-                  </li>
+            <form id="cart_form" action="<%= linkPrefix %>cart/add-to-cart" method="POST">
+              <div class="col-md-5">
+                <h4 style="
+                padding-right: 8%;
+            " ><%= itemArticle.name %></h4>
+                <span class="price">
+                  <% if(itemArticle.discount > 0) { %>
+                    <del><small>đ</small><%= itemArticle.price %></del> <small>đ</small><%= itemArticle.price - (itemArticle.price * (itemArticle.discount/100)) %>
+                  <% } else { %>
+                    <small>đ</small><%= itemArticle.price%>
+                  <% } %>
+                </span> 
+                
+                <!-- Sale Tags -->
+                <div class="on-sale"> <%= itemArticle.discount %> % <span>OFF</span> </div>
+                <ul class="item-owner">
+                  <li>Designer :<span> <%= itemArticle.created.user_name %> </span></li>
+                  <li>Brand:<span> <%= itemArticle.brand.name %> </span></li>
+                  <li>Types:<span> <%= itemArticle.group.name %> </span></li>
+                  <li>Tag:<span> <% itemArticle.tags.split(',').forEach( (item) => { %>
+                    <div class="tag"><%= item %></div>
+                  <% }) %>
+                      </span></li>
                   
-                  <!-- COLORS -->
-                  <li class="col-xs-8">
-                    <ul class="colors-shop">
-                      <li><span class="margin-right-20">Colors</span></li>
-                      <li><a href="#." style="background:#958170;"></a></li>
-                      <li><a href="#." style="background:#c9a688;"></a></li>
-                      <li><a href="#." style="background:#c9c288;"></a></li>
-                      
-                    </ul>
-                  </li>
-                  
-                  <!-- ADD TO CART -->
-                  <li class="col-xs-6"> <a href="#." class="btn">ADD TO CART</a> </li>
-                  
-                  <!-- LIKE -->
-                  <li class="col-xs-6"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
                 </ul>
                 
-                <!-- INFOMATION -->
-                <div class="inner-info">
-                  <h6>DELIVERY INFORMATION</h6>
-                  <p> about delivery? </p>
-                  <h6>SHARE THIS PRODUCT</h6>
-                  
-                  <!-- Social Icons -->
-                  <ul class="social_icons">
-                    <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                    <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                    <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                    <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                    <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+                
+                
+                <!-- Short By -->
+                <div class="some-info">
+                  <ul class="row margin-top-30">
+                    <li class="col-xs-6">
+                      <div class="quinty"> 
+                        <!-- QTY -->
+                        <h6>Số lượng:</h6>
+                        <div class="form-group">
+                          <input id="quantity_input" class="form-control" type="number" name="quantity" value="1">
+                        </div>
+                        <span data-alertid="notify_cart"></span>
+                      </div>
+                    </li>
+                    <input class="form-control" name="id" value="<%= itemArticle.id %>" >
+                    
+                    
+                    <!-- COLORS -->
+                    <li class="col-xs-8">
+                      <ul class="colors-shop">
+                        <li><span class="margin-right-20">Colors</span></li>
+                        <li><a href="#." style="background:#958170;"></a></li>
+                        <li><a href="#." style="background:#c9a688;"></a></li>
+                        <li><a href="#." style="background:#c9c288;"></a></li>
+                        
+                      </ul>
+                    </li>
+                    
+                    <!-- ADD TO CART -->
+                    <li class="col-xs-6">
+                       <button class="ps-btn mb-10 btn">Add to cart<i class="ps-icon-next"></i></button>
+                      </li>
+                    
+                    <!-- LIKE -->
+                    <li class="col-xs-6"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
                   </ul>
+                  
+                  <!-- INFOMATION -->
+                  <div class="inner-info">
+                    <h6>DELIVERY INFORMATION</h6>
+                    <p> about delivery? </p>
+                    <h6>SHARE THIS PRODUCT</h6>
+                    
+                    <!-- Social Icons -->
+                    <ul class="social_icons">
+                      <li><a href="#."><i class="icon-social-facebook"></i></a></li>
+                      <li><a href="#."><i class="icon-social-twitter"></i></a></li>
+                      <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
+                      <li><a href="#."><i class="icon-social-youtube"></i></a></li>
+                      <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
+           </form>
           </div>
         </div>
         

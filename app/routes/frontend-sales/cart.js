@@ -18,9 +18,9 @@ router.post('/add-to-cart', async (req, res, next) => {
 
   req.body = JSON.parse(JSON.stringify(req.body));
   await MainModel.getItem(req.body.id).then( (data) => {item = data;});
-  
+  console.log(item);
   if(cookie === undefined) {
-    cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar, slug: item.slug });
+    cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar[0], slug: item.slug });
   } else {
     cart = cookie;
     for(let i = 0; i < cart.length; i++) {
@@ -29,7 +29,7 @@ router.post('/add-to-cart', async (req, res, next) => {
         cart[i].quantity = Number(cart[i].quantity) + Number(req.body.quantity);
       }
     }
-    if(isExist === false) cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar, slug: item.slug });
+    if(isExist === false) cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar[0], slug: item.slug });
   }
   res.cookie('cart', cart);
   res.json(cart);

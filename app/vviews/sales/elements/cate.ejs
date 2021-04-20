@@ -53,9 +53,15 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
             </li>
             
             <!-- USER BASKET -->
-            <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i> </a>
+            <li class="dropdown user-basket">
+               <a href="#" class="dropdown-toggle cart__toggle ps-cart__toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                
+                <i class="icon-basket-loaded"></i>
+                
+               </a>
               <ul class="dropdown-menu">
                 <li>
+                  <div class="ps-cart-item"><a class="ps-cart-item__close" href="/cart/delete/${item.id}"></a>
                   <div class="media-left">
                     <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="pavshop/images/cart-img-1.jpg" alt="..."> </a> </div>
                   </div>
@@ -63,13 +69,17 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
                     <h6 class="media-heading">WOOD CHAIR</h6>
                     <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
                 </li>
+
                 
                 <li>
-                  <h5 class="text-center">SUBTOTAL: 258.00 USD</h5>
+                  <h5 class="text-center">SUBTOTAL: 258.00 USD <br> 
+                    SUBTOTAL: 258.00 USD</h5>
+                  
                 </li>
                 <li class="margin-0">
                   <div class="row">
-                    <div class="col-xs-6"> <a href="shopping-cart.html" class="btn">VIEW CART</a></div>
+                    <div class="col-xs-6"> <a href="/cart" class="btn">VIEW CART</a></div>
+                    
                     <div class="col-xs-6 "> <a href="checkout.html" class="btn">CHECK OUT</a></div>
                   </div>
                 </li>
