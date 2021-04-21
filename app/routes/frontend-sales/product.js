@@ -35,10 +35,10 @@ router.get('/(:slug)?', async (req, res, next) => {
 	let itemsOthers		= [];
 	let params 		 	 = ParamsHelpers.createParam(req);
 
-	console.log("in");
+	
 	// Article Info
 	await ProductModel.getSlugArticle(slugArticle, null ).then( (item) => { itemArticle = item[0]; });
-	
+	console.log(slugArticle);
 	// Get Category
 	await TypeModel.getItems({id: itemArticle.group.id}, {task: 'get-items-by-id'}).then( (items) => {itemMainCategory = items;});
 

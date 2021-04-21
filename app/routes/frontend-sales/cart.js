@@ -64,11 +64,12 @@ router.get('/', async (req, res, next) => {
 router.get('/delete/:id', (req, res, next) => {
 	let id				= ParamsHelpers.getParam(req.params, 'id', '');
   let items = req.cookies.cart;
+  let slug = items[0].slug;
   for(let i = 0; i < items.length; i++) {
     if(id === items[i].id) items.splice(i, 1);
   }
   res.cookie('cart', items);
-  res.redirect(linkIndex);
+  res.redirect("/sales/product/" + slug);
 });
 
 // Delete
