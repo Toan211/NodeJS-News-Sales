@@ -146,7 +146,7 @@
               <ul class="papu-post margin-top-20">
                 <% for(let i = 0; i < itemsRandom.length; i++){ %>
                 <li class="media">
-                  <div class="media-left"> <a href="sales/product/<%= itemsRandom[i]._id %>"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar %>" alt="<%= itemsRandom[i].name %>"></a> </div>
+                  <div class="media-left"> <a href="sales/product/<%= itemsRandom[i]._id %>"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar[0] %>" alt="<%= itemsRandom[i].name %>"></a> </div>
                   <div class="media-body"> <a class="media-heading" href="sales/product/<%= itemsRandom[i]._id %>"><%= itemsRandom[i].name %></a> <span>Posted on Sep 27</span> </div>
                 </li>
                 <% } %>

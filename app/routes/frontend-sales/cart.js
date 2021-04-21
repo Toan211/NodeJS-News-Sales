@@ -18,18 +18,24 @@ router.post('/add-to-cart', async (req, res, next) => {
 
   req.body = JSON.parse(JSON.stringify(req.body));
   await MainModel.getItem(req.body.id).then( (data) => {item = data;});
-  console.log(item);
+  //console.log(item);
   if(cookie === undefined) {
-    cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar[0], slug: item.slug });
+    cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.discount/100)), avatar: item.avatar[0], slug: item.slug });
+    console.log('what');
   } else {
     cart = cookie;
     for(let i = 0; i < cart.length; i++) {
       if(req.body.id === cart[i].id && req.body.size === cart[i].size) {
         isExist = true;
         cart[i].quantity = Number(cart[i].quantity) + Number(req.body.quantity);
+        console.log('the');
       }
     }
-    if(isExist === false) cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.sale_off/100)), avatar: item.avatar[0], slug: item.slug });
+    if(isExist === false) 
+      {
+      cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.discount/100)), avatar: item.avatar[0], slug: item.slug });
+      console.log("f");
+      }
   }
   res.cookie('cart', cart);
   res.json(cart);

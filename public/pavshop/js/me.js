@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                     data.forEach( (item) => {
                         xhtml += `<li>
-                        <div class="ps-cart-item"><a class="ps-cart-item__close" href="/cart/delete/${item.id}"></a>
+                        <div class="ps-cart-item"><a class="ps-cart-item__close" href="sales/cart/delete/${item.id}"></a>
                         <div class="media-left">
                           <div class="cart-img"> <a href="product/${item.slug}"> <img class="media-object img-responsive" src="uploads/products/${item.avatar}" alt="..."> </a> </div>
                         </div>
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
                     data.forEach( (item) => {
                         xhtml += `<li>
-                        <div class="ps-cart-item"><a class="ps-cart-item__close" href="/cart/delete/${item.id}"></a>
+                        <div class="ps-cart-item"><a class="ps-cart-item__close" href="sales/cart/delete/${item.id}"></a>
                         <div class="media-left">
                           <div class="cart-img"> <a href="product/${item.slug}"> <img class="media-object img-responsive" src="uploads/products/${item.avatar}" alt="..."> </a> </div>
                         </div>
