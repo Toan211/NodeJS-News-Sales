@@ -12,6 +12,7 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 var moment = require('moment');
 var Parser = require('rss-parser');
+const nodemailer = require('nodemailer');
 
 const pathConfig = require('./path');
 

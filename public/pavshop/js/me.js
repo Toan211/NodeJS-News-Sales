@@ -109,3 +109,17 @@ $(document).ready(function () {
     }
 
 })
+
+function filterPrice() {
+    var el = $('.ac-slider');
+    if (el.length > 0) {
+        var values = el.slider("option", "values");
+        var linkRedirect = 'category/filter-category/' + values[0] + '-' + values[1];
+        console.log(values[0],'-', values[1]);
+
+        window.location.pathname = linkRedirect;
+    }
+    else {
+        return false;
+    }
+}

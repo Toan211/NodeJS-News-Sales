@@ -51,7 +51,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus	= ParamsHelpers.getParam(req.params, 'status', 'active'); 
 	
-	MainModel.changeStatus(req.body.cid, currentStatus,req.user, {task: "update-multi"})
+	MainModel.changeStatus(req.body.cid, currentStatus,req.user, {task: "change-multi"})
 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: 'change-multi-status', total: result.n}));
 });
 

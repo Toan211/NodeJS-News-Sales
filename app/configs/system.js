@@ -20,5 +20,16 @@ module.exports = {
         {id: 'allvalue', name: 'Choose Group ACP'},
 		{id: 'yes', name: 'Yes'},
 		{id: 'no', name: 'No'},
-    ]
+    ],
+    radio_object: [
+		{value: 'yes', name: 'Yes'},
+		{value: 'no', name: 'No'}
+	],
+    orders_state_value: [ // chờ xác nhận, chờ lấy hàng, đang giao, đã giao, đã hủy
+        {id: 'accepted', name: 'Accepted'},
+        {id: 'in-progress', name: 'In progress'},
+        {id: 'shipped', name: 'Shipped'},
+        {id: 'delivered', name: 'Delivered'},
+        {id: 'completed', name: 'Completed'},
+	],
 };

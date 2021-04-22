@@ -17,7 +17,7 @@ var schema = new mongoose.Schema({
         id: String,
         name: String,
         quantity: Number,
-        size: String,
+        
         price: Number,
         avatar: String,
         slug: String
@@ -27,4 +27,4 @@ var schema = new mongoose.Schema({
     total: Number
 });
 
-module.exports = db.model(databaseConfig.col_order, schema );
+module.exports = mongoose.model(databaseConfig.col_order, schema );

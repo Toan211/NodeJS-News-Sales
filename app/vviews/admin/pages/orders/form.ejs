@@ -1,0 +1,122 @@
+
+<% include ./../../helpers/get-address %>
+<% include ./../../helpers/selectBox %>
+
+<% 
+	const collection = "orders";
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
+%>
+
+<section class="content">
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-12">
+		  <div class="invoice p-3 mb-3">
+			<div class="row">
+			  <div class="col-12">
+				<h4>
+				  <i class="fas fa-globe"></i> Fashion Shop, Inc.
+				  <small class="float-right">Date: 2/10/2014</small>
+				</h4>
+				<div class="form-group">
+					<label>Status</label>
+					<%- selectBoxHelper('filter-progress', systemConfig.orders_state_value, item.status, item.id ) %>
+				</div>
+			  </div>
+			</div>
+			<div class="row invoice-info">
+			  <div class="col-sm-4 invoice-col">
+				From
+				<address>
+				  <strong>Admin, Inc.</strong><br>
+				  <%= settingConfig.address.split(',')[0] %>, <br>
+				  <%= settingConfig.address.split(',')[1] %>, <%= settingConfig.address.split(',')[2] %> <br>
+				  Phone: <%= settingConfig.hotline %> <br>
+				  Email: <%= settingConfig.email %> 
+				</address>
+			  </div>
+			  <div class="col-sm-4 invoice-col">
+				To
+				<address>
+				  <strong><%= item.user.first_name + ' ' + item.user.last_name %></strong><br>
+				  <%= addressHelper(item.user.address)[0] %><br>
+				  <%= addressHelper(item.user.address)[1] %><br>
+				  Phone: <%= item.user.phone %><br>
+				  Email: <%= item.user.email %>
+				</address>
+			  </div>
+			  <div class="col-sm-4 invoice-col">
+				<b>Invoice #<%= item.code %></b><br>
+				<br>
+				<b>Order ID:</b> <%= item.id %><br>
+				<b>Payment Due:</b> <%= moment(item.time).format(systemConfig.format_date_2) %><br>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-12 table-responsive">
+				<table class="table table-striped">
+				  <thead>
+				  <tr>
+					<th>ID</th>
+					<th>Product</th>
+					<th>Size</th>
+					<th>Quantity</th>
+					<th>Price</th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  <tr>
+					<td><%= item.product[0].id %></td>
+					<td><%= item.product[0].name %></td>
+					<td><%= item.product[0].size %></td>
+					<td><%= item.product[0].quantity %></td>
+					<td>$<%= item.product[0].price %></td>
+				  </tr>
+				  </tbody>
+				</table>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-6">
+				<p class="lead">Promo code:</p>
+				<p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+					<%= item.promo_code %>
+				</p>
+				<p class="lead">Message:</p>
+				<p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+					<%= item.user.message %>
+				</p>
+			  </div>
+			  <div class="col-6">
+				<p class="lead">Amount Due 2/22/2014</p>
+				<div class="table-responsive">
+				  <table class="table">
+					<tbody>
+					<tr>
+					  <th>Shipping:</th>
+					  <td>$<%= item.shipping_fee %></td>
+					</tr>
+					<tr>
+					  <th>Total:</th>
+					  <td>$<%= item.total + item.shipping_fee %></td>
+					</tr>
+				  </tbody></table>
+				</div>
+			  </div>
+			</div>
+			<div class="row no-print">
+			  <div class="col-12">
+				<a href="<%= linkPrefix %>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Return</a>
+				<button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+				  Payment
+				</button>
+				<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+				  <i class="fas fa-download"></i> Generate PDF
+				</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</section>

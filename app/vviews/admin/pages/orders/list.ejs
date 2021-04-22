@@ -1,0 +1,122 @@
+<% include ./../../helpers/filter-status %>
+<% include ./../../helpers/action %>
+<% include ./../../helpers/pagination %>
+<% include ./../../helpers/selectBox %>
+<% include ./../../helpers/highlight %>
+<% include ./../../helpers/checkbox %>
+<% include ./../../helpers/info-user %>
+<% include ./../../helpers/sort %>
+<% 
+	const collection = "orders";
+	const linkPrefix = systemConfig.prefixAdmin + `/${collection}/`;
+%>
+<% include ./../../html/notify %>
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<h6 class="card-title">Search & Filter</h6>
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+				<i class="fas fa-minus"></i></button>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="row justify-content-between">
+			<div class="mb-1">
+				<%- filterStatusHelper(linkPrefix, statusFilter, params) %>
+			</div>
+			<div class="mb-1">
+				<form action="<%= linkPrefix %>status/<%= params.currentStatus %>" method="GET">
+					<div class="input-group">
+						<input type="text" class="form-control form-control-sm" name="keyword" placeholder="Search for..." value="<%= params.keyword %>" style="min-width: 300px">
+						<div class="input-group-append">
+							<a class="btn btn-sm btn-danger" type="button" href="<%= linkPrefix %>status/<%= params.currentStatus %>" id="btn-clear-search">Clear</a>
+							<button type="submit" class="btn btn-sm btn-info" id="btn-search">Search</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card card-info card-outline">
+	<div class="card-header">
+		<h4 class="card-title">List Items</h4>
+		<div class="card-tools">
+			<a href="<%= linkPrefix %>status/all" class="btn btn-tool"><i class="fas fa-sync"></i></a>
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+		</div>
+	</div>
+
+	<div class="card-body">
+		<!--Control-->
+		<form role="form" class="table-responsive" id="zt-form" action="" method="post">
+
+			<%- actionHelper(linkPrefix) %>
+
+			<table class="table table-bordered table-hover text-nowrap btn-table mb-0">
+				<thead>
+					<tr>
+						<th class="text-center">
+							<div class="custom-control custom-checkbox">
+								<input class="custom-control-input" type="checkbox" id="cbAll">
+								<label for="cbAll" class="custom-control-label"></label>
+							</div>
+						</th>
+						<th class="text-center">ID</th> 
+						<%- sortHelper(linkPrefix, 'Code', 'code', params.sortField, params.sortType, 'width:10%') %>
+						<th class="text-center">Status</th>
+						<th class="text-center">Customer</th>
+						<th class="text-center">Product</th>
+						<%- sortHelper(linkPrefix, 'Price', 'total', params.sortField, params.sortType, 'width:5%') %>
+						<th class="text-center">Register date</th>
+						<th class="text-center">Promo Code</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if(items.length > 0) { %>
+						<% items.forEach( (item, index) => { %>
+							<tr>
+								<td class="text-center">
+									<%- checkboxHelper(item.id)%>
+								</td>
+								<td class="text-center"><%= index+1 %></td>
+								<td class="text-center"><%- highlightHelper(item.code, params.keyword)%></td>
+								<td class="text-center position-relative"><%- selectboxHelper('filter-progress', systemConfig.orders_state_value, item.status, item.id ) %></td>
+								<td class="text-sm-left">
+									<b>Name</b>: <%= item.user.first_name + item.user.last_name %><br>
+									<b>Phone</b>: <%= item.user.phone %><br>
+								</td>
+								<td class="text-sm-left">
+									<% item.product.forEach( (x) => { %>
+										<b><%= x.name %></b> (<%= x.quantity %>) <br>
+									<% }) %>
+								</td>
+								<td class="text-sm-left">
+									<b>Shipping</b>: <%= item.shipping_fee %><br>
+									<b>Total</b>: <%= item.total + item.shipping_fee %><br>
+								</td>
+								<td class="text-center"><%= moment(item.time).format(systemConfig.format_long_time) %></td>
+								<td class="text-center"><%= item.promo_code %></td>
+								<td class="text-center">
+									<a href="<%= linkPrefix %>form/<%= item.id %>" type="button" class="rounded-circle btn btn-sm btn-info" title="Edit">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+									<a href="<%= linkPrefix %>delete/<%= item.id %>" class="rounded-circle btn btn-sm btn-danger" title="Delete">
+										<i class="fas fa-trash-alt"></i>
+									</a>
+								</td>
+							</tr>
+						<% }) %>
+					<% } else { %>
+						<tr ><td colspan="9"><h3>Không có dữ liệu</h3></td></tr>
+					<% } %>	
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<div class="card-footer clearfix">
+		<%- paginationHelper(params.pagination, linkPrefix, params.currentStatus, params.keyword) %>
+	</div>
+</div>

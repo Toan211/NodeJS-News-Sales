@@ -28,7 +28,7 @@ module.exports = {
     col_types: 'types',
     col_slider:'slider',
     col_brand: 'brands',
-    col_order: 'order',
     col_subscribe: 'subscribe',
     col_banner: 'banner',
+    col_order: 'order',
 };

@@ -134,3 +134,53 @@ A
         D: 1
         original price
     } 
+
+gửi mail nodemailer
+
+giỏ hàng lưu session or json or localstore
+
+id_product
+tên 
+số lg
+giá tiền
+
+số lg
+id user
+
+
+mã giảm giá
+id
+name
+số tiền
+số lượng
+số lg đã sử dụng
+tg sử dụng, k thúc, 
+dk sử dụng
+trạng thái
+
+
+phí vận chuyển
+
+id
+tên thành phố
+giá tiền
+trạng thái
+
+lưu thành value, r qua front trừ thẳng gía
+
+
+kiểm tra đơn hàng
+id đơn hàng
+lấy id gửi mail cho ng ta
+trạng thái đơn hàng select option
+thông tin ng mua email tên địa chỉ ngày mua
+chuỗi json lưu các sản phẩm 
+phí vẫn chuyển
+mã giảm giá
+tổng giá tiền
+
+
+kiểm tra xem ng dùng đó có mã đó ko, sau đó ném qua k tra đơn hàng của frontend
+
+
+
