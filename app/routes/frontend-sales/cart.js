@@ -53,7 +53,7 @@ router.get('/', async (req, res, next) => {
     silde_bar: false,
     about_me: false,
     sub_banner: true,
-    popular: true,
+    popular: false,
     params,
     titleHeader: " - BlackHOSTVN " ,
     items,        
@@ -73,6 +73,18 @@ router.get('/delete/:id', (req, res, next) => {
 });
 
 // Delete
+router.get('/del/:id', (req, res, next) => {
+	let id				= ParamsHelpers.getParam(req.params, 'id', '');
+  let items = req.cookies.cart;
+  let slug = items[0].slug;
+  for(let i = 0; i < items.length; i++) {
+    if(id === items[i].id) items.splice(i, 1);
+  }
+  res.cookie('cart', items);
+  res.redirect("/sales" + linkIndex);
+});
+
+// incr-decr
 router.get('/change-quantity-:state/:id', (req, res, next) => {
 	let id				  = ParamsHelpers.getParam(req.params, 'id', '');
   let state				= ParamsHelpers.getParam(req.params, 'state', '');
@@ -83,8 +95,9 @@ router.get('/change-quantity-:state/:id', (req, res, next) => {
       items[i].quantity = Number(items[i].quantity) + value;
     }
   }
+  console.log("cart");
   res.cookie('cart', items);
-  res.redirect(linkIndex);
+  res.redirect("/sales" + linkIndex);
 });
 
 module.exports = router;

@@ -1,7 +1,8 @@
-
-
-
-
+<% 
+  const folder_upload = 'uploads/products/';
+  const linkProduct    = systemConfig.prefixSales + '/product/';
+  let total = 0;
+%>
 
     
     <!--======= PAGES INNER =========-->
@@ -37,18 +38,21 @@
             </ul>
           </div>
           
+
+          <% items.forEach( (item) => { %>
+            <% total += item.price * item.quantity %>
           <!-- Cart Details -->
           <ul class="row cart-details">
             <li class="col-sm-6">
               <div class="media"> 
                 <!-- Media Image -->
-                <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="pavshop/images/cart-img-1.jpg" alt=""> </a> </div>
+                <div class="media-left media-middle"> <a href="<%= linkProduct + item.slug %>" class="item-img"> <img class="media-object" src="<%= folder_upload + item.avatar %>" alt=""> </a> </div>
                 
                 <!-- Item Name -->
                 <div class="media-body">
                   <div class="position-center-center">
-                    <h5>wood chair</h5>
-                    <p>Lorem ipsum dolor sit amet</p>
+                    <h5><%= item.name %></h5>
+                    
                   </div>
                 </div>
               </div>
@@ -56,34 +60,29 @@
             
             <!-- PRICE -->
             <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
+              <div class="position-center-center" id="price-<%= item.id %>"> <span class="price"><%= item.price %><small>đ</small></span> </div>
             </li>
             
             <!-- QTY -->
             <li class="col-sm-1">
-              <div class="position-center-center">
-                <div class="quinty"> 
-                  <!-- QTY -->
-                  <select class="selectpicker">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                </div>
-              </div>
+              <div class="form-group--number">
+								<a href="/sales/cart/change-quantity-decrease/<%= item.id %>"><button class="minus"><span>-</span></button></a>
+								<input id="quantity-<%= item.id %>" class="form-control" type="text" value="<%= item.quantity %>">
+								<a href="/sales/cart/change-quantity-increase/<%= item.id %>"><button class="plus"><span>+</span></button></a>
+								</div>
             </li>
             
             <!-- TOTAL PRICE -->
             <li class="col-sm-2">
-              <div class="position-center-center"> <span class="price"><small>$</small>299</span> </div>
+              <div class="position-center-center" id="total-<%= item.id %>"> <span class="price"><%= item.price * item.quantity %><small>đ</small></span> </div>
             </li>
             
             <!-- REMOVE -->
             <li class="col-sm-1">
-              <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+              <div class="position-center-center"> <a href="/sales/cart/del/<%= item.id %>"><i class="icon-close"></i></a> </div>
             </li>
           </ul>
-          
+          <% }) %>
         </div>
       </div>
     </section>
@@ -103,7 +102,7 @@
                 <input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
                 <button type="submit" class="btn btn-small btn-dark">APPLY CODE</button>
               </form>
-              <div class="coupn-btn"> <a href="#." class="btn">continue shopping</a> <a href="#." class="btn">update cart</a> </div>
+              <div class="coupn-btn"> <a href="sales/" class="btn">continue shopping</a> <a href="/sales/checkout" class="btn">Check out</a> </div>
             </div>
             
             <!-- SUB TOTAL -->
@@ -111,12 +110,12 @@
               <h6>grand total</h6>
               <div class="grand-total">
                 <div class="order-detail">
-                  <p>WOOD CHAIR <span>$598 </span></p>
-                  <p>STOOL <span>$199 </span></p>
-                  <p>WOOD SPOON <span> $139</span></p>
+                  <% items.forEach( (item) => { %>
+                  <p><%= item.name %><span><%= item.price * item.quantity %>đ </span></p>
                   
+                  <% }) %>
                   <!-- SUB TOTAL -->
-                  <p class="all-total">TOTAL COST <span> $998</span></p>
+                  <p class="all-total">TOTAL COST <span>  <%= total %>đ</span></p>
                 </div>
               </div>
             </div>

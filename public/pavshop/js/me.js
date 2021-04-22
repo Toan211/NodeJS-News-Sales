@@ -50,9 +50,9 @@ $(document).ready(function () {
                     </li>
                     <li class="margin-0">
                         <div class="row">
-                        <div class="col-xs-6"> <a href="/cart" class="btn">VIEW CART</a></div>
+                        <div class="col-xs-6"> <a href="sales/cart" class="btn">VIEW CART</a></div>
                         
-                        <div class="col-xs-6 "> <a href="/checkout" class="btn">CHECK OUT</a></div>
+                        <div class="col-xs-6 "> <a href="sales/checkout" class="btn">CHECK OUT</a></div>
                         </div>
                     </li>
                   </ul>`;
@@ -98,9 +98,9 @@ $(document).ready(function () {
                     </li>
                     <li class="margin-0">
                         <div class="row">
-                        <div class="col-xs-6"> <a href="/cart" class="btn">VIEW CART</a></div>
+                        <div class="col-xs-6"> <a href="sales/cart" class="btn">VIEW CART</a></div>
                         
-                        <div class="col-xs-6 "> <a href="/checkout" class="btn">CHECK OUT</a></div>
+                        <div class="col-xs-6 "> <a href="sales/checkout" class="btn">CHECK OUT</a></div>
                         </div>
                     </li>
                   </ul>`;
