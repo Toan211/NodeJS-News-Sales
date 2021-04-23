@@ -1,5 +1,44 @@
 $(document).ready(function () {
 
+    // choose location
+    var localpicker = new LocalPicker({
+		province: "ls_province",
+		district: "ls_district",
+		ward: "ls_ward",
+        provinceText: 'Choose province / city',
+        districtText: 'Choose district',
+        wardText: 'Choose ward',
+    });
+    $('select[name=ls_province]').change(function() {
+        let province = $(this).find('option:selected').text();
+        let fee = 0;
+        let totalBox = $('#total-price');
+        $('input[name=province]').val(province);
+        $.ajax({
+            url: 'sales/checkout/get-shipping-fee',
+            type: 'get',
+            success:function(data){
+                data.forEach( (item) => {
+                    if(item.name === province) {
+                        fee = item.value;
+                        $('#shipping-fee').html(fee + 'đ');
+                        totalBox.html('$ ' + (Number(totalBox.text().slice(2)) + Number(fee)));
+                        $('input[name=shipping_fee]').val(fee);
+                    }
+                });
+            }
+        });
+    });
+    $('select[name=ls_district]').change(function() {
+        $('input[name=district]').val($(this).find('option:selected').text());
+    });
+    $('select[name=ls_ward]').change(function() {
+        $('input[name=ward]').val($(this).find('option:selected').text());
+    });
+
+
+
+
     //add product to cart
     $("#cart_form").submit(function(event ) {
         var quantity = $('#quantity_input').val();

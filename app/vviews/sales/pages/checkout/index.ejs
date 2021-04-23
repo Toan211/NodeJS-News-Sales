@@ -72,21 +72,15 @@
                       </label>
                     </li>
                     
-                    <!-- PHONE -->
-                    <li class="col-md-6">
-                      <button type="submit" class="btn">continue</button>
-                    </li>
                     
-                    <!-- CREATE AN ACCOUNT -->
-                    <li class="col-md-6">
-                      <div class="checkbox margin-0 margin-top-20">
-                        <input id="checkbox1" class="styled" type="checkbox">
-                        <label for="checkbox1"> Ship to a different address </label>
-                      </div>
-                    </li>
                   </ul>
                 </form>
                 
+                <h6 class="margin-top-50">SHIPPING info</h6>
+                <div class="form-group form-group--inline textarea">
+                  <label>Order Notes</label>
+                  <textarea class="form-control" rows="5" name="message" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                </div>
               
                 
               </div>
@@ -101,7 +95,8 @@
                     <p><%= item.name %> x <%= item.quantity %> <span><%= item.quantity * item.price %>đ </span></p>
                     <% }); %>
 
-                    <p>shipping_fee <span> 0đ </span></p>
+                    <p>shipping_fee <span id="shipping-fee"> 0 đ </span></p>
+                    <input class="form-control" name="shipping_fee" value="" type="hidden" >
                     <!-- SUB TOTAL -->
                     <p class="all-total">TOTAL COST <span> <%= total %>đ</span></p>
                   </div>
