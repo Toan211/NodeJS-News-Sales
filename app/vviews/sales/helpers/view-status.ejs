@@ -1,0 +1,10 @@
+<%
+    viewStatusHelper = (arrStatus, currentStatus) => {
+        let nameStatus = '';
+        arrStatus.forEach( (item) => {
+            if(item.id === currentStatus) nameStatus = item.name;
+        });
+        return nameStatus;
+    }
+%>
+

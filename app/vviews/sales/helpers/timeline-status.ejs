@@ -1,0 +1,10 @@
+<%
+    timelineStatusHelper = (arrStatus, currentStatus) => {
+        let numberStatus = '';
+        arrStatus.forEach( (item, index) => {
+            if(item.id === currentStatus) numberStatus = index;
+        });
+        return numberStatus;
+    }
+%>
+
