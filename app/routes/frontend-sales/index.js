@@ -15,6 +15,8 @@ router.use('/product', require('./product'));
 router.use('/about', require('./about'));
 router.use('/contact', require('./contact'));
 router.use('/cart', require('./cart'));
+router.use('/checkout', require('./checkout'));
+//router.use('/orders-tracking', require('./orders-tracking'));
 // router.use('/auth', require('./auth'));
 
 module.exports = router;

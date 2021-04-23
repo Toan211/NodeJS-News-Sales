@@ -17,6 +17,11 @@ module.exports = {
 		.skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
 		.limit(params.pagination.totalItemsPerPage)
     },
+
+    getItem: (id, options = null) => {
+        return Model.findById(id);
+    },
+
     getItems: (params = null, option = null) => {
         if(option.task == 'get-items-by-id'){
             return Model.findById(params.id);

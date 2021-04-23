@@ -18,7 +18,7 @@ const folderView	 	= __path_views_admin + `pages/${controllerName}/`;
 
 // List items
 router.get('(/status/:status)?', async (req, res, next) => {
-	let params 		 = ParamsHelpers.createParams(req);
+	let params 		 = ParamsHelpers.createParam(req);
 	let statusFilter = await UtilsHelpers.createFilterStatus(params, controllerName);
 
 	await MainModel.countItems(params).then( (data) => {
@@ -85,7 +85,7 @@ router.post('/delete', (req, res, next) => {
 router.get(('/form(/:id)?'), (req, res, next) => {
 	let id		= ParamsHelpers.getParam(req.params, 'id', '');
 	let errors   = null;
-	MainModel.getItems({id: id}, {task: 'get-items-by-id'}).then( (item) =>{
+	MainModel.getItem(id).then((item) =>{
 		res.render(`${folderView}form`, { pageTitle: 'Invoice #' + item.code, item, errors});
 	});	
 });

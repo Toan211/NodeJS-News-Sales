@@ -17,6 +17,6 @@ router.use('/types', require('./types'));
 router.use('/brands', require('./brands'));
 router.use('/contact', require('./contact'));
 router.use('/slider', require('./slider'));
-
+router.use('/orders', require('./orders'));
 
 module.exports = router;

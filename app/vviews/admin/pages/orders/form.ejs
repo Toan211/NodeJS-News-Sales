@@ -49,7 +49,7 @@
 				<b>Invoice #<%= item.code %></b><br>
 				<br>
 				<b>Order ID:</b> <%= item.id %><br>
-				<b>Payment Due:</b> <%= moment(item.time).format(systemConfig.format_date_2) %><br>
+				<b>Payment Due:</b> <%= moment(item.time).format(systemConfig.format_long_time) %><br>
 			  </div>
 			</div>
 			<div class="row">

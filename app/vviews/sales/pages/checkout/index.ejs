@@ -1,0 +1,117 @@
+<% 
+  let total = 0;
+%>
+
+<section class="chart-page padding-top-100 padding-bottom-100">
+      <div class="container"> 
+        
+        <!-- Payments Steps -->
+        <div class="shopping-cart"> 
+          
+          <!-- SHOPPING INFORMATION -->
+          <div class="cart-ship-info">
+            <div class="row"> 
+              
+              <!-- ESTIMATE SHIPPING & TAX -->
+              <div class="col-sm-7">
+                <h6>BILLING DETAILS</h6>
+                <form>
+                  <ul class="row">
+                    
+                    <!-- Name -->
+                    <li class="col-md-6">
+                      <label> *TÊN GỌI
+                        <input class="form-control" type="text" name="first_name" value="" placeholder="">
+                      </label>
+                    </li>
+                    <!-- LAST NAME -->
+                    <li class="col-md-6">
+                      <label> *TÊN HỌ
+                        <input class="form-control" type="text" name="last_name" value="" placeholder="">
+                      </label>
+                    </li>
+                    <li class="col-md-6"> 
+                      <!-- EMAIL ADDRESS -->
+                      <label>*EMAIL
+                        <input class="form-control" type="email" name="email" value="" placeholder="">
+                      </label>
+                    </li>
+                    <li class="col-md-6"> 
+                      <!-- ADDRESS -->
+                      <label>*SỐ ĐIỆN THOẠI
+                        <input class="form-control" type="number" name="phone" value="" placeholder="">
+                      </label>
+                    </li>
+                    <!-- TOWN/CITY -->
+                    <li class="col-md-6">
+                      <label>*TỈNH/ THÀNH PHỐ
+                        <select class="form-control ps-select" name="ls_province"></select>
+						            <input class="form-control" name="province" value="" type="hidden" >
+                      </label>
+                    </li>
+                    
+                    <!-- COUNTRY -->
+                    <li class="col-md-6">
+                      <label> *QUẬN / HUYỆN
+                        <select class="form-control ps-select" name="ls_district"></select>
+				          			<input class="form-control" name="district" value="" type="hidden" >
+                      </label>
+                    </li>
+                    
+                    <!-- EMAIL ADDRESS -->
+                    <li class="col-md-6">
+                      <label> *PHƯỜNG
+                        <select class="form-control ps-select" name="ls_ward"></select>
+				          			<input class="form-control" name="ward" value="" type="hidden" >
+                      </label>
+                    </li>
+                    <!-- PHONE -->
+                    <li class="col-md-6">
+                      <label> *ĐỊA CHỈ
+                        <input type="text" name="address" value="" placeholder="">
+                      </label>
+                    </li>
+                    
+                    <!-- PHONE -->
+                    <li class="col-md-6">
+                      <button type="submit" class="btn">continue</button>
+                    </li>
+                    
+                    <!-- CREATE AN ACCOUNT -->
+                    <li class="col-md-6">
+                      <div class="checkbox margin-0 margin-top-20">
+                        <input id="checkbox1" class="styled" type="checkbox">
+                        <label for="checkbox1"> Ship to a different address </label>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+                
+              
+                
+              </div>
+              
+              <!-- SUB TOTAL -->
+              <div class="col-sm-5">
+                <h6>YOUR ORDER</h6>
+                <div class="order-place">
+                  <div class="order-detail">
+                    <% items.forEach( (item) => { %>
+                      <% total += item.price * item.quantity %>
+                    <p><%= item.name %> x <%= item.quantity %> <span><%= item.quantity * item.price %>đ </span></p>
+                    <% }); %>
+
+                    <p>shipping_fee <span> 0đ </span></p>
+                    <!-- SUB TOTAL -->
+                    <p class="all-total">TOTAL COST <span> <%= total %>đ</span></p>
+                  </div>
+                  <div class="pay-meth">
+                    
+                    <a href="#." class="btn  btn-dark pull-right margin-top-30">PLACE ORDER</a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
