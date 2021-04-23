@@ -44,10 +44,11 @@ router.get('/(:slug)?', async (req, res, next) => {
 	let itemsInArticle	= [];
 	//console.log(slugCategory);
 	// find id of category
-    await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
+    await BrandModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
+	
 	// Article In Category
-	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsInCategory = items; });
-
+	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-brand'} ).then( (items) => { itemsInCategory = items; });
+	//console.log(itemsInCategory);
 	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-news'} ).then( (items) => { itemsInArticle = items; });
 
 	await ProductModel.listItemsFrontend(null, {task: 'items-random'} ).then( (items) => {itemsRandom = items; });
@@ -63,7 +64,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 		itemsInArticle,
 		itemsRandom,
 		params,
-		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
+		titleHeader:  " - BlackHOSTVN" ,
 		
 		
 	});
@@ -72,12 +73,12 @@ router.get('/(:slug)?', async (req, res, next) => {
 router.get('/:id/json', async (req, res, next) => {
 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
 
-	let itemsArticleJs	= [];
+	let itemsBrandJs	= [];
 	// Article In Category
 	
-	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsArticleJs = items; });
+	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-brand'} ).then( (items) => { itemsBrandJs = items; });
 
-	res.json(itemsArticleJs);
+	res.json(itemsBrandJs);
 });
 
 module.exports = router;

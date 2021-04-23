@@ -66,6 +66,12 @@ module.exports = {
             sort = {'created.time': 'desc'};
         }
 
+        if (options.task == 'items-in-brand'){
+            //select = 'name created.user_name created.time group.name avatar content price';
+            find = {status:'active', 'brand.id': params.id};
+            sort = {'created.time': 'desc'};
+        }
+
 
         if (options.task == 'items-random'){
             return MainModel.aggregate([
