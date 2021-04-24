@@ -20,6 +20,9 @@ function change_alias(alias) {
 
 function changeStatus(link)
 {
+
+
+    
     $.get( link, function( data ) {
         console.log(data);
         var notifyClick = $("a.status-" + data.id)
@@ -72,6 +75,25 @@ $(document).ready(function () { //deprecated
 
     //call active menu
     activeMenu();
+
+    $('select[name=filter-progress]').on('change',function() {
+        var myId = $(this).attr('id');
+        var itemValue = $(this).val();
+        
+        var path = window.location.pathname.split('/');
+        
+        var linkRedirect = '/' + path[1] + '/' + path[2] + '/change-progress/' + myId + '/' + itemValue;
+        
+        if(itemValue){
+            $.ajax({
+                type:'POST',
+                url:linkRedirect,
+                success:function(data){
+                    $('#' + myId).notify(data.msg, { position:"top", className: 'success' });
+                }
+            }); 
+        }
+    });
 
     //check selectbox
     change_form_action("#zt-form .slbAction", "#zt-form","#btn-action");
@@ -253,6 +275,10 @@ $(document).ready(function () { //deprecated
     } else {    //add
         $('input#tags-input').tagEditor({ initialTags: [''] });
     }
+
+
+    
+
 
 });
 

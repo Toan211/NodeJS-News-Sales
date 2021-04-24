@@ -30,4 +30,20 @@ router.get('/', async (req, res, next) => {
   });
 });
 
+router.get('/:id', async (req, res, next) => {
+
+  let idOrder = ParamsHelpers.getParam(req.params, 'id', '');
+
+  res.render(`${folderView}index`, {
+    pageTitle : 'Order tracking',
+    layout: layoutShop,
+    top_post: false,
+    silde_bar: false,
+    about_me: false,
+    sub_banner: false,
+    popular: false,
+    idOrder,
+  });
+});
+
 module.exports = router;

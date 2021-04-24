@@ -83,7 +83,7 @@
 								</td>
 								<td class="text-center"><%= index+1 %></td>
 								<td class="text-center"><%- highlightHelper(item.code, params.keyword)%></td>
-								<td class="text-center position-relative"><%- selectboxHelper('filter-progress', systemConfig.orders_state_value, item.status, item.id ) %></td>
+								<td class="text-center position-relative"><%- selectBoxHelper('filter-progress', systemConfig.orders_state_value, item.status, item.id ) %></td>
 								<td class="text-sm-left">
 									<b>Name</b>: <%= item.user.first_name + item.user.last_name %><br>
 									<b>Phone</b>: <%= item.user.phone %><br>

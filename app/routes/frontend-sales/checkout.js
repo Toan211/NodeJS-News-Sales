@@ -109,7 +109,7 @@ router.post('/save', async (req, res, next) => {
   await OrdersModel.saveItems(invoiceCode, product, user).then( (result) => {
     EmailHelpers.sendEmail(result.user.email, invoiceCode)
     res.clearCookie("cart");
-    res.redirect(linkIndex);
+    res.redirect("/sales" + linkIndex);
   });
 });
 

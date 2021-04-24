@@ -11,72 +11,76 @@
           <!-- SHOPPING INFORMATION -->
           <div class="cart-ship-info">
             <div class="row"> 
-              
+              <form class="ps-checkout__form" action="/sales/checkout/save" method="post">
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-7">
                 <h6>BILLING DETAILS</h6>
-                <form>
-                  <ul class="row">
-                    
-                    <!-- Name -->
-                    <li class="col-md-6">
-                      <label> *TÊN GỌI
-                        <input class="form-control" type="text" name="first_name" value="" placeholder="">
-                      </label>
-                    </li>
-                    <!-- LAST NAME -->
-                    <li class="col-md-6">
-                      <label> *TÊN HỌ
-                        <input class="form-control" type="text" name="last_name" value="" placeholder="">
-                      </label>
-                    </li>
-                    <li class="col-md-6"> 
-                      <!-- EMAIL ADDRESS -->
-                      <label>*EMAIL
-                        <input class="form-control" type="email" name="email" value="" placeholder="">
-                      </label>
-                    </li>
-                    <li class="col-md-6"> 
-                      <!-- ADDRESS -->
-                      <label>*SỐ ĐIỆN THOẠI
-                        <input class="form-control" type="number" name="phone" value="" placeholder="">
-                      </label>
-                    </li>
-                    <!-- TOWN/CITY -->
-                    <li class="col-md-6">
-                      <label>*TỈNH/ THÀNH PHỐ
-                        <select class="form-control ps-select" name="ls_province"></select>
-						            <input class="form-control" name="province" value="" type="hidden" >
-                      </label>
-                    </li>
-                    
-                    <!-- COUNTRY -->
-                    <li class="col-md-6">
-                      <label> *QUẬN / HUYỆN
-                        <select class="form-control ps-select" name="ls_district"></select>
-				          			<input class="form-control" name="district" value="" type="hidden" >
-                      </label>
-                    </li>
-                    
-                    <!-- EMAIL ADDRESS -->
-                    <li class="col-md-6">
-                      <label> *PHƯỜNG
-                        <select class="form-control ps-select" name="ls_ward"></select>
-				          			<input class="form-control" name="ward" value="" type="hidden" >
-                      </label>
-                    </li>
-                    <!-- PHONE -->
-                    <li class="col-md-6">
-                      <label> *ĐỊA CHỈ
-                        <input type="text" name="address" value="" placeholder="">
-                      </label>
-                    </li>
-                    
-                    
-                  </ul>
-                </form>
                 
-                <h6 class="margin-top-50">SHIPPING info</h6>
+                      <ul class="row">
+                        
+                        <!-- Name -->
+                        <li class="col-md-6">
+                          <label> *TÊN GỌI
+                            <input class="form-control" type="text" name="first_name" value="" placeholder="">
+                          </label>
+                        </li>
+                        <!-- LAST NAME -->
+                        <li class="col-md-6">
+                          <label> *TÊN HỌ
+                            <input class="form-control" type="text" name="last_name" value="" placeholder="">
+                          </label>
+                        </li>
+                        <li class="col-md-6"> 
+                          <!-- EMAIL ADDRESS -->
+                          <label>*EMAIL
+                            <input class="form-control" type="email" name="email" value="" placeholder="">
+                          </label>
+                        </li>
+                        <li class="col-md-6"> 
+                          <!-- ADDRESS -->
+                          <label>*SỐ ĐIỆN THOẠI
+                            <input class="form-control" type="number" name="phone" value="" placeholder="">
+                          </label>
+                        </li>
+                        <!-- TOWN/CITY -->
+                        <li class="col-md-6">
+                          <label>*TỈNH/ THÀNH PHỐ
+                            <select class="form-control ps-select" name="ls_province"></select>
+                            <input class="form-control" name="province" value="" type="hidden" >
+                          </label>
+                        </li>
+                        
+                        <!-- COUNTRY -->
+                        <li class="col-md-6">
+                          <label> *QUẬN / HUYỆN
+                            <select class="form-control ps-select" name="ls_district"></select>
+                            <input class="form-control" name="district" value="" type="hidden" >
+                          </label>
+                        </li>
+                        
+                        <!-- EMAIL ADDRESS -->
+                        <li class="col-md-6">
+                          <label> *PHƯỜNG
+                            <select class="form-control ps-select" name="ls_ward"></select>
+                            <input class="form-control" name="ward" value="" type="hidden" >
+                          </label>
+                        </li>
+                        <!-- PHONE -->
+                        <li class="col-md-6">
+                          <label> *ĐỊA CHỈ
+                            <input type="text" name="address" value="" placeholder="">
+                          </label>
+                        </li>
+                        
+                        
+                      </ul>
+                
+                
+                
+                
+                    
+                
+                <h6 class="margin-top-50"> Note</h6>
                 <div class="form-group form-group--inline textarea">
                   <label>Order Notes</label>
                   <textarea class="form-control" rows="5" name="message" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
@@ -101,10 +105,13 @@
                     <p class="all-total">TOTAL COST <span> <%= total %>đ</span></p>
                   </div>
                   <div class="pay-meth">
+                    <button class="btn  btn-dark pull-right margin-top-30">Place Order<i class="ps-icon-next"></i></button>
                     
-                    <a href="#." class="btn  btn-dark pull-right margin-top-30">PLACE ORDER</a> </div>
                 </div>
+              
               </div>
+            
+            </form>
             </div>
           </div>
         </div>

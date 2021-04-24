@@ -1,7 +1,7 @@
 module.exports = {
     hotline: '0981668285',
     email: 'nhoktoan157@gmail.com',
-    password_email: '',
+    password_email:'lmhrsxuqqzcakzxw',
     address: 'on Earth',
     social: {
         facebook: '/',
