@@ -10,11 +10,13 @@ const layoutShop    = __path_views_sales + 'frontend';
 
 router.get('/', async (req, res, next) => {
   let params 		 	 = ParamsHelpers.createParam(req);
+  
   let query = ParamsHelpers.getParam(req.query, 'code', '');
   let item = [];
   await OrdersModel.getItems({code: query}, {task: 'get-items-by-code-order'}).then( (data) => {
     item = data;
   });
+  
 
   res.render(`${folderView}index`, {
     titleHeader : 'Order tracking',
