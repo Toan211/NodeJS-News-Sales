@@ -1,6 +1,7 @@
 <% 
   const folder_upload = 'uploads/products/';
   const linkProduct    = systemConfig.prefixSales + '/product/';
+  const linkCheckout    = systemConfig.prefixSales + '/checkout/';
   let total = 0;
 %>
 
@@ -98,9 +99,11 @@
             <!-- DISCOUNT CODE -->
             <div class="col-sm-7">
               <h6>DISCOUNT CODE</h6>
-              <form>
-                <input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
-                <button type="submit" class="btn btn-small btn-dark">APPLY CODE</button>
+              <form action="<%= linkCheckout %>apply-promo-code" method="POST" id="form-promotion">
+                <span data-alertid="example"></span>
+                <input class="form-control" type="text" name="code" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
+                <button  type="submit" class="btn btn-small btn-dark">APPLY CODE</button>
+                <p id="notify-promotion" style="color: red;"></p>
               </form>
               <div class="coupn-btn"> <a href="sales/" class="btn">continue shopping</a> <a href="/sales/checkout" class="btn">Check out</a> </div>
             </div>
@@ -115,7 +118,7 @@
                   
                   <% }) %>
                   <!-- SUB TOTAL -->
-                  <p class="all-total">TOTAL COST <span>  <%= total %>đ</span></p>
+                  <p class="all-total">TOTAL COST <span id="info-total-price">  <%= total %>đ</span></p>
                 </div>
               </div>
             </div>

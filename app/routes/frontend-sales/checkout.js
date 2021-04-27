@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const OrdersModel = require(__path_models + 'orders');
+const PromoModel = require(__path_models + 'promo');
 const StringHelpers   = require(__path_helpers + 'string');
 const EmailHelpers		= require(__path_helpers + 'email');
 const ParamsHelpers = require(__path_helpers + 'params');
@@ -13,11 +14,14 @@ const linkIndex     = '/orders-tracking';
 
 router.get('/', async (req, res, next) => {
   let items = [];
+  let sale_off = 0;
   let params 		 	 = ParamsHelpers.createParam(req);
   if(req.cookies.cart !== undefined) {
     items = req.cookies.cart;
   }
-  
+  if(req.cookies.sale_off !== undefined) {
+    sale_off = req.cookies.sale_off.saleOff;
+  }
   res.render(`${folderView}index`, {
     titleHeader : 'Checkout',
     layout: layoutShop,
@@ -28,6 +32,7 @@ router.get('/', async (req, res, next) => {
     popular: false,
     params,
     items,
+    sale_off,
   });
 });
 
@@ -102,15 +107,34 @@ router.get('/get-shipping-fee',   async (req, res, next) => {
 
 router.post('/save', async (req, res, next) => {
   let product = JSON.parse(JSON.stringify(req.cookies.cart));
+  let sale_off = {};
   let invoiceCode = StringHelpers.generateCode(10);
   req.body = JSON.parse(JSON.stringify(req.body));
   let user = req.body;
 
-  await OrdersModel.saveItems(invoiceCode, product, user).then( (result) => {
+  if(req.cookies.sale_off !== undefined) {
+    sale_off = JSON.parse(JSON.stringify(req.cookies.sale_off));
+  }
+
+  await OrdersModel.saveItems(invoiceCode, product, user, sale_off).then( (result) => {
     EmailHelpers.sendEmail(result.user.email, invoiceCode)
     res.clearCookie("cart");
+    res.clearCookie("sale_off");
     res.redirect("/sales" + linkIndex);
   });
+});
+
+router.post('/apply-promo-code', async (req, res, next) => {
+  req.body = JSON.parse(JSON.stringify(req.body));
+  let item = req.body;
+  let saleOff = 0;
+  
+  await PromoModel.applyPromo(item.code).then( (item) => {
+    saleOff = item.price;
+    console.log(item.price);
+  });
+  res.cookie('sale_off', {code: item.code, saleOff: saleOff});
+  res.json({saleOff: saleOff, msg: 'Apply success'});
 });
 
 module.exports = router;

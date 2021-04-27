@@ -13,6 +13,7 @@ $(document).ready(function () {
         let province = $(this).find('option:selected').text();
         let fee = 0;
         let totalBox = $('#total-price');
+        //console.log(totalBox);
         $('input[name=province]').val(province);
         $.ajax({
             url: 'sales/checkout/get-shipping-fee',
@@ -22,7 +23,8 @@ $(document).ready(function () {
                     if(item.name === province) {
                         fee = item.value;
                         $('#shipping-fee').html(fee + 'đ');
-                        totalBox.html('$ ' + (Number(totalBox.text().slice(2)) + Number(fee)));
+                        //console.log(Number((totalBox.text().slice(0, totalBox.text().length - 1))));
+                        totalBox.html((Number(totalBox.text().slice(0, totalBox.text().length - 1)) + Number(fee)) + 'đ');
                         $('input[name=shipping_fee]').val(fee);
                     }
                 });
@@ -146,6 +148,36 @@ $(document).ready(function () {
 
         $('.user-basket').append(xhtml);
     }
+
+    $("#form-promotion").submit(function(event ) {
+        var input = $('input[name=code]').val();
+        $(document).trigger("clear-alert-id.example");
+        if (input.length <= 0 ) {
+            $(document).trigger("set-alert-id-example", [
+                {
+                    "message": "Please enter code promotion!",
+                    "priority": "info"
+                }
+            ]);
+            event.preventDefault();
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: 'sales/checkout/apply-promo-code',
+                type: 'post',
+                data:$('input[name=code]').serialize(),
+                success:function(data){
+                    $('input[name=code]').notify(data.message, { position:"top", className: 'success' });
+                    let textTotal = $('span#info-total-price').text();
+                    
+                    console.log(Number(textTotal.slice(1, textTotal.length - 1)));
+                    let total = Number(textTotal.slice(1, textTotal.length - 1)) - data.saleOff;
+                    $('span#info-total-price').html(total + ' đ');
+                    $('p#notify-promotion').html("You are using a promotional code worth " + data.saleOff + "đ");
+                }
+            });
+        }
+    });
 
 })
 

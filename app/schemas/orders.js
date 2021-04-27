@@ -23,7 +23,10 @@ var schema = new mongoose.Schema({
         slug: String
     }],
     time: Date,
-    promo_code: String,
+    promo_code: {
+        name: String,
+        value: Number
+    },
     total: Number
 });
 

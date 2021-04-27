@@ -69,23 +69,32 @@ module.exports = {
             return Model.remove({_id: {$in: id}});
         }
     },
-    saveItems: (idOrder, product, user) => {
+    saveItems: (idOrder, product, user, sale_off) => {
         let item = {};
         let total = 0;
         item.product = product;
         item.code = idOrder;
         item.shipping_fee = user.shipping_fee;
         item.time = Date.now();
-        if(user.promo_code !== undefined || user.promo_code !== null) {
-            item.promo_code = user.promo_code;
-        } else {
-            item.promo_code = '';
-        }
+
         product.forEach( (item) => {
             total += item.price * item.quantity;
         });
-        item.status = 'accepted';
-        item.total = total;
+        if(Object.keys(sale_off).length !== 0) {
+            item.promo_code = {
+                name: sale_off.code,
+                value: sale_off.saleOff
+            }
+            item.total = total + parseInt(user.shipping_fee) - parseInt(sale_off.saleOff);
+        } else {
+            item.promo_code = {
+                name: "0",
+                value: 0
+            }
+            item.total = total + parseInt(user.shipping_fee);
+        }
+        
+        item.status = 'accepted';      
         item.user = {
             first_name: user.first_name, 
             last_name: user.last_name,

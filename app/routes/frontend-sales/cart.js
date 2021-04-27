@@ -21,20 +21,20 @@ router.post('/add-to-cart', async (req, res, next) => {
   //console.log(item);
   if(cookie === undefined) {
     cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.discount/100)), avatar: item.avatar[0], slug: item.slug });
-    console.log('what');
+    
   } else {
     cart = cookie;
     for(let i = 0; i < cart.length; i++) {
-      if(req.body.id === cart[i].id && req.body.size === cart[i].size) {
+      if(req.body.id === cart[i].id) {
         isExist = true;
         cart[i].quantity = Number(cart[i].quantity) + Number(req.body.quantity);
-        console.log('the');
+        
       }
     }
     if(isExist === false) 
       {
       cart.push({ id: req.body.id, name: item.name, quantity: req.body.quantity, price: item.price - (item.price * (item.discount/100)), avatar: item.avatar[0], slug: item.slug });
-      console.log("f");
+      
       }
   }
   res.cookie('cart', cart);

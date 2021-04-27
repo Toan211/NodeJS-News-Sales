@@ -101,8 +101,12 @@
 
                     <p>shipping_fee <span id="shipping-fee"> 0 đ </span></p>
                     <input class="form-control" name="shipping_fee" value="" type="hidden" >
+                    <% if(sale_off > 0) { %>
+                      <p>Promotion code: <span id="shipping-fee">  -<%= sale_off %> đ </span></p>
+                    <% }%>
+                    
                     <!-- SUB TOTAL -->
-                    <p class="all-total">TOTAL COST <span> <%= total %>đ</span></p>
+                    <p class="all-total">TOTAL COST <span id="total-price"> <%= total - sale_off%>đ</span></p>
                   </div>
                   <div class="pay-meth">
                     <button class="btn  btn-dark pull-right margin-top-30">Place Order<i class="ps-icon-next"></i></button>

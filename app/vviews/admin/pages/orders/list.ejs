@@ -95,7 +95,7 @@
 								</td>
 								<td class="text-sm-left">
 									<b>Shipping</b>: <%= item.shipping_fee %><br>
-									<b>Total</b>: <%= item.total + item.shipping_fee %><br>
+									<b>Total</b>: <%= item.total%><br>
 								</td>
 								<td class="text-center"><%= moment(item.time).format(systemConfig.format_long_time) %></td>
 								<td class="text-center"><%= item.promo_code %></td>
