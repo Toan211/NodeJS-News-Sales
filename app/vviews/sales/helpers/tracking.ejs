@@ -1,0 +1,37 @@
+<%
+    timelineStatusHelper = (arrStatus, currentStatus) => {
+        let numberStatus = ['', '', '', '', ''];
+    
+
+    for (let index = 0; index < arrStatus.length; index++) {
+        numberStatus[index] = 'active';
+        
+        if(arrStatus[index].id === currentStatus)  
+        {
+            break;
+        }
+    }
+    
+    let arrBox = [
+        {class: 'fa fa-check', text: 'Order confirmed', active: numberStatus[0] },
+        {class: 'fa fa-user', text: 'Picked by courier', active: numberStatus[1]},
+        {class: 'fa fa-truck', text: 'On the way', active: numberStatus[2]},
+        {class: 'ion-checkmark-circled', text: 'Ready for pickup', active: numberStatus[3]},
+        {class: 'fa ion-home', text: 'Completed delivery', active: numberStatus[4]},
+    ];
+    
+    let xhtmlBox = '';
+    arrBox.forEach((box) => {
+        xhtmlBox += `
+        <div class="step ${box.active}"> <span class="icon"> <i class="${box.class}"></i> </span> <span class="text">${box.text}</span> </div>
+        `
+    });
+
+    return xhtmlBox;
+    }
+
+
+
+        
+%>
+
