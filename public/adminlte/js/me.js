@@ -21,8 +21,6 @@ function change_alias(alias) {
 function changeStatus(link)
 {
 
-
-    
     $.get( link, function( data ) {
         console.log(data);
         var notifyClick = $("a.status-" + data.id)

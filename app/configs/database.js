@@ -31,4 +31,6 @@ module.exports = {
     col_subscribe: 'subscribe',
     col_banner: 'banner',
     col_order: 'order',
+    col_promo: 'promo',
+    col_shipping: 'shipping',
 };

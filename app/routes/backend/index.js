@@ -18,5 +18,6 @@ router.use('/brands', require('./brands'));
 router.use('/contact', require('./contact'));
 router.use('/slider', require('./slider'));
 router.use('/orders', require('./orders'));
+router.use('/promo', require('./promo'));
 
 module.exports = router;
