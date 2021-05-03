@@ -88,7 +88,7 @@
               <h5 class="shop-tittle margin-bottom-30">category</h5>
               <ul class="shop-cate">
                 <% itemsCategory.forEach((category) => { %>
-                <li><a href="sales/type/<%= category.id %>"><%= category.name %><span></span></a></li> 
+                <li><a href="sales/type/<%= category.slug %>"><%= category.name %><span></span></a></li> 
                 <%})%>
               </ul>
               <!-- FILTER BY PRICE -->

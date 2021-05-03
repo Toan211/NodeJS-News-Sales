@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     $("#rang").ionRangeSlider({
         min: 100000,
-        max: 50000000,
+        max: 20000000,
         from: 100000,
         to: 9000000,
         type: 'double',
@@ -199,17 +199,23 @@ function filterPrice() {
 
     let path = window.location.pathname;
     let arrMenu = path.split("/");
-    console.log(arrMenu);
+    console.log(arrMenu.length);
   
     var $d5 = $("#rang");
     var v = $d5.prop("value");
     var from = $d5.data("from");   // input data-from attribute
     var to = $d5.data("to");
-
     
-    var linkRedirect = 'sales/type/filter-type/' + from + '-' + to;
+    if (arrMenu.length > 3 )
+    {
+        console.log(arrMenu[3]);
+        var linkRedirect = 'sales/type/filter/' + arrMenu[3] + '&' + from + '-' + to;
+    }else{
+        var linkRedirect = 'sales/type/filter/' + from + '-' + to;
+    }
+    
     console.log(from,'-', to);
-
+    console.log(linkRedirect);
     window.location.pathname = linkRedirect;
     
     }

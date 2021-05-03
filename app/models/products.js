@@ -86,7 +86,7 @@ module.exports = {
         }
 
         if(options.task == 'filter-price-items'){
-            find = {status:'active', 'price': {$gt : params.min, $lt : params.max}, 'group.id': params.id};
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max},  'group.id': params.id};
             limit = 50;
             sort = {ordering: 'asc'};
         }
