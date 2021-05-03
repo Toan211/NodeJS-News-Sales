@@ -1,0 +1,37 @@
+<title>Range Slider Demo</title>
+<link rel="stylesheet" href="css/ion.rangeSlider.css">
+<link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css">
+<div style="width:70%; margin:0 auto; text-align:center;">
+<h1>Demo-1</h1>
+<input type="text" id="rang" name="rang" value="" />
+<br/>
+<br/>
+<h1>Demo-2</h1>
+<div class="ps-widget__content">
+    <input type="text" id="rang1" name="rang1" value="" data-min="0" data-max="10000" data-from="2000" data-to="7000" data-prefix="Rs. " data-grid="true" data-grid-num="10" data-type="double" />
+<a class="ac-slider__filter ps-btn" href="javascript:void(0)" onclick="filterPrice()">Filter</a>
+<button class="ps-btn mb-10 btn">Add to cart<i class="ps-icon-next"></i></button>
+  </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/ion.rangeSlider.min.js"></script>
+<script>
+$(function() {   
+
+$("#rang").ionRangeSlider({
+    min: 0,
+    max: 10000,
+    from: 1000,
+    to: 9000,
+    type: 'double',
+    prefix: "Rs. ",
+    grid: true,
+    grid_num: 10
+});
+
+
+$("#rang1").ionRangeSlider();
+
+});
+</script>

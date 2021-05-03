@@ -44,23 +44,23 @@ product --done
 type --done
 brand --done
 total item--done
-slide
-order
+order --done
 
 
 cắt frontend --done
 multi avatar --done
 cart --done
 slug --done
-checkout
-order status 
-email sender
+checkout --done
+order status --done
+email sender --done
+
 fix frontend
 filter trong type
 thêm ggmap
 subcribe-- name email status time -- quản lý subcribe
 contact?
-
+slide
 
 
 

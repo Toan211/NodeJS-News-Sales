@@ -80,4 +80,29 @@ router.get('/:id/json', async (req, res, next) => {
 	res.json(itemsArticleJs);
 });
 
+router.get('/filter-type/:min-:max', async (req, res, next) => {
+	let itemsInCategory = [];
+	let minPrice = ParamsHelpers.getParam(req.params, 'min', '');
+	let maxPrice = ParamsHelpers.getParam(req.params, 'max', '');
+
+	
+	await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice}, {task: 'filter-price'}).then( (items) => {itemsInCategory = items;});
+	
+	await ProductModel.listItemsFrontend(null, {task: 'items-random'} ).then( (items) => {itemsRandom = items; });
+
+	res.render(`${folderView}index`, { 
+	  
+	  layout: layoutBlog,
+		top_post: false,
+		silde_bar: true,
+		about_me: false,
+		sub_banner: true,
+		popular: true,
+		itemsInCategory,
+		itemsRandom,
+		
+		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
+	});
+  });
+
 module.exports = router;

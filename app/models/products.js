@@ -53,6 +53,13 @@ module.exports = {
             limit = 8;
         }
 
+        if(options.task == 'all-items'){
+            find = {status:'active'};
+            limit = 50;
+            sort = {'created.time': 'desc'};
+            
+        }
+
         if (options.task == 'items-news-category'){
             limit = 4;
             //select = ' name created.user_name created.time group.name group.id  avatar content';
@@ -72,6 +79,17 @@ module.exports = {
             sort = {'created.time': 'desc'};
         }
 
+        if(options.task == 'filter-price'){
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max}};
+            limit = 50;
+            sort = {ordering: 'asc'};
+        }
+
+        if(options.task == 'filter-price-items'){
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max}, 'group.id': params.id};
+            limit = 50;
+            sort = {ordering: 'asc'};
+        }
 
         if (options.task == 'items-random'){
             return MainModel.aggregate([
@@ -93,12 +111,6 @@ module.exports = {
             find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
             sort = {'created.time': 'desc'};
             limit = 3;
-        }
-
-        if(options.task == 'filter-price'){
-            find = {status:'active', 'price': {$gt : params.min, $lt : params.max}};
-            limit = 50;
-            sort = {ordering: 'asc'};
         }
 
         if(options.task == 'items-search'){

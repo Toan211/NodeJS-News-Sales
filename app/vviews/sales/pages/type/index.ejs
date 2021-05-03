@@ -40,7 +40,7 @@
             </div>
             
             <!-- Popular Item Slide -->
-            <div class="papular-block row"> 
+            <div class="papular-block row box-flex"> 
               
               
                 <% itemsInCategory.forEach((item)=> { %>
@@ -93,6 +93,8 @@
               </ul>
               <!-- FILTER BY PRICE -->
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY PRICE</h5>
+              <input class="ac-slider" type="text" id="rang" name="rang" value="" />
+              <button href="javascript:void(0)" onclick="filterPrice()" class="btn-filter">Add to cart<i class="ps-icon-next"></i></button>
               
               <!-- TAGS -->
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>

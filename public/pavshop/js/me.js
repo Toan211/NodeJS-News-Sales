@@ -39,6 +39,20 @@ $(document).ready(function () {
     });
 
 
+    $("#rang").ionRangeSlider({
+        min: 100000,
+        max: 50000000,
+        from: 100000,
+        to: 9000000,
+        type: 'double',
+        prefix: "Rs. ",
+        grid: true,
+        grid_num: 4,
+        step: 10000,
+    });
+    
+    
+    $("#rang1").ionRangeSlider();
 
 
     //add product to cart
@@ -182,15 +196,35 @@ $(document).ready(function () {
 })
 
 function filterPrice() {
-    var el = $('.ac-slider');
-    if (el.length > 0) {
-        var values = el.slider("option", "values");
-        var linkRedirect = 'category/filter-category/' + values[0] + '-' + values[1];
-        console.log(values[0],'-', values[1]);
 
-        window.location.pathname = linkRedirect;
+    let path = window.location.pathname;
+    let arrMenu = path.split("/");
+    console.log(arrMenu);
+  
+    var $d5 = $("#rang");
+    var v = $d5.prop("value");
+    var from = $d5.data("from");   // input data-from attribute
+    var to = $d5.data("to");
+
+    
+    var linkRedirect = 'sales/type/filter-type/' + from + '-' + to;
+    console.log(from,'-', to);
+
+    window.location.pathname = linkRedirect;
+    
     }
-    else {
-        return false;
-    }
+
+
+
+function filterPriceTest() {
+    var $d5 = $("#rang");
+    var $d5_buttons = $(".btn-filter");
+
+    var d5_instance = $d5.data("ionRangeSlider");
+    var v = $d5.prop("value");
+    var from = $d5.data("from");   // input data-from attribute
+    var to = $d5.data("to");
+    console.log(v);
+
+    
 }
