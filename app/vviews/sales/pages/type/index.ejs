@@ -87,6 +87,7 @@
               <!-- Category -->
               <h5 class="shop-tittle margin-bottom-30">category</h5>
               <ul class="shop-cate">
+                <li><a href="sales/type">Tất cả đồng hồ<span></span></a></li> 
                 <% itemsCategory.forEach((category) => { %>
                 <li><a href="sales/type/<%= category.slug %>"><%= category.name %><span></span></a></li> 
                 <%})%>
@@ -104,19 +105,6 @@
                 <li><a href="#." style="background:#c9c288;"></a></li>
                 <li><a href="#." style="background:#a7c988;"></a></li>
                 <li><a href="#." style="background:#9ed66b;"></a></li>
-                <li><a href="#." style="background:#6bd6b1;"></a></li>
-                <li><a href="#." style="background:#82c2dc;"></a></li>
-                <li><a href="#." style="background:#8295dc;"></a></li>
-                <li><a href="#." style="background:#9b82dc;"></a></li>
-                <li><a href="#." style="background:#dc82d9;"></a></li>
-                <li><a href="#." style="background:#dc82a2;"></a></li>
-                <li><a href="#." style="background:#e04756;"></a></li>
-                <li><a href="#." style="background:#f56868;"></a></li>
-                <li><a href="#." style="background:#eda339;"></a></li>
-                <li><a href="#." style="background:#edd639;"></a></li>
-                <li><a href="#." style="background:#daed39;"></a></li>
-                <li><a href="#." style="background:#a3ed39;"></a></li>
-                <li><a href="#." style="background:#f56868;"></a></li>
               </ul>
               
               <!-- TAGS -->
@@ -126,21 +114,19 @@
                 <li><a href="#.">Chair</a></li>
                 <li><a href="#.">Bedsheets</a></li>
                 <li><a href="#.">Shoe</a></li>
-                <li><a href="#.">Curtains</a></li>
-                <li><a href="#.">Clocks</a></li>
-                <li><a href="#.">TV Cabinets</a></li>
-                <li><a href="#.">Best Seller</a></li>
-                <li><a href="#.">Top Selling</a></li>
               </ul>
               
               <!-- BRAND -->
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">brands</h5>
               <ul class="shop-cate">
-                <li><a href="#."> G-Furniture
-                  BigYellow</a></li>
-                <li><a href="#."> WoodenBazaar</a></li>
-                <li><a href="#."> GreenWoods</a></li>
-                <li><a href="#."> Hot-n-Fire </a></li>
+
+                <% itemsBrand.forEach((category) => { %>  
+                  <li>
+                      <a href="/sales/brand/<%= category.slug %>"><%= category.name %></a>
+                  </li>
+              <%})%>
+                
+                
               </ul>
 
               <!-- Random Post -->

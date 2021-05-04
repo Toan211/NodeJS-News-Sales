@@ -1,0 +1,59 @@
+<% include ./../../helpers/view-status %>
+<% include ./../../helpers/tracking %>
+
+<% 
+  const folder_uploads = "uploads/products/"; 
+  const linkTracking = systemConfig.prefixSales + '/orders-tracking/?code=';
+%>
+
+
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" >
+                    
+                    <tr>
+                        <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:70%;">
+                                <tr>
+                                    <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;"> <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px;" /><br>
+                                        <h2 style="font-size: 35px;font-weight: 800;line-height: 36px;color: #f44336;margin: 30px;"> Cảm ơn đã đặt hàng!!! </h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                                        <p style="font-size: 23px;font-weight: bold;line-height: 30px;color: #000000;margin-top: 12px;margin-bottom: 45px;text-align-last: center;text-transform: uppercase;"> Mã hàng của bạn là : #<%= idOrder %>   </p>
+                                    </td>
+                                </tr>
+                                
+                                
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="center" style=" padding: 35px; background-color: #f1f1f1;" bgcolor="#1b9ba3">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+                                
+                                <tr>
+                                    <td align="center" style="padding: 25px 0 15px 0;">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="border-radius: 5px;" bgcolor="#66b3b7"> <a href="<%= linkTracking + idOrder %>" target="_blank" style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;">Theo dõi đơn đặt hàng</a> </td>
+                                            </tr>
+                                            
+                                        </table>
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+
+

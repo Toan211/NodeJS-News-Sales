@@ -209,9 +209,9 @@ function filterPrice() {
     if (arrMenu.length > 3 )
     {
         console.log(arrMenu[3]);
-        var linkRedirect = 'sales/type/filter/' + arrMenu[3] + '&' + from + '-' + to;
+        var linkRedirect = 'sales/type/filter/' + arrMenu[3] + '&gia=' + from + '-' + to;
     }else{
-        var linkRedirect = 'sales/type/filter/' + from + '-' + to;
+        var linkRedirect = 'sales/type/filter/gia=' + from + '-' + to;
     }
     
     console.log(from,'-', to);

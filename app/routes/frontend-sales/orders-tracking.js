@@ -7,6 +7,26 @@ const ParamsHelpers 	= require(__path_helpers + 'params');
 const folderView	 = __path_views_sales + 'pages/orders-tracking/';
 const layoutShop    = __path_views_sales + 'frontend';
 
+router.get('/confirm/:id', async (req, res, next) => {
+
+  let idOrder = ParamsHelpers.getParam(req.params, 'id', '');
+  let params 		 	 = ParamsHelpers.createParam(req);
+ 
+  
+
+  res.render(`${folderView}confirmation`, {
+    pageTitle : 'Confirm',
+    top_post: false,
+    silde_bar: false,
+    about_me: false,
+    sub_banner: false,
+    popular: false,
+    layout: layoutShop,
+    idOrder,
+    params,
+    
+  });
+});
 
 router.get('/', async (req, res, next) => {
   let params 		 	 = ParamsHelpers.createParam(req);
@@ -47,5 +67,7 @@ router.get('/:id', async (req, res, next) => {
     idOrder,
   });
 });
+
+
 
 module.exports = router;
