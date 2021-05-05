@@ -42,14 +42,21 @@ router.get('/(:slug)?', async (req, res, next) => {
 	let idCategory;
 	let itemsInCategory	= [];
 	//let itemsInArticle	= [];
-	console.log('slugCategory');
+	console.log(slugCategory);
 
-	if(slugCategory !== '') {
+
+	if(slugCategory !== 'giam-gia' && slugCategory !== '' ) {
 	// find id of category
+	console.log("what?");
     await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
 	// Article In Category
 	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsInCategory = items; });
-	} else {
+	} else if(slugCategory == 'giam-gia'){
+
+		await ProductModel.listItemsFrontend(null, {task: 'discount-items'}).then( (items) => {itemsInCategory = items;});
+		
+	}
+	else {
 	
 	await ProductModel.listItemsFrontend(null, {task: 'all-items'}).then( (items) => {itemsInCategory = items;});
 	}
@@ -121,5 +128,7 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
 	});
   });
+
+  
 
 module.exports = router;

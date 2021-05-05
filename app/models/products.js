@@ -74,6 +74,13 @@ module.exports = {
             
         }
 
+        if(options.task == 'discount-items'){
+            find = {status:'active', discount: {$gte: 10} };
+            limit = 50;
+            sort = {'discount': 'desc'};
+            
+        }
+
         if (options.task == 'items-news-category'){
             limit = 4;
             //select = ' name created.user_name created.time group.name group.id  avatar content';

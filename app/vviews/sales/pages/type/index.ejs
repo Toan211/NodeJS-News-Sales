@@ -48,7 +48,10 @@
               <div class="col-md-4">
                 <div class="item"> 
                   <!-- Sale Tags -->
-                  <div class="on-sale"> 10% <span>OFF</span> </div>
+                  <%  if (item.discount > 0){ %> 
+                    <div class="on-sale"> <%= item.discount %>  % <span>OFF</span> </div>
+                  <% } %> 
+                  
                   
                   <!-- Item img -->
                   <div class="item-img"> <img class="img-1" src="<%= folder_uploads + item.avatar[0] %>" alt="<%= item.name %>" > <img class="img-2" src="<%= folder_uploads + item.avatar[1] %>" alt="<%= item.name %>" > 
