@@ -169,15 +169,15 @@ trạng thái
 lưu thành value, r qua front trừ thẳng gía
 
 
-kiểm tra đơn hàng
-id đơn hàng
-lấy id gửi mail cho ng ta
-trạng thái đơn hàng select option
-thông tin ng mua email tên địa chỉ ngày mua
-chuỗi json lưu các sản phẩm 
-phí vẫn chuyển
-mã giảm giá
-tổng giá tiền
+kiểm tra đơn hàng-done
+id đơn hàng-done
+lấy id gửi mail cho ng ta-done
+trạng thái đơn hàng select option-done
+thông tin ng mua email tên địa chỉ ngày mua-done
+chuỗi json lưu các sản phẩm -done
+phí vẫn chuyển-done
+mã giảm giá-done
+tổng giá tiền-done
 
 
 kiểm tra xem ng dùng đó có mã đó ko, sau đó ném qua k tra đơn hàng của frontend
@@ -185,8 +185,8 @@ kiểm tra xem ng dùng đó có mã đó ko, sau đó ném qua k tra đơn hàn
 
 
 sidebar 
-filter
-validate
+filter -- almost done
+validate  
 backend css
 banner?
 gg map

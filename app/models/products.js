@@ -37,8 +37,22 @@ module.exports = {
         if(options.task == 'items-special'){
             find = {status:'active', special: 'active'};
             sort = {ordering: 'asc'};
+            limit = 6;
+        }
+
+        if(options.task == 'items-special2'){
+            find = {status:'active', special: 'active'};
+            sort = {ordering: 'asc'};
             limit = 8;
         }
+
+        if(options.task == 'items-cate-special'){
+            find = {status:'active', special: 'active','group.id': params.id};
+            sort = {ordering: 'asc'};
+            limit = 6;
+        }
+
+        
 
         if (options.task == 'items-sales'){
             find = {special: 'active'};

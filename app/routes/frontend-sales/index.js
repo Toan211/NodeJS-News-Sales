@@ -8,9 +8,11 @@ const middleGetTypeForMenu  = require(__path_middleware + middleShop + 'get-type
 const middleGetBrandForMenu  = require(__path_middleware + middleShop + 'get-brand-for-menu');
 const middleGetSlider  = require(__path_middleware + middleShop + 'get-slider-shop');
 const middleProductSpecial      = require(__path_middleware + middleShop + 'get-product-special');
+const middleProductNews      = require(__path_middleware + middleShop + 'get-product-news');
+
 //const middleArticleInCategory   = require(__path_middleware + 'get-article-in-category'); // do thg này mà bị lỗi js .me??? lolololol
 
-router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu, middleGetBrandForMenu , middleProductSpecial, require('./home'));
+router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu, middleGetBrandForMenu , middleProductSpecial, middleProductNews, require('./home'));
 router.use('/type', require('./type'));
 router.use('/brand', require('./brand'));
 router.use('/product', require('./product'));
@@ -19,6 +21,7 @@ router.use('/contact', require('./contact'));
 router.use('/cart', require('./cart'));
 router.use('/checkout', require('./checkout'));
 router.use('/orders-tracking', require('./orders-tracking'));
+
 // router.use('/auth', require('./auth'));
 
 module.exports = router;

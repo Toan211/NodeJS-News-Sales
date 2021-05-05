@@ -4,49 +4,150 @@
     
 %>
 
+<%= //JSON.stringify(itemsSpecialInType[0][0].name) %> 
+<section class="padding-top-100 padding-bottom-30">
+  <div class="container"> 
+    
+    <!-- Main Heading -->
+    <div class="heading text-center" style="
+    margin-bottom: 60px;
+">
+      <h4>Loại đồng hồ</h4>
+       </div>
+    
+    <!-- NEW ARRIVAL -->
+    <div class="new-arrival-list">
+      <ul class="row">
+        
+        <!-- SHOP_ITEMS -->
+        <li class="col-md-6"> 
+          
+          <!-- SHOP ITEM 1 -->
+          <article> <img class="img-responsive" src="pavshop/images/new-ar-img-1.jpg" alt="">
+            <div class="position-center-center">
+              <h4><a href="#.">Đồng hồ nam</a></h4>
+              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+          </article>
+          
+          <!-- SHOP ITEM 3 -->
+          <article> <img class="img-responsive" src="pavshop/images/new-ar-img-2.jpg" alt="">
+            <div class="position-center-center">
+              <h4><a href="#.">Đồng hồ nữ</a></h4>
+              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+          </article>
+        </li>
+        <li class="col-md-6"> 
+          
+          <!-- SHOP_ITEM 2 -->
+          <article> <img class="img-responsive" src="pavshop/images/new-ar-img-3.jpg" alt="">
+            <div class="position-center-center">
+              <h4><a href="#.">Đồng hồ đôi</a></h4>
+              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+          </article>
+          
+          <!-- SHOP_ITEM 4 -->
+          <article> <img class="img-responsive" src="pavshop/images/new-ar-img-4.jpg" alt="">
+            <div class="position-center-center">
+              <h4><a href="#.">Tất cả đồng hồ</a></h4>
+              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+          </article>
+        </li>
+      </ul>
+      
+      <!-- SHOW MORE -->
+      
+    </div>
+  </div>
+</section>  
+
 <!-- New Arrival -->
-<section class="padding-top-100 padding-bottom-100">
+<section class="padding-top-30 padding-bottom-30">
   <div class="container"> 
     
     <!-- Main Heading -->
     <div class="heading text-center">
-      <h4>Trang sức mới</h4>
-      <span>Những món trang sức mới được lấy về,   mại dô mại dô</span> </div>
+      <h4>Đồng hồ mới</h4>
+      <span>Những chiếc đồng hồ mới được bày bán, mại dô mại dô</span> </div>
   </div>
-  <%= //JSON.stringify(itemsNews)  %>
+  <%= //JSON.stringify(itemsSpecial2)  %>
 
   <!-- New Arrival -->
   <div class="arrival-block"> 
         
-    <% for(let i = 0; i < itemsNews.length; i++){ %>
+    <% for(let i = 0; i < itemsSpecial2.length; i++){ %>
 
     <!-- Item -->
     <div class="item" style="border-top: 2px solid #d1d5db;
-    border-bottom:none;
+    border-bottom:2px solid #d1d5db;
     border-left:1px solid #d1d5db;"> 
       <!-- Images --> 
-      <img class="img-1"  src="<%= folder_uploads + itemsNews[i].avatar[0] %>"  alt="<%= itemsNews[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsNews[i].avatar[1] %>" alt=="<%= itemsNews[i].name %>"> 
+      <img class="img-1"  src="<%= folder_uploads + itemsSpecial2[i].avatar[0] %>"  alt="<%= itemsSpecial2[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsSpecial2[i].avatar[1] %>" alt=="<%= itemsSpecial2[i].name %>"> 
       <!-- Overlay  -->
       <div class="overlay"> 
         <!-- Price --> 
-        <span class="price"><small>đ</small><%= itemsNews[i].price %></span>
-        <div class="position-center-center"> <a  href="sales/product/<%= itemsNews[i].slug %>" data-lighter><i class="icon-magnifier"></i></a> </div>
+        <span class="price"><small>đ</small><%= itemsSpecial2[i].price %></span>
+        <div class="position-center-center"> <a style="
+          margin-bottom: 160px;" href="sales/product/<%= itemsSpecial2[i].slug %>" data-lighter><i class="icon-magnifier"></i></a> </div>
       </div>
       <!-- Item Name -->
-      <div class="item-name"> <a  href="sales/product/<%= itemsNews[i].slug %>"><%= itemsNews[i].name %></a></div>
+      <div class="item-name"> <a  href="sales/product/<%= itemsSpecial2[i].slug %>"><%= itemsSpecial2[i].name %></a></div>
     </div>
     
     <% } %>
-   
-    
- 
   </div>
+</section>
 
+
+
+<% itemsSpecialInType.forEach((type) => { %> 
+<!--special-->
+<section class="padding-top-30 padding-bottom-50" style="border-bottom: 1px solid #d1d5db;">
+  <div class="container"> 
+    
+    <!-- Main Heading -->
+    <div class="heading text-center">
+      <h4><%=  type[0].group.name %> đặc biệt!!!</h4>
+       </div>
+    
+    <!-- Popular Item Slide -->
+    <div class="papular-block block-slide"> 
+      <%= //JSON.stringify(type[0].avatar[0]) %>
+      <%= //JSON.stringify(type.length) %>
+      <% for(let i = 0; i < type.length; i++){ %>
+      <!-- Item -->
+      <%= //JSON.stringify(type[i].avatar[0]) %>
+      <div class="item"> 
+        <!-- Item img -->
+        <div class="item-img"> <img class="img-1"src="<%= folder_uploads + type[i].avatar[0] %>" alt="<%= type[i].name %>" > <img class="img-2" src="<%= folder_uploads + type[i].avatar[1] %>" alt="<%= type[i].name %>" > 
+          <!-- Overlay -->
+          <div class="overlay">
+            <div class="position-center-center">
+              <div class="inn"><a href="sales/product/<%= type[i].slug %>" ><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Item Name -->
+        <div class="item-name"> <a href="sales/product/<%= type[i]._id %>"><%= type[i].name %></a>
+          
+        </div>
+        <!-- Price --> 
+        <span class="price"><small>đ</small><%= type[i].price %></span> </div>
+      
+      <% } %>
+      
+    </div>
+  </div>
+</section>
+<% });  %>
+
+<!-- thương hiệu -->
+<section class="padding-top-30 padding-bottom-100">
+  
   <div style="border-top: 1px solid #d1d5db;    padding-top: 4%;" class="container" style="padding-top: 4%;"> 
     
     <!-- Main Heading -->
     <div class="heading text-center">
-      <h4>Đồng hồ mới</h4>
+      <h4>Thương hiệu nổi bật</h4>
       <span>Các đồng hồ mới được bày bán,   mại dô mại dô</span> </div>
   </div>
 
@@ -97,7 +198,6 @@
     </div>
   </div>
 </section>
-
 
 <section class="special-offers">
   <div class="container">
