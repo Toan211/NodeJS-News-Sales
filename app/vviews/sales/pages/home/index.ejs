@@ -1,10 +1,11 @@
 <% include ./../../helpers/format-summary %>
+<% include ./../../helpers/format-money %>
 <%
     const folder_uploads = 'uploads/products/';
     
 %>
 
-<%= //JSON.stringify(itemsSpecialInType[0][0].name) %> 
+<%= JSON.stringify(itemsSpecialInType[0][0].price) %> 
 <section class="padding-top-100 padding-bottom-30">
   <div class="container"> 
     
@@ -25,15 +26,15 @@
           <!-- SHOP ITEM 1 -->
           <article> <img class="img-responsive" src="pavshop/images/new-ar-img-1.jpg" alt="">
             <div class="position-center-center">
-              <h4><a href="#.">Đồng hồ nam</a></h4>
-              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+              <h4><a href="sales/type/dong-ho-nam">Đồng hồ nam</a></h4>
+              <a href="sales/type/dong-ho-nam" class="btn btn-small btn-round">MORE</a> </div>
           </article>
           
           <!-- SHOP ITEM 3 -->
           <article> <img class="img-responsive" src="pavshop/images/new-ar-img-2.jpg" alt="">
             <div class="position-center-center">
-              <h4><a href="#.">Đồng hồ nữ</a></h4>
-              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+              <h4><a href="sales/type/dong-ho-nu">Đồng hồ nữ</a></h4>
+              <a href="sales/type/dong-ho-nu" class="btn btn-small btn-round">MORE</a> </div>
           </article>
         </li>
         <li class="col-md-6"> 
@@ -41,15 +42,15 @@
           <!-- SHOP_ITEM 2 -->
           <article> <img class="img-responsive" src="pavshop/images/new-ar-img-3.jpg" alt="">
             <div class="position-center-center">
-              <h4><a href="#.">Đồng hồ đôi</a></h4>
-              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+              <h4><a href="sales/type/dong-ho-doi">Đồng hồ đôi</a></h4>
+              <a href="sales/type/dong-ho-doi" class="btn btn-small btn-round">MORE</a> </div>
           </article>
           
           <!-- SHOP_ITEM 4 -->
           <article> <img class="img-responsive" src="pavshop/images/new-ar-img-4.jpg" alt="">
             <div class="position-center-center">
-              <h4><a href="#.">Tất cả đồng hồ</a></h4>
-              <a href="#." class="btn btn-small btn-round">MORE</a> </div>
+              <h4><a href="sales/type/">Tất cả đồng hồ</a></h4>
+              <a href="sales/type/" class="btn btn-small btn-round">MORE</a> </div>
           </article>
         </li>
       </ul>
@@ -157,7 +158,7 @@
         
         <!-- Item 1  -->
         <div class="col-md-6">
-          <div class="text-right"> <img src="images/feature-img-1.png" alt="" >
+          <div class="text-right"> <img src="pavshop/images/feature-img-1.png" alt="" >
             <article> <span class="price"><small>$</small>299</span>
               <h4>ECO FRIENDLY</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
@@ -167,7 +168,7 @@
         
         <!-- Item 2  -->
         <div class="col-md-6 light">
-          <div class="text-left"> <img src="images/feature-img-2.png" alt="" >
+          <div class="text-left"> <img src="pavshop/images/feature-img-2.png" alt="" >
             <article> <span class="price"><small>$</small>489</span>
               <h4>Concrete Shaving Kit</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
@@ -177,7 +178,7 @@
         
         <!-- Item 3  -->
         <div class="col-md-6 left light ">
-          <div class="text-right"> <img src="images/feature-img-3.png" alt="" >
+          <div class="text-right"> <img src="pavshop/images/feature-img-3.png" alt="" >
             <article> <span class="price"><small>$</small>954</span>
               <h4>wooden chair</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
@@ -187,7 +188,7 @@
         
         <!-- Item 4  -->
         <div class="col-md-6">
-          <div class="text-left"> <img src="images/feature-img-4.png" alt="" >
+          <div class="text-left"> <img src="pavshop/images/feature-img-4.png" alt="" >
             <article> <span class="price"><small>$</small>99</span>
               <h4>CERAMIC STONE VASE</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
@@ -202,10 +203,10 @@
 <section class="special-offers">
   <div class="container">
     <div class="col-md-8 center-block">
-      <h4>special</h4>
+      <h4>Giảm giá lớn!!!</h4>
       <h1 class="extra-huge-text  "> 
-         huge sale off </h1>
-      <a href="#." class="btn btn-round margin-top-50"> SHOP NOW</a> </div>
+         Đặc biệt </h1>
+      <a href="sales/type/giam-gia" class="btn btn-round margin-top-50"> SHOP NOW</a> </div>
   </div>
 </section>
 
