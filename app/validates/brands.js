@@ -10,7 +10,7 @@ const options = {
 }
 
 module.exports = {
-    validator: (req) => {
+    validator: (req, errUpload, taskCurrent) => {
         // NAME
         req.checkBody('name', util.format(notify.ERROR_NAME, options.name.min, options.name.max) )
             .isLength({ min: options.name.min, max: options.name.max })

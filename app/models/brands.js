@@ -145,6 +145,7 @@ module.exports = {
         }
 
         if(options.task == "edit") {
+            console.log(item.avatar);
             return MainModel.updateOne({_id: item.id}, {
 				ordering: parseInt(item.ordering),
 				name: item.name,
@@ -152,7 +153,7 @@ module.exports = {
 				status: item.status,
 				content: item.content,
                 avatar: item.avatar,
-				modified: {
+                modified: {
 					user_id: user.id,
                 user_name: user.username,
         			time: Date.now()

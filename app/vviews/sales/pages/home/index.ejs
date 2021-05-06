@@ -3,9 +3,10 @@
 <%
     const folder_uploads = 'uploads/products/';
     const folder_uploads_types = 'uploads/types/';
+    const folder_uploads_brands = 'uploads/brands/';
 %>
 
-<%= JSON.stringify(itemsSpecialInType[0][0].price) %> 
+<%= //JSON.stringify(itemsSpecialInType[0][0].price) %> 
 <section class="padding-top-100 padding-bottom-30">
   <div class="container"> 
     
@@ -24,7 +25,9 @@
         <% itemsCategory.forEach((category) => { %>  
           <!-- SHOP ITEM 1 -->
           <li class="col-md-6"> 
-            <article> <img class="img-responsive" src="<%= folder_uploads_types + category.avatar %>" alt="<%= category.name %> ">
+            <article> <img style="
+              opacity: 0.6;
+          " class="img-responsive" src="<%= folder_uploads_types + category.avatar %>" alt="<%= category.name %> ">
               <div class="position-center-center">
                 <h4><a href="sales/type/<%= category.slug %>"><%= category.name %></a></h4>
                 <a href="sales/type/<%= category.slug %>" class="btn btn-small btn-round">MORE</a> </div>
@@ -34,7 +37,9 @@
 
         <li class="col-md-6">
           <!-- SHOP_ITEM 4 -->
-          <article> <img class="img-responsive" src="<%= folder_uploads_types%>/Influential-Watches.jpg" alt="">
+          <article> <img style="
+            opacity: 0.6;
+        " class="img-responsive" src="<%= folder_uploads_types%>/Influential-Watches.jpg" alt="">
             <div class="position-center-center">
               <h4><a href="sales/type/">Tất cả đồng hồ</a></h4>
               <a href="sales/type/" class="btn btn-small btn-round">MORE</a> </div>
@@ -73,7 +78,7 @@
       <!-- Overlay  -->
       <div class="overlay"> 
         <!-- Price --> 
-        <span class="price"><small>đ</small><%= itemsSpecial2[i].price %></span>
+        <span class="price"><small>đ</small><%= formatMoney(itemsSpecial2[i].price) %></span>
         <div class="position-center-center"> <a style="
           margin-bottom: 160px;" href="sales/product/<%= itemsSpecial2[i].slug %>" data-lighter><i class="icon-magnifier"></i></a> </div>
       </div>
@@ -119,7 +124,7 @@
           
         </div>
         <!-- Price --> 
-        <span class="price"><small>đ</small><%= type[i].price %></span> </div>
+        <span class="price"><small>đ</small><%= formatMoney(type[i].price) %></span> </div>
       
       <% } %>
       
@@ -135,53 +140,43 @@
     
     <!-- Main Heading -->
     <div class="heading text-center">
-      <h4>Thương hiệu nổi bật</h4>
-      <span>Các đồng hồ mới được bày bán,   mại dô mại dô</span> </div>
+      <h4>Các thương hiệu</h4>
+      <span>Các loại thương hiệu nổi tiếng,  mại dô mại dô</span> </div>
   </div>
 
   <div class="top-shop-feature">
     <div class="container">
-      <div class="row"> 
-        
+      <div class="row" style="display: flex; flex-wrap: wrap;"> 
+        <% itemsBrand.forEach((category) => { %> 
+          
+          <div class="col-md-4">
+            <div class="text-center"> <img class="img-responsive" src="<%= folder_uploads_brands + category.avatar %>" alt="<%= category.name %>" >
+              <article style="
+              min-height: 175px;
+              margin: 0 0;
+              text-align-last: center;
+          ">
+                <h4><%= category.name %></h4>
+                <a href="sales/brand/<%= category.slug %>" class="btn btn-small btn-round">SHOP NOW</a> </article>
+            </div>
+          </div>
+
+          <%})%>
         <!-- Item 1  -->
-        <div class="col-md-6">
-          <div class="text-right"> <img class="img-responsive" src="pavshop/images/sliderTest.jpg" alt="" >
-            <article> <span class="price"><small>$</small>299</span>
-              <h4>ECO FRIENDLY</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
-              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
+
+
+        <div class="col-md-4">
+          <div class="text-center"> <img class="img-responsive" src="<%= folder_uploads_brands%>/all.jpg" alt="" >
+            <article style="
+            min-height: 175px;
+            margin: 0 0;
+            text-align-last: center;
+        ">
+              <h4>Tất cả</h4>
+              <a href="sales/type/" class="btn btn-small btn-round">SHOP NOW</a> </article>
           </div>
         </div>
-        
-        <!-- Item 2  -->
-        <div class="col-md-6 light">
-          <div class="text-left"> <img class="img-responsive" src="pavshop/images/sliderTest.jpg" alt="" >
-            <article> <span class="price"><small>$</small>489</span>
-              <h4>Concrete Shaving Kit</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
-              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
-          </div>
-        </div>
-        
-        <!-- Item 3  -->
-        <div class="col-md-6 left light ">
-          <div class="text-right"> <img class="img-responsive" src="pavshop/images/sliderTest.jpg" alt="" >
-            <article> <span class="price"><small>$</small>954</span>
-              <h4>wooden chair</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
-              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
-          </div>
-        </div>
-        
-        <!-- Item 4  -->
-        <div class="col-md-6">
-          <div class="text-left"> <img class="img-responsive" src="pavshop/images/sliderTest.jpg" alt="" >
-            <article> <span class="price"><small>$</small>99</span>
-              <h4>CERAMIC STONE VASE</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus accumsan enim, sit amet tristique mauris vulputate sit amet. Cras moles</p>
-              <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </article>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

@@ -174,3 +174,25 @@
     flex-wrap: wrap;
     align-items: baseline;
 }
+
+@media (min-width: 992px){
+    .col-md-2p5 {
+        width: 20%;
+    }
+}
+
+
+
+@media (min-width: 992px)
+{
+    .col-md-2p5 {
+        float: left;
+    }
+}
+
+.col-md-2p5 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
