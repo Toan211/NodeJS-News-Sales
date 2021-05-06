@@ -57,7 +57,7 @@ router.get('/(:slug)?', async (req, res, next) => {
 		itemArticle,
 		itemMainCategory,
 		params,
-		//titleHeader: itemArticle.name + " - BlackHOSTVN " ,
+		titleHeader: itemArticle.name + " - PAVSHOP " ,
 	});
 });
 

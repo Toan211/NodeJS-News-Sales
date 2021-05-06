@@ -41,24 +41,41 @@ router.get('/(:slug)?', async (req, res, next) => {
 	let params 		 	 = ParamsHelpers.createParam(req);
 	let idCategory;
 	let itemsInCategory	= [];
+	let banner = {
+		name: '', 
+		slug: '',
+		avatar: '',
+	}
+	let title = '';
 	//let itemsInArticle	= [];
 	console.log(slugCategory);
-
 
 	if(slugCategory !== 'giam-gia' && slugCategory !== '' ) {
 	// find id of category
 	console.log("what?");
-    await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
+    await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {
+		idCategory = items[0].id;
+		banner.name = items[0].name;
+		banner.avatar = "uploads/types/" + items[0].avatar;});
 	// Article In Category
 	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsInCategory = items; });
-	} else if(slugCategory == 'giam-gia'){
 
+	//chọn product có price lớn nhất, cho nó vào 1 biến
+	//chọn product có số price nhỏ nhất, nho nó vào 1 biến
+
+	title = itemsInCategory[0].group.name + " - PAVSHOP";
+	} else if(slugCategory == 'giam-gia'){
+		banner.name = 'Giảm giá';
+		banner.avatar = 'uploads/types/sale.jpg';
 		await ProductModel.listItemsFrontend(null, {task: 'discount-items'}).then( (items) => {itemsInCategory = items;});
+		title = "Giảm giá - PAVSHOP";
 		
 	}
 	else {
-	
+		banner.name = 'tất cả đồng hồ';
+		banner.avatar = 'uploads/types/Influential-Watches.jpg';
 	await ProductModel.listItemsFrontend(null, {task: 'all-items'}).then( (items) => {itemsInCategory = items;});
+	title = "Tất cả - PAVSHOP";
 	}
 	//await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-news'} ).then( (items) => { itemsInArticle = items; });
 
@@ -72,10 +89,11 @@ router.get('/(:slug)?', async (req, res, next) => {
 		sub_banner: true,
 		popular: true,
 		itemsInCategory,
+		banner,
 		//itemsInArticle,
 		itemsRandom,
 		params,
-		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
+		titleHeader: title ,
 		
 		
 	});
@@ -99,16 +117,31 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 	let slugCategory 	= await ParamsHelpers.getParam(req.params, 'slug', '');
 	let params 		 	= ParamsHelpers.createParam(req);
 	let idCategory;
+	let banner = {
+		name: '', 
+		slug: '',
+		avatar: '',
+	}
+	
 	console.log(slugCategory);
 	let itemsInCategory = [];
 
-	if(slugCategory !== '') {
+	if(slugCategory !== 'giam-gia' && slugCategory !== '') {
 		// find id of category
-		await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {idCategory = items[0].id});
+		await TypeModel.getItems({slug: slugCategory}, {task: 'get-items-by-slug'}).then( (items) => {
+			idCategory = items[0].id; 
+			banner.name = items[0].name;
+			banner.avatar = "uploads/types/" + items[0].avatar;});
 		
 		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice, id: idCategory}, {task: 'filter-price-items'}).then( (items) => {itemsInCategory = items;});
+	} else if(slugCategory == 'giam-gia'){
+		banner.name = 'Giảm giá';
+		banner.avatar = 'uploads/types/sale.jpg';
+		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice}, {task: 'filter-price-discounts'}).then( (items) => {itemsInCategory = items;});
+		
 	} else {
-	
+		banner.name = 'tất cả đồng hồ';
+		banner.avatar = 'uploads/types/Influential-Watches.jpg';
 		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice}, {task: 'filter-price'}).then( (items) => {itemsInCategory = items;});
 	}
 
@@ -124,8 +157,8 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 		popular: true,
 		itemsInCategory,
 		itemsRandom,
-		
-		titleHeader: itemsInCategory[0].group.name + " - BlackHOSTVN" ,
+		banner,
+		titleHeader: "lọc giá - PAVSHOP" ,
 	});
   });
 

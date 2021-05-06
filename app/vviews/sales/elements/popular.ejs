@@ -9,9 +9,11 @@
     <div class="container"> 
       
       <!-- Main Heading -->
-      <div class="heading text-center">
-        <h4>popular products</h4>
-        <span>special, special, special...! </span> </div>
+      <div class="heading text-center" style="
+      margin-bottom: 40px;
+  " >
+        <h4>Đồng hồ bán chạy</h4>
+        <span></span> </div>
       
       <!-- Popular Item Slide -->
       <div class="papular-block block-slide"> 
@@ -19,21 +21,31 @@
         <% for(let i = 0; i < itemsSpecial.length; i++){ %>
         <!-- Item -->
         <div class="item"> 
+          <%  if (itemsSpecial[i].discount > 0){ %> 
+            <div class="on-sale" style="left: 0px;"> 
+            <%= itemsSpecial[i].discount %>  % <span>OFF</span> </div>
+          <% } %> 
           <!-- Item img -->
           <div class="item-img"> <img class="img-1"src="<%= folder_uploads + itemsSpecial[i].avatar[0] %>" alt="<%= itemsSpecial[i].name %>" > <img class="img-2" src="<%= folder_uploads + itemsSpecial[i].avatar[1] %>" alt="<%= itemsSpecial[i].name %>" > 
             <!-- Overlay -->
             <div class="overlay">
               <div class="position-center-center">
-                <div class="inn"><a href="sales/product/<%= itemsSpecial[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+                <div class="inn"><a href="sales/product/<%= itemsSpecial[i].slug %>" ><i class="icon-magnifier"></i></div>
               </div>
             </div>
           </div>
           <!-- Item Name -->
-          <div class="item-name"> <a href="sales/product/<%= itemsSpecial[i]._id %>"><%= itemsSpecial[i].name %></a>
+          <div class="item-name"> <a href="sales/product/<%= itemsSpecial[i].slug %>"><%= itemsSpecial[i].name %></a>
             
           </div>
           <!-- Price --> 
-          <span class="price"><small>đ</small><%= itemsSpecial[i].price %></span> </div>
+          <span class="price">
+            <% if(itemsSpecial[i].discount > 0) { %>
+              <del><small>đ</small><%= formatMoney(itemsSpecial[i].price) %></del> <small>đ</small><%= formatMoney(itemsSpecial[i].price - (itemsSpecial[i].price * (itemsSpecial[i].discount/100))) %>
+            <% } else { %>
+              <small>đ</small><%= formatMoney(itemsSpecial[i].price) %>
+            <% } %>
+          </span> </div>
         
         <% } %>
         

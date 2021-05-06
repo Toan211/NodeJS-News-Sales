@@ -1,5 +1,6 @@
 <% include ./../../helpers/format-date %>
 <% include ./../../helpers/format-summary %>
+<% include ./../../helpers/format-money %>
 
 <%
     const folder_uploads = 'uploads/products/';
@@ -14,29 +15,7 @@
           <!-- Item Content -->
           <div class="col-sm-9">
             <div class="item-display">
-              <div class="row"> 
-                <!-- Products Select -->
-                <div class="col-xs-6">
-                  <div class="pull-left"> 
-                    
-                    <!-- Short By -->
-                    <select class="selectpicker">
-                      <option>Short By</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
-                    </select>
-                    <!-- Filter By -->
-                    <select class="selectpicker">
-                      <option>Filter By</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
-                    </select>
-                    
-                    <!-- GRID & LIST --> 
-                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
-                </div>
-                <div class="col-xs-6 text-right"> <span class="product-num">Showing 1 - 10 of 30 products</span> </div>
-              </div>
+              
             </div>
             
             <!-- Popular Item Slide -->
@@ -58,7 +37,7 @@
                     <!-- Overlay -->
                     <div class="overlay">
                       <div class="position-center-center">
-                        <div class="inn"><a href="sales/product/<%= item.slug %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                        <div class="inn"><a href="sales/product/<%= item.slug %>"><i class="icon-magnifier"></i></a></div>
                       </div>
                     </div>
                   </div>
@@ -67,20 +46,21 @@
                   
                   </div>
                   <!-- Price --> 
-                  <span class="price"><small>đ</small><%= item.price %></span> </div>
+                  <span class="price">
+                    <% if(item.discount > 0) { %>
+                      <del><small>đ</small><%= formatMoney(item.price) %></del> <small>đ</small><%= formatMoney(item.price - (item.price * (item.discount/100))) %>
+                    <% } else { %>
+                      <small>đ</small><%= formatMoney(item.price) %>
+                    <% } %>
+                  
+                  </span> </div>
               </div>
               <% }) %>
              
             </div>
             
-            <!-- Pagination -->
-            <ul class="pagination in-center">
-              <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
+           
+            
           </div>
           
           <!-- Shop SideBar -->
@@ -88,7 +68,7 @@
             <div class="shop-sidebar"> 
               
               <!-- Category -->
-              <h5 class="shop-tittle margin-bottom-30">category</h5>
+              <h5 class="shop-tittle margin-bottom-30">LOẠI ĐỒNG HỒ</h5>
               <ul class="shop-cate">
                 <li><a href="sales/type">Tất cả đồng hồ<span></span></a></li> 
                 <% itemsCategory.forEach((category) => { %>
@@ -96,31 +76,13 @@
                 <%})%>
               </ul>
               <!-- FILTER BY PRICE -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY PRICE</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">LỌC GIÁ TIỀN</h5>
               <input class="ac-slider" type="text" id="rang" name="rang" value="" />
-              <button href="javascript:void(0)" onclick="filterPrice()" class="btn-filter">Add to cart<i class="ps-icon-next"></i></button>
+              <button href="javascript:void(0)" onclick="filterPrice()" class="btn-filter">lọc giá<i class="ps-icon-next"></i></button>
               
-              <!-- TAGS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>
-              <ul class="colors">
-                <li><a href="#." style="background:#958170;"></a></li>
-                <li><a href="#." style="background:#c9a688;"></a></li>
-                <li><a href="#." style="background:#c9c288;"></a></li>
-                <li><a href="#." style="background:#a7c988;"></a></li>
-                <li><a href="#." style="background:#9ed66b;"></a></li>
-              </ul>
-              
-              <!-- TAGS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">PAUPLAR TAGS</h5>
-              <ul class="shop-tags">
-                <li><a href="#.">Towels</a></li>
-                <li><a href="#.">Chair</a></li>
-                <li><a href="#.">Bedsheets</a></li>
-                <li><a href="#.">Shoe</a></li>
-              </ul>
-              
+
               <!-- BRAND -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">brands</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">THƯƠNG HIỆU</h5>
               <ul class="shop-cate">
 
                 <% itemsBrand.forEach((category) => { %>  
@@ -133,7 +95,7 @@
               </ul>
 
               <!-- Random Post -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">random product</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">Sản phẩm ngẫu nhiên</h5>
               <ul class="papu-post margin-top-20">
                 <% for(let i = 0; i < itemsRandom.length; i++){ %>
                 <li class="media">

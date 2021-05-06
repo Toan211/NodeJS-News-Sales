@@ -22,6 +22,8 @@ router.get('/', async (req, res, next)=> {
 
 	await TypeModel.listItemsFrontend(null, {task: 'items-in-menu'} ).then( (items) => { itemTypes = items; });
 
+	await ProductModel.listItemsFrontend(null, {task: 'items-news'} ).then( (items) => { itemsNews = items; });
+
 	for (let i = 0; i < itemTypes.length; i++) {
 		
 		await ProductModel.listItemsFrontend({id: itemTypes[i]._id}, {task: 'items-cate-special'} ).then( (items) => { itemsSpecialInType.push(items)  ; });
@@ -38,9 +40,10 @@ router.get('/', async (req, res, next)=> {
 		popular: true,
 		params,
 		itemsSpecial2,
+		itemsNews,
 		itemsSpecialInType,
 		sliderNumber,
-		titleHeader: "Home-BlackHOSTVN",
+		titleHeader: "Trang chủ-PAVSHOP",
 	});
 });
 

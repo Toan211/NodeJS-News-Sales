@@ -45,7 +45,7 @@ module.exports = {
             return MainModel.find({}, {_id: 1, name: 1});
         }
         if(option.task == 'get-items-by-slug'){
-            return MainModel.find({slug: params.slug}).select('name slug');
+            return MainModel.find({slug: params.slug}).select('name slug amount avatar');
         }
     },
 

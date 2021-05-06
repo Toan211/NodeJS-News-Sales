@@ -59,31 +59,42 @@
     
     <!-- Main Heading -->
     <div class="heading text-center">
-      <h4>Tất cả đồng hồ đặc biệt</h4>
-      <span>Những chiếc đồng hồ mới được bày bán, mại dô mại dô</span> </div>
+      <h4>Hàng mới nhập</h4>
+      <span>Những chiếc đồng hồ mới được nhập về, mại dô mại dô</span> </div>
   </div>
   <%= //JSON.stringify(itemsSpecial2)  %>
 
   <!-- New Arrival -->
   <div class="arrival-block"> 
         
-    <% for(let i = 0; i < itemsSpecial2.length; i++){ %>
+    <% for(let i = 0; i < itemsNews.length; i++){ %>
 
     <!-- Item -->
     <div class="item" style="border-top: 2px solid #d1d5db;
     border-bottom:2px solid #d1d5db;
     border-left:1px solid #d1d5db;"> 
+    <!-- Sale Tags -->
+      <%  if (itemsNews[i].discount > 0){ %> 
+        <div class="on-sale" style="left: 0px;"> 
+        <%= itemsNews[i].discount %>  % <span>OFF</span> </div>
+      <% } %> 
       <!-- Images --> 
-      <img class="img-1"  src="<%= folder_uploads + itemsSpecial2[i].avatar[0] %>"  alt="<%= itemsSpecial2[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsSpecial2[i].avatar[1] %>" alt=="<%= itemsSpecial2[i].name %>"> 
+      <img class="img-1"  src="<%= folder_uploads + itemsNews[i].avatar[0] %>"  alt="<%= itemsNews[i].name %>"> <img class="img-2" src="<%= folder_uploads + itemsNews[i].avatar[1] %>" alt="<%= itemsNews[i].name %>"> 
       <!-- Overlay  -->
       <div class="overlay"> 
         <!-- Price --> 
-        <span class="price"><small>đ</small><%= formatMoney(itemsSpecial2[i].price) %></span>
+        <span class="price">
+          <% if(itemsSpecial2[i].discount > 0) { %>
+            <del><small>đ</small><%= formatMoney(itemsNews[i].price) %></del> <small>đ</small><%= formatMoney(itemsNews[i].price - (itemsNews[i].price * (itemsNews[i].discount/100))) %>
+          <% } else { %>
+            <small>đ</small><%= formatMoney(itemsNews[i].price) %>
+          <% } %>
+        </span>
         <div class="position-center-center"> <a style="
-          margin-bottom: 160px;" href="sales/product/<%= itemsSpecial2[i].slug %>" data-lighter><i class="icon-magnifier"></i></a> </div>
+          margin-bottom: 160px;" href="sales/product/<%= itemsNews[i].slug %>"><i class="icon-magnifier"></i></a> </div>
       </div>
       <!-- Item Name -->
-      <div class="item-name"> <a  href="sales/product/<%= itemsSpecial2[i].slug %>"><%= itemsSpecial2[i].name %></a></div>
+      <div class="item-name"> <a  href="sales/product/<%= itemsNews[i].slug %>"><%= itemsNews[i].name %></a></div>
     </div>
     
     <% } %>
@@ -110,12 +121,17 @@
       <!-- Item -->
       <%= //JSON.stringify(type[i].avatar[0]) %>
       <div class="item"> 
+          <!-- Sale Tags -->
+        <%  if (type[i].discount > 0){ %> 
+          <div class="on-sale" style="left: 0px;"> 
+          <%= type[i].discount %>  % <span>OFF</span> </div>
+        <% } %> 
         <!-- Item img -->
         <div class="item-img"> <img class="img-1"src="<%= folder_uploads + type[i].avatar[0] %>" alt="<%= type[i].name %>" > <img class="img-2" src="<%= folder_uploads + type[i].avatar[1] %>" alt="<%= type[i].name %>" > 
           <!-- Overlay -->
           <div class="overlay">
             <div class="position-center-center">
-              <div class="inn"><a href="sales/product/<%= type[i].slug %>" ><i class="icon-magnifier"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
+              <div class="inn"><a href="sales/product/<%= type[i].slug %>" ><i class="icon-magnifier"></i></a></div>
             </div>
           </div>
         </div>
@@ -124,7 +140,14 @@
           
         </div>
         <!-- Price --> 
-        <span class="price"><small>đ</small><%= formatMoney(type[i].price) %></span> </div>
+        <span class="price">
+          <% if(type[i].discount > 0) { %>
+            <del><small>đ</small><%= formatMoney(type[i].price) %></del> <small>đ</small><%= formatMoney(type[i].price - (type[i].price * (type[i].discount/100))) %>
+          <% } else { %>
+            <small>đ</small><%= formatMoney(type[i].price) %>
+          <% } %>
+        
+        </span> </div>
       
       <% } %>
       

@@ -112,6 +112,12 @@ module.exports = {
             sort = {ordering: 'asc'};
         }
 
+        if(options.task == 'filter-price-discounts'){
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max, }, discount: {$gte: 10},  'group.id': params.id};
+            limit = 50;
+            sort = {ordering: 'asc'};
+        }
+
         if (options.task == 'items-random'){
             return MainModel.aggregate([
                     { $match: { status: 'active' }},

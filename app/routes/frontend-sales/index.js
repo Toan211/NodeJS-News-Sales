@@ -12,7 +12,7 @@ const middleProductNews      = require(__path_middleware + middleShop + 'get-pro
 
 //const middleArticleInCategory   = require(__path_middleware + 'get-article-in-category'); // do thg này mà bị lỗi js .me??? lolololol
 
-router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu, middleGetBrandForMenu , middleProductSpecial, middleProductNews, require('./home'));
+router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu, middleGetBrandForMenu , middleProductSpecial, require('./home'));
 router.use('/type', require('./type'));
 router.use('/brand', require('./brand'));
 router.use('/product', require('./product'));
