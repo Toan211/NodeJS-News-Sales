@@ -1,4 +1,6 @@
 const MainModel 	= require(__path_schemas + 'brands');
+const FileHelpers = require(__path_helpers + 'file');
+const uploadFolder  = __path_uploads + 'brands/';
 
 module.exports = {
     listItems: (params, options = null) => {
@@ -11,7 +13,7 @@ module.exports = {
     
         return MainModel
             .find(objWhere)
-            .select('name status ordering created modified slug amount')
+            .select('name status ordering created group brand modified slug amount avatar')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -19,7 +21,7 @@ module.exports = {
 
     listItemsFrontend: (params= null, options = null) => {
         let find = {};
-        let select = 'name slug';
+        let select = 'name slug amount avatar';
         let limit = 10;
         let sort = '';
 
@@ -47,16 +49,14 @@ module.exports = {
         }
     },
 
-    updateAmountOfItem: (id, state) => {
-        return MainModel.findOneAndUpdate({_id :id}, {$inc : {'amount' : state}}).exec();
-    },
-
 
     listItemsInSelectbox: (params, options = null) => {
         return  MainModel.find({}, {_id: 1, name: 1});
     },
 
-    
+    updateAmountOfItem: (id, state) => {
+        return MainModel.findOneAndUpdate({_id :id}, {$inc : {'amount' : state}}).exec();
+    },
 
     countItem: (params, options = null) => {
         let objWhere    = {};
@@ -109,19 +109,32 @@ module.exports = {
         }
     },
 
-    deleteItem: (id, options = null) => {
+    deleteItem: async (id, options = null) => {
         if(options.task == "delete-one") {
+            await MainModel.findById(id).then((item) => {
+                FileHelpers.remove(uploadFolder, item.avatar);
+            });
             return MainModel.deleteOne({_id: id});
         }
 
         if(options.task == "delete-mutli") {
+            if(Array.isArray(id)){
+                for(let index = 0; index < id.length; index++){
+                    await MainModel.findById(id[index]).then((item) => {
+                        FileHelpers.remove(uploadFolder, item.avatar);
+                    });
+                }
+            }else{
+                await MainModel.findById(id).then((item) => {
+                    FileHelpers.remove(uploadFolder, item.avatar);
+                });
+            }
             return MainModel.remove({_id: {$in: id } });
         }
     },
 
     saveItem: (item, user, options = null) => {
         if(options.task == "add") {
-            
             item.created = {
 				user_id: user.id,
                 user_name: user.username,
@@ -138,9 +151,10 @@ module.exports = {
                 slug: item.slug,
 				status: item.status,
 				content: item.content,
+                avatar: item.avatar,
 				modified: {
 					user_id: user.id,
-                    user_name: user.username,
+                user_name: user.username,
         			time: Date.now()
 				}
 			});

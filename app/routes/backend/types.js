@@ -2,6 +2,7 @@ var express = require('express');
 var router 	= express.Router();
 
 const controllerName = 'types';
+const folderImage 		= __path_uploads + `/${controllerName}/`;
 
 const systemConfig  = require(__path_configs + 'system');
 const MainModel 	= require(__path_models + controllerName);
@@ -9,6 +10,7 @@ const MainValidate	= require(__path_validates + controllerName);
 const UtilsHelpers 	= require(__path_helpers + 'utils');
 const NotifyHelpers = require(__path_helpers + 'notify');
 const ParamsHelpers = require(__path_helpers + 'params');
+const FileHelpers = require(__path_helpers + 'file');
 const notify  		= require(__path_configs + 'notify');
 
 const linkIndex		 = '/' + systemConfig.prefixAdmin + `/${controllerName}/`;
@@ -16,7 +18,7 @@ const pageTitleIndex = UtilsHelpers.capitalize(controllerName) + ' Management';
 const pageTitleAdd   = pageTitleIndex + ' - Add';
 const pageTitleEdit  = pageTitleIndex + ' - Edit';
 const folderView	 = __path_views_admin + `pages/${controllerName}/`;
-
+const uploadAvatar	 = FileHelpers.upload('avatar', 'types');
 
 router.get('(/status/:status)?', async (req, res, next) => {
 	let params 		 	 = ParamsHelpers.createParam(req);
@@ -94,21 +96,52 @@ router.get(('/form(/:id)?'), (req, res, next) => {
 });
 
 // SAVE = ADD EDIT
-router.post('/save', (req, res, next) => {
-	req.body 	= JSON.parse(JSON.stringify(req.body));
+router.post('/save', async (req, res, next) => {
+	uploadAvatar(req, res, async (errUpload) => {
+		req.body 	= JSON.parse(JSON.stringify(req.body));
 
-	let item 	= Object.assign(req.body);
-	let taskCurrent	= (typeof item !== "undefined" && item.id !== "" ) ? "edit" : "add";
+		let item 	= Object.assign(req.body);
+		let taskCurrent	= (typeof item !== "undefined" && item.id !== "" ) ? "edit" : "add";
 
-	let errors = MainValidate.validator(req);
+		let errors = MainValidate.validator(req, errUpload, taskCurrent);
 
-	if(Array.isArray(errors) && errors.length > 0) {
-		let pageTitle = (taskCurrent == "add") ? pageTitleAdd : pageTitleEdit;
-		res.render(`${folderView}form`, { pageTitle, controllerName, item, errors});
-	}else {
-		MainModel.saveItem(item, req.user, {task: taskCurrent})
-			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: taskCurrent}));
-	}
+		if(errors.length > 0) { 
+			let pageTitle = (taskCurrent == "add") ? pageTitleAdd : pageTitleEdit;
+			if(req.file != undefined) FileHelpers.remove(folderImage, req.file.filename); // xóa tấm hình khi form không hợp lệ
+			
+			if (taskCurrent == "edit") item.avatar = item.image_old;
+			console.log("in" + item.image_old);
+			console.log(errors);
+			res.render(`${folderView}form`, { pageTitle, controllerName, item, errors});
+		}else {
+			let message = (taskCurrent == "add") ? 'add' : 'edit';
+			console.log(req.file);
+			if(req.file == undefined){ // không có upload lại hình
+				item.avatar = item.image_old;
+				console.log("in 2" + item.image_old);
+			}else{
+				item.avatar = req.file.filename;
+				console.log("in 3" + item.image_old);
+				if(taskCurrent == "edit")
+				{
+					console.log("in 4" + item.image_old);
+					FileHelpers.remove(folderImage, item.image_old);
+				} 
+			}
+			MainModel.saveItem(item, req.user, {task: taskCurrent} )
+			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: message}));
+		}
+	});
+
+	
+
+	// if(Array.isArray(errors) && errors.length > 0) {
+	// 	let pageTitle = (taskCurrent == "add") ? pageTitleAdd : pageTitleEdit;
+	// 	res.render(`${folderView}form`, { pageTitle, controllerName, item, errors});
+	// }else {
+	// 	MainModel.saveItem(item, req.user, {task: taskCurrent})
+	// 		.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: taskCurrent}));
+	// }
 });
 
 // SORT

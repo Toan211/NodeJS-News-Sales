@@ -11,6 +11,7 @@ var flash = require('connect-flash');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 var moment = require('moment');
+const fs = require('fs');
 var Parser = require('rss-parser');
 const nodemailer = require('nodemailer');
 
@@ -94,6 +95,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.locals.systemConfig = systemConfig;
 app.locals.settingConfig = settingConfig;
 app.locals.moment = moment;
+app.locals.fs = fs;
 
 // Setup router
 app.use(`/${systemConfig.prefixAdmin}`, require(__path_routers + 'backend/index'));

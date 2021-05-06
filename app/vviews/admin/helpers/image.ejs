@@ -12,13 +12,24 @@
         if(imageName == null){ 
             imageName = imageDefault;
         }
-        return `<img style="width: 100%; vertical-align: middle; " class="${className}" src="${folder + imageName}" alt="${alt}" />`;
+        
+        return `<img style="width: 100px; vertical-align: middle; " class="${className}" src="${folder + imageName}" alt="${alt}" />`;
     }
 %>
 
 <% 
     imageHelper3 = (folder, imageName, imageDefault, alt = "Image", className = "img-responsive img-avatar", size = 100) => {
-        let linkFolder = 'uploads/' + folder;
+        let linkFolder =  'uploads/' + folder;
+        if(fs.existsSync(__path_uploads + folder + imageName) == false) {
+            imageName = imageDefault;
+        }
+        return `<img class="${className}" style="width: ${size}px;" src="${linkFolder + imageName}" alt="${alt}"  />`;
+    }
+%>
+
+<% 
+    imageHelper4 = (folder, imageName, imageDefault, alt = "Image", className = "img-responsive img-avatar", size = 100) => {
+        let linkFolder =  folder;
         if(fs.existsSync(__path_uploads + folder + imageName) == false) {
             imageName = imageDefault;
         }

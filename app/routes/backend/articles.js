@@ -156,8 +156,10 @@ router.post('/save', async(req, res, next) => {
 			let message = (taskCurrent == "add") ? 'add' : 'edit';
 			if(req.file == undefined){ // không có upload lại hình
 				item.avatar = item.image_old;
+				console.log("in 2" + item.image_old);
 			}else{
 				item.avatar = req.file.filename;
+				console.log("in 3" + item.image_old);
 				if(taskCurrent == "edit") FileHelpers.remove(folderImage, item.image_old);
 			}
 			MainModel.saveItem(item, req.user, {task: taskCurrent} )

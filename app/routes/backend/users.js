@@ -138,14 +138,18 @@ router.post('/save', async(req, res, next) => {
 			});
 			
 			if (taskCurrent == "edit") item.avatar = item.image_old;
+			console.log("in" + item.image_old);
 			res.render(`${folderView}form`, { pageTitle, item, errors, groupsItems});
 		}else {
 			let message = (taskCurrent == "add") ? 'add' : 'edit';
 			if(req.file == undefined){ // không có upload lại hình
 				item.avatar = item.image_old;
+				console.log("in 2" + item.image_old);
 			}else{
 				item.avatar = req.file.filename;
+				console.log("in 3" + item.image_old);
 				if(taskCurrent == "edit") FileHelpers.remove('public/uploads/users/', item.image_old);
+				console.log("in 4" + item.image_old);
 			}
 			MainModel.saveItem(item,req.user, {task: taskCurrent} )
 			.then((result) => NotifyHelpers.show(req, res, linkIndex, {task: message}));

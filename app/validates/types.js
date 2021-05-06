@@ -10,7 +10,7 @@ const options = {
 }
 
 module.exports = {
-    validator: (req) => {
+    validator: (req, errUpload, taskCurrent) => {
         // NAME
         req.checkBody('name', util.format(notify.ERROR_NAME, options.name.min, options.name.max) )
             .isLength({ min: options.name.min, max: options.name.max })
@@ -32,6 +32,18 @@ module.exports = {
             .isLength({ min: options.content.min, max: options.content.max });
 
         let errors = req.validationErrors() !== false ? req.validationErrors() : [];
+        
+        if (errUpload) {
+			if(errUpload.code == 'LIMIT_FILE_SIZE') {
+				errUpload = notify.ERROR_FILE_LIMIT;
+			};
+			errors.push({param: 'avatar', msg: errUpload});
+		}else {
+			if(req.file == undefined && taskCurrent == "add"){
+				errors.push({param: 'avatar', msg: notify.ERROR_FILE_REQUIRE});
+			}
+        }
+        
         return errors;
     }
 }

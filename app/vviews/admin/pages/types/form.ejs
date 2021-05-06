@@ -2,9 +2,11 @@
 <% include ./../../helpers/input %>
 <% include ./../../helpers/textarea %>
 <% include ./../../helpers/formBody %>
+<% include ./../../helpers/image %>
 <%
 	const controllerName = "types";
 	const linkPrefix = systemConfig.prefixAdmin + `/${controllerName}/`;
+	const folderUpload 	= 'uploads/types/';
 	
 	let elementsForm = [
 		
@@ -12,6 +14,8 @@
 		{for: 'slug', label: 'Slug', input: inputHelper('slug', item.slug)},
 		{ for: 'status', label: 'Status', input: selectboxHelper('status', systemConfig.status_value, item.status) },
 		{ for: 'ordering', label: 'Ordering', input: inputHelper('ordering', item.ordering ) },
+		{ for: 'avatar', label: 'Avatar', input: inputHelper('avatar', item.name, 'file' ) },
+		{ for: 'Show-avatar', label: 'Preview', input: imageHelper2(folderUpload, item.avatar, 'no-image.jpg', item.name, 'img-avatar-form preview-avatar' ) },
 		{ for: 'content', label: 'Content', input:  textareaHelper('content', item.content ) },
 	];
 
@@ -21,13 +25,14 @@
 <% include ./../../html/errors %>
 
 <div class="card card-info card-outline">
-	<form action="<%= linkPrefix %>save/" method="POST" class="mb-0" >
+	<form action="<%= linkPrefix %>save/" method="POST" class="mb-0" enctype="multipart/form-data" name="form-upload" >
 		<div class="card-body">
 			<%- xhtmlForm %>
 		</div>
 		<div class="card-footer">
 			<div class="col-12 col-sm-8 offset-sm-2">
-				<input class="form-control" name="id" value="<%= item.id %>" type="hidden" >
+				<input class="form-control" name="id" value="<%= item.id %>" type="hidden"  >
+				<input  name="image_old" value="<%= item.avatar%>"  >
 				<button type="submit" class="btn btn-sm btn-success mr-1"> Submit</button>
 				<a href="<%= linkPrefix %>" class="btn btn-sm btn-danger mr-1"> Cancel</a>
 			</div>

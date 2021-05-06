@@ -6,9 +6,11 @@
 <% include ./../../helpers/source-by %>
 <% include ./../../helpers/sort %>
 <% include ./../../helpers/checkbox %>
+<% include ./../../helpers/image %>
 <% 
 	const controllerName = "types";
 	const linkPrefix = systemConfig.prefixAdmin + `/${controllerName}/`;
+	const folderUpload 	= 'uploads/types/';
 %>
 
 <% include ./../../html/notify %>
@@ -82,7 +84,9 @@
 						<td class="text-center"><%- checkboxHelper(item.id) %></td>
 						<td class="text-center"><%= index+1 %></td>
 						<td class="text-center"><%- highlightHelper(item.name, params.keyword) %><br>
-							<%- item.slug%></td>
+							<%- item.slug %> <br>
+							<b>Thumb:</b> <%- imageHelper2(folderUpload, item.avatar, 'no-image.png', item.name) %>
+						</td> 
 						<td class="text-center position-relative">
 							<%- statusHelper(linkPrefix, item.status, item.id) %>
 						</td>
