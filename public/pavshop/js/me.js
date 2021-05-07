@@ -1,3 +1,8 @@
+formatMoney = (price) => { 
+    return String(price).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+
+} 
+
 $(document).ready(function () {
 
     // choose location
@@ -140,7 +145,7 @@ $(document).ready(function () {
                           <h6 class="media-heading" style="
                           font-size: 14px;
                           padding-right: 33px;">${item.name}</h6>
-                          <span class="price">${item.price} đ </span> <span class="qty">QTY: ${item.quantity}</span> </div>
+                          <span class="price">${formatMoney(item.price)} đ </span> <span class="qty">QTY: ${item.quantity}</span> </div>
                       </li>`;
                         total += Number(item.quantity) * Number(item.price);
                         numberItems += Number(item.quantity);
@@ -148,7 +153,7 @@ $(document).ready(function () {
                     xhtml += `
                     <li>
                         <h5 class="text-center">Số lượng: ${numberItems} <br> 
-                        Tổng tiền: ${total}đ</h5>
+                        Tổng tiền: ${formatMoney(total)}đ</h5>
                         
                     </li>
                     <li class="margin-0">

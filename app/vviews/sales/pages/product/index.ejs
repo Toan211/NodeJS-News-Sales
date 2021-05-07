@@ -1,6 +1,7 @@
 <% include ./../../helpers/format-date %> 
 <% include ./../../helpers/format-summary %>
 <% include ./../../helpers/format-money %>
+
 <% const folder_uploads = 'uploads/products/'; 
   const linkPrefix     = systemConfig.prefixSales + '/';
   const linkProduct    = systemConfig.prefixSales + '/product/';
@@ -22,16 +23,16 @@
               <!-- Place somewhere in the <body> of your page -->
               <div id="slider-shop" class="flexslider">
                 <ul class="slides">
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[0] %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[1] %>" alt="<%= itemArticle.name %>"> </li>
-                  <li> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[2] %>" alt="<%= itemArticle.name %>"> </li>
+                  <% itemArticle.avatar.forEach((ava) => { %>
+                    <li> <img class="img-responsive" src="<%= folder_uploads + ava %>" alt="<%= itemArticle.name %>"> </li>
+                  <% }) %> 
                 </ul>
               </div>
               <div id="shop-thum" class="flexslider">
                 <ul class="slides">
-                  <li style="display: flex;width: 210px;float: left;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[0] %>" alt="<%= itemArticle.name %>"> </li>
-                  <li style="display: flex;width: 210px;float: left;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[1] %>" alt="<%= itemArticle.name %>"> </li>
-                  <li style="display: flex;width: 210px;float: left;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[2] %>" alt="<%= itemArticle.name %>"> </li>
+                  <% itemArticle.avatar.forEach((ava) => { %>
+                    <li style="display: flex;width: 210px;float: left;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + ava %>" alt="<%= itemArticle.name %>"> </li>
+                  <% }) %> 
                 </ul>
               </div>
             </div>
@@ -44,9 +45,9 @@
             " ><%= itemArticle.name %></h4>
                 <span class="price">
                   <% if(itemArticle.discount > 0) { %>
-                    <del><small>đ</small><%= itemArticle.price %></del> <small>đ</small><%= itemArticle.price - (itemArticle.price * (itemArticle.discount/100)) %>
+                    <del><small>đ</small><%= formatMoney(itemArticle.price) %></del> <small>đ</small><%= formatMoney(itemArticle.price - (itemArticle.price * (itemArticle.discount/100))) %>
                   <% } else { %>
-                    <small>đ</small><%= itemArticle.price%>
+                    <small>đ</small><%= formatMoney(itemArticle.price) %>
                   <% } %>
                 </span> 
                 
@@ -114,7 +115,6 @@
                       <li><a href="#."><i class="icon-social-twitter"></i></a></li>
                       <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
                       <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                      <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -149,7 +149,7 @@
               <div class="media">
                 <div class="media-left"> 
                   <!--  Image -->
-                  <div class="avatar"> <a href="#"> <img class="media-object" src="images/avatar-1.jpg" alt=""> </a> </div>
+                  <div class="avatar"> <a href="#"> <img class="media-object" src="pavshop/images/avatar-1.jpg" alt=""> </a> </div>
                 </div>
                 <!--  Details -->
                 <div class="media-body">
@@ -164,7 +164,7 @@
               <div class="media">
                 <div class="media-left"> 
                   <!--  Image -->
-                  <div class="avatar"> <a href="#"> <img class="media-object" src="images/avatar-2.jpg" alt=""> </a> </div>
+                  <div class="avatar"> <a href="#"> <img class="media-object" src="pavshop/images/avatar-2.jpg" alt=""> </a> </div>
                 </div>
                 <!--  Details -->
                 <div class="media-body">
@@ -211,15 +211,13 @@
     </section>
     
     <!-- Popular Products -->
-    <section class="light-gray-bg padding-top-150 padding-bottom-150">
+    <section class="light-gray-bg padding-top-100 padding-bottom-10">
       <div class="container"> 
         
         <!-- Main Heading -->
         <div class="heading text-center">
-          <h4>YOU MAY LIKE IT</h4>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</span> </div>
-        
+          <h4>Cùng loại</h4>
+          
         <!-- Popular Item Slide -->
         <div class="papular-block block-slide"> 
           
@@ -231,22 +229,54 @@
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="sales/product/<%= itemsOthers[i]._id %>" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="sales/product/<%= itemsOthers[i].slug %>" ><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a></div>
                 </div>
               </div>
             </div>
             <!-- Item Name -->
-            <div class="item-name"> <a href="sales/product/<%= itemsOthers[i]._id %>"><%= itemsOthers[i].name %></a>
+            <div class="item-name"> <a href="sales/product/<%= itemsOthers[i].slug %>"><%= itemsOthers[i].name %></a>
               
             </div>
             <!-- Price --> 
-            <span class="price"><small>đ</small><%= itemsOthers[i].price %></span> </div>
+            <span class="price"><small>đ</small><%= formatMoney(itemsOthers[i].price) %></span> </div>
           
 			<% } %>
       </div>
     </section>
     
-  
+    <!-- brand Products -->
+    <section class="light-gray-bg padding-top-10 padding-bottom-50">
+      <div class="container"> 
+        
+        <!-- Main Heading -->
+        <div class="heading text-center">
+          <h4>Cùng hãng</h4>
+          
+        <!-- Popular Item Slide -->
+        <div class="papular-block block-slide"> 
+          
+			<% for(let i = 0; i < itemsOthersBrand.length; i++){ %>
+          <!-- Item -->
+          <div class="item"> 
+            <!-- Item img -->
+            <div class="item-img"> <img class="img-1" src="<%= folder_uploads + itemsOthersBrand[i].avatar[0] %>" alt="<%= itemsOthersBrand[i].name %>" > <img class="img-2" src="<%= folder_uploads + itemsOthersBrand[i].avatar[1] %>" alt="<%= itemsOthersBrand[i].name %>" > 
+              <!-- Overlay -->
+              <div class="overlay">
+                <div class="position-center-center">
+                  <div class="inn"><a href="sales/product/<%= itemsOthersBrand[i].slug %>" ><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a></div>
+                </div>
+              </div>
+            </div>
+            <!-- Item Name -->
+            <div class="item-name"> <a href="sales/product/<%= itemsOthersBrand[i].slug %>"><%= itemsOthersBrand[i].name %></a>
+              
+            </div>
+            <!-- Price --> 
+            <span class="price"><small>đ</small><%= formatMoney(itemsOthersBrand[i].price) %></span> </div>
+          
+			<% } %>
+      </div>
+    </section>
     
     
    

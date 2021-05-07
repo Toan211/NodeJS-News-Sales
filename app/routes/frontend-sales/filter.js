@@ -8,35 +8,6 @@ const TypeModel = require(__path_models + 'types');
 const folderView	 = __path_views_sales + 'pages/type/';
 const layoutBlog    = __path_views_sales + 'frontend';
 
-//#region 
-// GET home page.
-// router.get('/:id', async (req, res, next) => {
-// 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
-// 	let params 		 	 = ParamsHelpers.createParam(req);
-
-// 	let itemsInCategory	= [];
-// 	let itemsInArticle	= [];
-// 	// Article In Category
-// 	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-in-category'} ).then( (items) => { itemsInCategory = items; });
-
-// 	await ProductModel.listItemsFrontend({id: idCategory}, {task: 'items-news'} ).then( (items) => { itemsInArticle = items; });
-
-// 	await ProductModel.listItemsFrontend(null, {task: 'items-random'} ).then( (items) => {itemsRandom = items; });
-
-// 	res.render(`${folderView}index`, {
-// 		layout: layoutBlog,
-// 		top_post: false,
-// 		silde_bar: true,
-// 		about_me: false,
-// 		itemsInCategory,
-// 		itemsInArticle,
-		
-// 		itemsRandom,
-// 		params
-// 	});
-// });
-
-//#endregion
 
 router.get('/(:slug)?', async (req, res, next) => {
 	let slugCategory 		= ParamsHelpers.getParam(req.params, 'slug', '');
