@@ -85,9 +85,9 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
                 <div class="search-overlay"></div>
                 <div class="position-center-center">
                   <div class="search">
-                    <form>
-                      <input type="search" placeholder="Search Shop">
-                      <button type="submit"><i class="icon-check"></i></button>
+                    <form  class="search_form" action="/sales/search" method="GET">
+                      <input type="text" placeholder="Tìm kiếm" name="keyword" value='<%= params.keyword %>'>
+                      <button type="submit" value=""><i class="icon-check"></i></button>
                     </form>
                   </div>
                 </div>

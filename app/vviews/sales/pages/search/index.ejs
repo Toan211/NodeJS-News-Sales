@@ -1,0 +1,163 @@
+<% include ./../../helpers/format-date %>
+<% include ./../../helpers/format-summary %>
+<% include ./../../helpers/format-money %>
+
+<%
+    const folder_uploads = 'uploads/products/';
+%>
+
+    
+    <!-- Products -->
+    <section class="shop-page padding-top-100 padding-bottom-100">
+      <div class="container">
+        <div class="row"> 
+          
+          <!-- Item Content -->
+          <div class="col-sm-9">
+            <div class="item-display">
+              <div class="row"> 
+                <!-- Products Select -->
+                <div class="col-xs-6">
+                  <div class="pull-left"> 
+                    
+                    <!-- Short By -->
+                    <select class="selectpicker">
+                      <option>Short By</option>
+                      <option>Short By</option>
+                      <option>Short By</option>
+                    </select>
+                    <!-- Filter By -->
+                    <select class="selectpicker">
+                      <option>Filter By</option>
+                      <option>Short By</option>
+                      <option>Short By</option>
+                    </select>
+                    
+                    <!-- GRID & LIST --> 
+                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
+                </div>
+                <div class="col-xs-6 text-right"> <span class="product-num">Showing 1 - 10 of 30 products</span> </div>
+              </div>
+            </div>
+            <% if(itemsSearch.length > 0) { %>
+            <!-- Popular Item Slide -->
+            <div class="papular-block row box-flex"> 
+              
+              
+                <% itemsSearch.forEach((item)=> { %>
+              <!-- Item -->
+              <div class="col-md-4">
+                <div class="item"> 
+                  <!-- Sale Tags -->
+                  <%  if (item.discount > 0){ %> 
+                    <div class="on-sale"> <%= item.discount %>  % <span>OFF</span> </div>
+                  <% } %> 
+                  
+                  
+                  <!-- Item img -->
+                  <div class="item-img"> <img class="img-1" src="<%= folder_uploads + item.avatar[0] %>" alt="<%= item.name %>" > <img class="img-2" src="<%= folder_uploads + item.avatar[1] %>" alt="<%= item.name %>" > 
+                    <!-- Overlay -->
+                    <div class="overlay">
+                      <div class="position-center-center">
+                        <div class="inn"><a href="sales/product/<%= item.slug %>"><i class="icon-magnifier"></i></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Item Name -->
+                  <div class="item-name"> <a href="sales/product/<%= item.slug %>"><%= item.name %></a>
+                  
+                  </div>
+                  <!-- Price --> 
+                  <span class="price">
+                    <% if(item.discount > 0) { %>
+                      <del><small>đ</small><%= formatMoney(item.price) %></del> <small>đ</small><%= formatMoney(item.price - (item.price * (item.discount/100))) %>
+                    <% } else { %>
+                      <small>đ</small><%= formatMoney(item.price) %>
+                    <% } %>
+                  
+                  </span> </div>
+              </div>
+              <% }) %>
+             
+            </div>
+            
+            <% } else { %>
+              <h2>  <span class="solid_line"></span> <span class="title_text">Không có dữ liệu</span> </h2>
+          <% } %>
+            
+          </div>
+          
+          <!-- Shop SideBar -->
+          <div class="col-sm-3">
+            <div class="shop-sidebar"> 
+              
+              <!-- Category -->
+              <h5 class="shop-tittle margin-bottom-30">LOẠI ĐỒNG HỒ</h5>
+              <ul class="shop-cate">
+                <li><a href="sales/type">Tất cả đồng hồ<span></span></a></li> 
+                <% itemsCategory.forEach((category) => { %>
+                <li><a href="sales/type/<%= category.slug %>"><%= category.name %><span></span></a></li> 
+                <%})%>
+              </ul>
+              <!-- FILTER BY PRICE -->
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">LỌC GIÁ TIỀN</h5>
+              <input class="ac-slider" type="text" id="rang" name="rang" value="" />
+              <button href="javascript:void(0)" onclick="filterPrice()" class="btn-filter">lọc giá<i class="ps-icon-next"></i></button>
+              
+
+              <!-- BRAND -->
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">THƯƠNG HIỆU</h5>
+              <ul class="shop-cate">
+
+                <% itemsBrand.forEach((category) => { %>  
+                  <li>
+                      <a href="/sales/brand/<%= category.slug %>"><%= category.name %></a>
+                  </li>
+              <%})%>
+                
+                
+              </ul>
+
+              <!-- Random Post -->
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">Sản phẩm ngẫu nhiên</h5>
+              <ul class="papu-post margin-top-20">
+                <% for(let i = 0; i < itemsRandom.length; i++){ %>
+                <li class="media">
+                  <div class="media-left"> <a href="sales/product/<%= itemsRandom[i].slug %>"> <img class="media-object" src="<%= folder_uploads + itemsRandom[i].avatar[0] %>" alt="<%= itemsRandom[i].name %>"></a> </div>
+                  <div class="media-body"> <a class="media-heading" href="sales/product/<%= itemsRandom[i].slug %>"><%= itemsRandom[i].name %></a> 
+                    <span>
+                    <% if(itemsRandom[i].discount > 0) { %>
+                      <del><small>đ</small><%= formatMoney(itemsRandom[i].price) %></del> <small>đ</small><%= formatMoney(itemsRandom[i].price - (itemsRandom[i].price * (itemsRandom[i].discount/100))) %>
+                    <% } else { %>
+                      <small>đ</small><%= formatMoney(itemsRandom[i].price) %>
+                    <% } %>
+                  </span> </div>
+                </li>
+                <% } %>
+              </ul>
+              
+              <!-- SIDE BACR BANER -->
+              <div class="side-bnr margin-top-50"> <img class="img-responsive" src="pavshop/images/sidebar-bnr.jpg" alt="">
+                <div class="position-center-center"> <span class="price"><small>$</small>299</span>
+                  <div class="bnr-text">look
+                    hot
+                    with
+                    style</div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- About -->
+  
+ 
+
+
+
+
+    
+

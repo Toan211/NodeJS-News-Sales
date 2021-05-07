@@ -15,6 +15,7 @@ const middleProductNews      = require(__path_middleware + middleShop + 'get-pro
 router.use('/',middleGetSlider, middleGetUserInfo, middleGetTypeForMenu, middleGetBrandForMenu , middleProductSpecial, require('./home'));
 router.use('/type', require('./type'));
 router.use('/brand', require('./brand'));
+router.use('/search', require('./search'));
 router.use('/product', require('./product'));
 router.use('/about', require('./about'));
 router.use('/contact', require('./contact'));
