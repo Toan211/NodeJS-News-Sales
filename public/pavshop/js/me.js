@@ -199,16 +199,16 @@ function filterPrice() {
 
     let path = window.location.pathname;
     let arrMenu = path.split("/");
-    console.log(arrMenu.length);
+    console.log(arrMenu);
   
     var $d5 = $("#rang");
     var v = $d5.prop("value");
     var from = $d5.data("from");   // input data-from attribute
     var to = $d5.data("to");
     
-    if (arrMenu.length > 3 )
+    if (arrMenu.length > 3 && arrMenu[3] != 'giam-gia')
     {
-        console.log(arrMenu[3]);
+        console.log(arrMenu);
         var linkRedirect = 'sales/type/filter/' + arrMenu[3] + '&gia=' + from + '-' + to;
     }else{
         var linkRedirect = 'sales/type/filter/gia=' + from + '-' + to;
@@ -220,7 +220,30 @@ function filterPrice() {
     
     }
 
+    function filterPriceBrand() {
 
+        let path = window.location.pathname;
+        let arrMenu = path.split("/");
+        console.log(arrMenu);
+      
+        var $d5 = $("#rang");
+        var v = $d5.prop("value");
+        var from = $d5.data("from");   // input data-from attribute
+        var to = $d5.data("to");
+        
+        if (arrMenu.length > 3 )
+        {
+            console.log(arrMenu[3]);
+            var linkRedirect = 'sales/brand/filter/' + arrMenu[3] + '&gia=' + from + '-' + to;
+        }else{
+            var linkRedirect = 'sales/brand/filter/gia=' + from + '-' + to;
+        }
+        
+        console.log(from,'-', to);
+        console.log(linkRedirect);
+        window.location.pathname = linkRedirect;
+        
+        }
 
 function filterPriceTest() {
     var $d5 = $("#rang");

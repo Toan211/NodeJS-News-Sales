@@ -8,7 +8,8 @@ const TypeModel = require(__path_models + 'types');
 const folderView	 = __path_views_sales + 'pages/type/';
 const layoutBlog    = __path_views_sales + 'frontend';
 
-/* GET home page. */
+//#region 
+// GET home page.
 // router.get('/:id', async (req, res, next) => {
 // 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
 // 	let params 		 	 = ParamsHelpers.createParam(req);
@@ -35,6 +36,7 @@ const layoutBlog    = __path_views_sales + 'frontend';
 // 	});
 // });
 
+//#endregion
 
 router.get('/(:slug)?', async (req, res, next) => {
 	let slugCategory 		= ParamsHelpers.getParam(req.params, 'slug', '');
@@ -162,6 +164,6 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 	});
   });
 
-  
+  //get thêm cái /giam-gia ở đây, có thể slug? &giam-gia&gia=min max
 
 module.exports = router;

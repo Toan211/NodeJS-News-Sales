@@ -112,6 +112,12 @@ module.exports = {
             sort = {ordering: 'asc'};
         }
 
+        if(options.task == 'filter-price-brands'){
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max},  'brand.id': params.id};
+            limit = 50;
+            sort = {ordering: 'asc'};
+        }
+
         if(options.task == 'filter-price-discounts'){
             find = {status:'active', 'price': {$gt : params.min, $lt : params.max, }, discount: {$gte: 10},  'group.id': params.id};
             limit = 50;
@@ -148,6 +154,21 @@ module.exports = {
 
         return MainModel.find(find).select(select).limit(limit).sort(sort);
 
+    },
+
+    comparisonItems: (params = null, options = null)=>{
+        let find = {};
+        let select = 'price';
+        let limit = 1;
+        let sort;
+        if (options.task == 'max-value'){
+            sort = {price: 'desc'};
+        }
+        if (options.task == 'min-value'){
+            sort = {price: 'asc'};
+        }
+ 
+        return MainModel.find(find).select(select).limit(limit).sort(sort);
     },
 
     listItemsSearch: (params, options = null) =>{
