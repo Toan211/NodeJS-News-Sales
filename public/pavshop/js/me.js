@@ -106,7 +106,7 @@ $(document).ready(function () {
                     console.log(data);
                     let total = 0;
                     let numberItems = 0;
-                    let xhtml = `<ul class="dropdown-menu">`;
+                    let xhtml = `<ul class="dropdown-menu" style=   "max-height: 500px;overflow: scroll;">`;
 
                     data.forEach( (item) => {
                         xhtml += `<li>
@@ -123,6 +123,11 @@ $(document).ready(function () {
                         total += Number(item.quantity) * Number(item.price);
                         numberItems += Number(item.quantity);
                     });
+
+                    xhtml += `
+                    <p class="text-left text-promo"></p>
+                `;
+
                     xhtml += `
                     <li>
                         <h5 class="text-center">Số lượng: ${numberItems} <br> 
@@ -150,11 +155,12 @@ $(document).ready(function () {
     // show product in cart in header (get from cookie)
     if (typeof $.cookie('cart') !== 'undefined'){
         let data = JSON.parse($.cookie('cart').slice(2));
+        
         $('.ps-cart__toggle').append(`<span style="width: 20px;" ><i>${data.length}</i></span>`);
                     
                     let total = 0;
                     let numberItems = 0;
-                    let xhtml = `<ul class="dropdown-menu">`;
+                    let xhtml = `<ul class="dropdown-menu" style="max-height: 500px;overflow: scroll;">`;
 
                     data.forEach( (item) => {
                         xhtml += `<li>
@@ -171,6 +177,9 @@ $(document).ready(function () {
                         total += Number(item.quantity) * Number(item.price);
                         numberItems += Number(item.quantity);
                     });
+                    xhtml += `
+                    <p class="text-left text-promo"></p>
+                `;
                     xhtml += `
                     <li>
                         <h5 class="text-center">Số lượng: ${numberItems} <br> 
@@ -216,11 +225,12 @@ $(document).ready(function () {
                     $('input[name=code]').notify(data.message, { position:"top", className: 'success' });
                     let textTotal = $('span#info-total-price').text();
                     
-                    console.log(textTotal);
+                    console.log(data);
                     
                     let total = Number(textTotal) - data.saleOff;
                     $('span#info-total-price').html(total);
                     $('span#show-total-price').text(formatMoney($('span#info-total-price').text()) + 'đ' );
+                    $('.text-promo').append(`PROMOTE CODE: <b>${data.name}</b> : ${data.saleOff}đ`);
                     $('p#notify-promotion').html("You are using a promotional code worth " + data.saleOff + "đ");
                 }
             });
@@ -243,8 +253,20 @@ $(document).ready(function () {
 
     if (typeof $.cookie('sale_off') !== 'undefined'){
         let data = JSON.parse($.cookie('sale_off').slice(2));
-        console.log(data);    
-    
+        console.log(data); 
+
+        let xhtml = `PROMOTE CODE: <b>${data.code}</b> : ${data.saleOff}đ `
+        $('.text-promo').append(xhtml);
+
+        let textTotal = $('span#info-total-price').text();
+        
+        //console.log(textTotal);
+        
+        let total = Number(textTotal) - data.saleOff;
+        $('span#info-total-price').html(total);
+        $('span#show-total-price').text(formatMoney($('span#info-total-price').text()) + 'đ' );
+        $('p#notify-promotion').html("You are using a promotional code worth " + data.saleOff + "đ");
+
     
     }
 

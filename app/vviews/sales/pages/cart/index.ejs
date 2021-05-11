@@ -117,9 +117,10 @@
                   <p><%= item.name %><span><%=  formatMoney(item.price * item.quantity) %>đ </span></p>
                   
                   <% }) %>
+                  <p class="text-promo"></p>
                   <!-- SUB TOTAL -->
-                  <p class="all-total">TOTAL COST <span id="show-total-price">  </span></p>
-                  <p class="all-total" style="display:none">TOTAL COST <span id="info-total-price">  <%= total %></span></p>
+                  <p class="all-total">TOTAL COST <span id="show-total-price"> </span></p>
+                  <p class="all-total" >TOTAL COST <span id="info-total-price">  <%= total %></span></p>
                 </div>
               </div>
             </div>
