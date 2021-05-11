@@ -39,7 +39,8 @@ $(document).ready(function () {
         let province = $(this).find('option:selected').text();
         let fee = 0;
         let totalBox = $('#total-price');
-        //console.log(totalBox);
+        let checkTotal = $('#checkout-total-price')
+    
         $('input[name=province]').val(province);
         $.ajax({
             url: 'sales/checkout/get-shipping-fee',
@@ -48,9 +49,9 @@ $(document).ready(function () {
                 data.forEach( (item) => {
                     if(item.name === province) {
                         fee = item.value;
-                        $('#shipping-fee').html(fee + 'đ');
-                        //console.log(Number((totalBox.text().slice(0, totalBox.text().length - 1))));
-                        totalBox.html((Number(totalBox.text().slice(0, totalBox.text().length - 1)) + Number(fee)) + 'đ');
+                        $('#shipping-fee').html(formatMoney(fee) + 'đ');
+                        let money = Number(totalBox.text()) + Number(fee);
+                        checkTotal.html(formatMoney(money) + 'đ');
                         $('input[name=shipping_fee]').val(fee);
                     }
                 });

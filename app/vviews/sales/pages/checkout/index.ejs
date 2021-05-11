@@ -1,3 +1,4 @@
+<% include ./../../helpers/format-money %>
 <% 
   let total = 0;
 %>
@@ -96,17 +97,19 @@
                   <div class="order-detail">
                     <% items.forEach( (item) => { %>
                       <% total += item.price * item.quantity %>
-                    <p><%= item.name %> x <%= item.quantity %> <span><%= item.quantity * item.price %>đ </span></p>
+                    <p><%= item.name %> x <%= item.quantity %> <span><%=  formatMoney(item.quantity * item.price) %>đ </span></p>
                     <% }); %>
 
                     <p>shipping_fee <span id="shipping-fee"> 0 đ </span></p>
+            
                     <input class="form-control" name="shipping_fee" value="" type="hidden" >
                     <% if(sale_off > 0) { %>
-                      <p>Promotion code: <span id="shipping-fee">  -<%= sale_off %> đ </span></p>
+                      <p>Promotion code: <span >  -<%= formatMoney(sale_off) %> đ </span></p>
                     <% }%>
                     
                     <!-- SUB TOTAL -->
-                    <p class="all-total">TOTAL COST <span id="total-price"> <%= total - sale_off%>đ</span></p>
+                    <p class="all-total">TOTAL COST <span id="checkout-total-price"> <%= formatMoney(total - sale_off)%>đ</span></p>
+                    <p class="all-total" style="display: none;">TOTAL COST <span id="total-price"> <%= total - sale_off%></span></p>
                   </div>
                   <div class="pay-meth">
                     <button class="btn  btn-dark pull-right margin-top-30">Place Order<i class="ps-icon-next"></i></button>
