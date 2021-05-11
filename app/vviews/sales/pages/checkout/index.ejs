@@ -12,7 +12,7 @@
           <!-- SHOPPING INFORMATION -->
           <div class="cart-ship-info">
             <div class="row"> 
-              <form class="ps-checkout__form" action="/sales/checkout/save" method="post">
+              <form class="ps-checkout__form" action="/sales/checkout/save" id="checkout-form" method="post">
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-7">
                 <h6>BILLING DETAILS</h6>
@@ -112,7 +112,7 @@
                     <p class="all-total" style="display: none;">TOTAL COST <span id="total-price"> <%= total - sale_off%></span></p>
                   </div>
                   <div class="pay-meth">
-                    <button class="btn  btn-dark pull-right margin-top-30">Place Order<i class="ps-icon-next"></i></button>
+                    <button class="btn  btn-dark pull-right margin-top-30" type="submit">Place Order<i class="ps-icon-next"></i></button>
                     
                 </div>
               

@@ -26,6 +26,41 @@ function getCookie(name) {
 
 $(document).ready(function () {
 
+    
+    // // Form checkout contact
+    $('form#checkout-form').submit( async function(event) {
+        link ='/sales/checkout/save';
+        var $inputFName = $(' :input[name=first_name]');
+        var $inputLName = $(' :input[name=last_name]');
+        var $inputEmail = $(' :input[name=email]');
+        var $inputPhone = $(' :input[name=phone]');
+        var $inputAddress = $(':input[name=address]');
+        
+        if(!$inputFName.val() || !$inputLName.val() || !$inputEmail.val() || $inputPhone.val().length<=7 || !$inputAddress.val() ) {
+            if(!$inputFName.val()) {
+                $inputFName.notify("Hãy nhập tên gọi của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputLName.val()) {
+                $inputLName.notify("Hãy nhập tên họ của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputEmail.val()) {
+                $inputEmail.notify("Hãy nhập địa chỉ email của bạn!", { position:"top", className: 'info' });
+            }
+            if($inputPhone.val().length <= 7) {
+                $inputPhone.notify("Hãy nhập số điện thoại của bạn", { position:"top", className: 'info' });
+            }
+            if(!$inputAddress.val()) {
+                $inputAddress.notify("Hãy nhập địa chỉ của bạn!", { position:"top", className: 'info' });
+            }
+            console.log('false submit');
+            event.preventDefault();
+            return false;
+        } else {
+            window.location.href = link;
+            
+        }
+    });
+
     // choose location
     var localpicker = new LocalPicker({
 		province: "ls_province",
@@ -65,6 +100,7 @@ $(document).ready(function () {
         $('input[name=ward]').val($(this).find('option:selected').text());
     });
 
+    
 
     $("#rang").ionRangeSlider({
         min: 100000,
