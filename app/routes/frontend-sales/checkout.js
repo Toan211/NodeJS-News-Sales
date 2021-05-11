@@ -7,6 +7,7 @@ const StringHelpers   = require(__path_helpers + 'string');
 const EmailHelpers		= require(__path_helpers + 'email');
 const ParamsHelpers = require(__path_helpers + 'params');
 
+
 const folderView	 = __path_views_sales + 'pages/checkout/';
 const layoutShop    = __path_views_sales + 'frontend';
 const linkIndex     = '/orders-tracking';
@@ -137,10 +138,10 @@ router.post('/apply-promo-code', async (req, res, next) => {
   res.json({saleOff: saleOff, msg: 'Apply success', name: item.code});
 });
 
-router.post('/del-promo-code', async (req, res, next) => {
+router.get('/del-promo-code', async (req, res, next) => {
   
   res.clearCookie("sale_off");
-
+  res.redirect("/sales/cart");
   
 });
 
