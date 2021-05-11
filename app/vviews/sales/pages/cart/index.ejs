@@ -4,7 +4,7 @@
   const linkCheckout    = systemConfig.prefixSales + '/checkout/';
   let total = 0;
 %>
-
+<% include ./../../helpers/format-money %>
     
     <!--======= PAGES INNER =========-->
     <section class="padding-top-100 padding-bottom-100 pages-in chart-page">
@@ -61,7 +61,7 @@
             
             <!-- PRICE -->
             <li class="col-sm-2">
-              <div class="position-center-center" id="price-<%= item.id %>"> <span class="price"><%= item.price %><small>đ</small></span> </div>
+              <div class="position-center-center" id="price-<%= item.id %>"> <span class="price"><%=  formatMoney(item.price) %><small>đ</small></span> </div>
             </li>
             
             <!-- QTY -->
@@ -75,7 +75,7 @@
             
             <!-- TOTAL PRICE -->
             <li class="col-sm-2">
-              <div class="position-center-center" id="total-<%= item.id %>"> <span class="price"><%= item.price * item.quantity %><small>đ</small></span> </div>
+              <div class="position-center-center" id="total-<%= item.id %>"> <span class="price"><%=  formatMoney(item.price * item.quantity) %><small>đ</small></span> </div>
             </li>
             
             <!-- REMOVE -->
@@ -114,11 +114,12 @@
               <div class="grand-total">
                 <div class="order-detail">
                   <% items.forEach( (item) => { %>
-                  <p><%= item.name %><span><%= item.price * item.quantity %>đ </span></p>
+                  <p><%= item.name %><span><%=  formatMoney(item.price * item.quantity) %>đ </span></p>
                   
                   <% }) %>
                   <!-- SUB TOTAL -->
-                  <p class="all-total">TOTAL COST <span id="info-total-price">  <%= total %>đ</span></p>
+                  <p class="all-total">TOTAL COST <span id="show-total-price">  </span></p>
+                  <p class="all-total" style="display:none">TOTAL COST <span id="info-total-price">  <%= total %></span></p>
                 </div>
               </div>
             </div>

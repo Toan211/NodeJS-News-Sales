@@ -28,7 +28,7 @@ router.get('/', async (req, res, next) => {
     top_post: false,
     silde_bar: false,
     about_me: false,
-    sub_banner: true,
+    sub_banner: false,
     popular: false,
     params,
     items,
@@ -134,7 +134,15 @@ router.post('/apply-promo-code', async (req, res, next) => {
     console.log(item.price);
   });
   res.cookie('sale_off', {code: item.code, saleOff: saleOff});
-  res.json({saleOff: saleOff, msg: 'Apply success'});
+  res.json({saleOff: saleOff, msg: 'Apply success', name: item.code});
 });
+
+router.post('/del-promo-code', async (req, res, next) => {
+  
+  res.clearCookie("sale_off");
+
+  
+});
+
 
 module.exports = router;

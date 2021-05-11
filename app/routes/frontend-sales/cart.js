@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
     top_post: false,
     silde_bar: false,
     about_me: false,
-    sub_banner: true,
+    sub_banner: false,
     popular: false,
     params,
     titleHeader: " - BlackHOSTVN " ,

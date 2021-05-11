@@ -3,6 +3,27 @@ formatMoney = (price) => {
 
 } 
 
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else
+    {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = dc.length;
+        }
+    }
+    // because unescape has been deprecated, replaced with decodeURI
+    //return unescape(dc.substring(begin + prefix.length, end));
+    return decodeURI(dc.substring(begin + prefix.length, end));
+} 
+
 $(document).ready(function () {
 
     // choose location
@@ -59,7 +80,7 @@ $(document).ready(function () {
     
     $("#rang1").ionRangeSlider();
 
-
+    $('span#show-total-price').text(formatMoney($('span#info-total-price').text()) + 'đ');
     //add product to cart
     $("#cart_form").submit(function(event ) {
         var quantity = $('#quantity_input').val();
@@ -97,7 +118,7 @@ $(document).ready(function () {
                           <h6 class="media-heading" style="
                           font-size: 14px;
                           padding-right: 33px;">${item.name}</h6>
-                          <span class="price">${item.price} đ </span> <span class="qty">QTY: ${item.quantity}</span> </div>
+                          <span class="price">${formatMoney(item.price)} đ </span> <span class="qty">QTY: ${item.quantity}</span> </div>
                       </li>`;
                         total += Number(item.quantity) * Number(item.price);
                         numberItems += Number(item.quantity);
@@ -105,7 +126,7 @@ $(document).ready(function () {
                     xhtml += `
                     <li>
                         <h5 class="text-center">Số lượng: ${numberItems} <br> 
-                        Tổng tiền: ${total}đ</h5>
+                        Tổng tiền: ${formatMoney(total)}đ</h5>
                         
                     </li>
                     <li class="margin-0">
@@ -180,6 +201,12 @@ $(document).ready(function () {
             ]);
             event.preventDefault();
         } else {
+
+        var myCookie = getCookie("sale_off");
+
+        if (myCookie == null) {
+            // do cookie doesn't exist stuff;
+            console.log("where am i:'>>>");
             event.preventDefault();
             $.ajax({
                 url: 'sales/checkout/apply-promo-code',
@@ -189,14 +216,38 @@ $(document).ready(function () {
                     $('input[name=code]').notify(data.message, { position:"top", className: 'success' });
                     let textTotal = $('span#info-total-price').text();
                     
-                    console.log(Number(textTotal.slice(1, textTotal.length - 1)));
-                    let total = Number(textTotal.slice(1, textTotal.length - 1)) - data.saleOff;
-                    $('span#info-total-price').html(total + ' đ');
+                    console.log(textTotal);
+                    
+                    let total = Number(textTotal) - data.saleOff;
+                    $('span#info-total-price').html(total);
+                    $('span#show-total-price').text(formatMoney($('span#info-total-price').text()) + 'đ' );
                     $('p#notify-promotion').html("You are using a promotional code worth " + data.saleOff + "đ");
                 }
             });
         }
+        else {
+            // do cookie exists stuff
+            console.log("we have 'em, boy");
+            
+            $(document).trigger("set-alert-id-example", [
+                {
+                    "message": "you have already apply promote code!",
+                    "priority": "danger"
+                }
+            ]);
+            event.preventDefault();
+
+        }
+        }
     });
+
+    if (typeof $.cookie('sale_off') !== 'undefined'){
+        let data = JSON.parse($.cookie('sale_off').slice(2));
+        console.log(data);    
+    
+    
+    }
+
 
 })
 
