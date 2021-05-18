@@ -20,8 +20,8 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
         <!-- NAV -->
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav">
-            <li> <a href="/sales/">Trang chủ </a> </li>
-            <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Loại đồng hồ</a>
+            <li> <a href="/sales/" data-active="">Trang chủ </a> </li>
+            <li class="dropdown"> <a href="#." data-active="type" class="dropdown-toggle" data-toggle="dropdown">Loại đồng hồ</a>
               <ul class="dropdown-menu">
                 
                 <%itemsCategory.forEach((category) => {
@@ -38,7 +38,7 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
               </li>
               </ul>
             </li>
-            <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Thương hiệu</a>
+            <li class="dropdown"> <a href="#." data-active="brand" class="dropdown-toggle" data-toggle="dropdown">Thương hiệu</a>
               <ul class="dropdown-menu">
                 <% itemsBrand.forEach((category) => { %>  
                   <li>
@@ -46,10 +46,9 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
                   </li>
               <%})%>
               </ul>
-            </li>
-            <li> <a href="/sales/about">Giới thiệu </a> </li>
-            
-            <li> <a href="/sales/contact">Liên hệ</a> </li>
+            </li> 
+            <li> <a href="/sales/contact" data-active="contact" >Liên hệ</a> </li>
+            <li> <a href="/">Tin tức</a> </li>
           </ul>
         </div>
         
@@ -63,9 +62,12 @@ const linkPrefix = systemConfig.prefixSales + `/${controllerName}/`;
                 <li>
                   <h6>HELLO!!</h6>
                 </li>
-                <li><a href="sales/cart">MY CART</a></li>
+                <li><a href="sales/cart" >MY CART</a></li>
                 <li><a href="sales/orders-tracking">Order tracking</a></li>
-                <li><a href="#">LOG OUT</a></li>
+                <%- showMenuUser(userInfo) %>
+
+
+
               </ul>
             </li>
             

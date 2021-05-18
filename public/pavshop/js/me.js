@@ -24,8 +24,21 @@ function getCookie(name) {
     return decodeURI(dc.substring(begin + prefix.length, end));
 } 
 
+//active menu function
+function activeMenu() {
+    let pathname = window.location.pathname;
+    let arrMenu = pathname.split("/");
+    let currentMenu = arrMenu[2];
+    console.log(arrMenu);
+    console.log(currentMenu);
+    $('ul.nav > li > a[data-active="'+currentMenu+'"]').addClass('active');
+    // $('ul.navbar-nav > li > ul[data-active="'+currentMenu+'"]').addClass('active');
+
+}
+
 $(document).ready(function () {
 
+    activeMenu();
     // // Form blog contact
     $('form#contact_form').submit( async function(event) {
         link ='sales/contact/save';

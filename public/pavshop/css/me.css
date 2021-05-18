@@ -8,6 +8,15 @@
 
 }
 
+a.active {
+    
+
+    z-index: 1;
+    background: #bbbbb94d;
+    border-top-style: double;
+
+}
+
 .arrival-block .overlay {
     background: rgba(240,245,249,0.5);
 }
