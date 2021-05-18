@@ -6,6 +6,7 @@ var schema = new mongoose.Schema({
     email: String,
     phone: String,
     message: String,
+    subject: String,
     status: String,
     created: {
         time: Date

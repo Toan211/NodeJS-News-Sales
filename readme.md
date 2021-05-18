@@ -62,5 +62,13 @@ subcribe-- name email status time -- quản lý subcribe
 contact?
 slide
 
+about
+menu active
+highlight
+fix css
+
+
+
+
 
 

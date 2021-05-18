@@ -88,7 +88,8 @@
 						<td class="text-center position-relative">
 							<%- statusHelper(linkPrefix, item.status, item.id) %>
 						</td>
-						<td style="white-space: pre-wrap;" > <%- formatSummary2(item.message) %> ...</td>
+						<td style="white-space: pre-wrap;" >Subject: <%= item.subject %> 
+Message: <%- formatSummary2(item.message) %>...</td>
 						<td style="white-space: pre-wrap;" class="text-center">
 							<p class="mb-0 history-time"><i class="far fa-clock"></i> <%- moment(item.created.time).format(systemConfig.format_long_time) %></p>
 						</td>

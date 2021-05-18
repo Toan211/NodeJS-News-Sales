@@ -11,7 +11,7 @@ module.exports = {
     
         return MainModel
             .find(objWhere)
-            .select('name status email phone message created')
+            .select('name status email phone message subject created')
             .sort(sort)
             .skip((params.pagination.currentPage-1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
@@ -93,6 +93,7 @@ module.exports = {
 				name: item.name,
 				status: item.status,
 				phone: item.phone,
+                subject: item.subject,
 			});
         }
     }

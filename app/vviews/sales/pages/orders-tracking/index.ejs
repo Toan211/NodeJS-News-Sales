@@ -1,5 +1,6 @@
 <% include ./../../helpers/view-status %>
 <% include ./../../helpers/tracking %>
+<% include ./../../helpers/format-money %>
 
 <% 
   const folder_uploads = "uploads/products/"; 
@@ -33,7 +34,7 @@
                     <div class="col"> <strong>Họ và Tên:</strong> <br><%= item.user.first_name + ' ' + item.user.last_name %>, | <i class="fa fa-phone"></i> +<%= item.user.phone %> </div>
                     <div class="col"> <strong>Giao tới:</strong> <br> <%= item.user.address %> </div>
                     <div class="col"> <strong>Tình trạng:</strong> <br> <%= viewStatusHelper(systemConfig.orders_state_value, item.status) %> </div>
-                    <div class="col"> <strong>Tổng tiền:</strong> <br> <%= item.total %>đ  </div>
+                    <div class="col"> <strong>Tổng tiền:</strong> <br> <%= formatMoney(item.total) %>đ  </div>
                 </div>
             </article>
 
@@ -49,7 +50,7 @@
                     <figure class="itemside mb-3">
                         <div class="aside"><img src="<%= folder_uploads + product.avatar %>" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
-                            <p class="title"><%= product.name %><br>  Quantity: <%= product.quantity %></p> <span class="text-muted"><%= product.price %>đ </span>
+                            <p class="title"><%= product.name %><br>  Quantity: <%= product.quantity %></p> <span class="text-muted"><%= formatMoney(product.price) %>đ </span>
                         </figcaption>
                     </figure>
                 </li>

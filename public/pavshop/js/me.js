@@ -26,7 +26,41 @@ function getCookie(name) {
 
 $(document).ready(function () {
 
-    
+    // // Form blog contact
+    $('form#contact_form').submit( async function(event) {
+        link ='sales/contact/save';
+        var $inputName = $(' :input[name=name]');
+        var $inputEmail = $(':input[name=email]');
+        var $inputPhone = $(':input[name=phone]');
+        var $inputMessage = $(':input[name=message]');
+        var $inputSubject = $(':input[name=subject]');
+        
+        if(!$inputName.val() || !$inputEmail.val() || $inputPhone.val().length<=7 || !$inputMessage.val() || !$inputSubject.val() ) {
+            if(!$inputName.val()) {
+                $inputName.notify("Hãy nhập tên của bạn!", { position:"top", className: 'info' });
+            }
+            if(!$inputEmail.val()) {
+                $inputEmail.notify("Hãy nhập địa chỉ email của bạn!", { position:"top", className: 'info' });
+            }
+            if($inputPhone.val().length <= 7) {
+                $inputPhone.notify("Số điện thoại phải từ 7 số trở lên!", { position:"top", className: 'info' });
+            }
+            if(!$inputSubject.val()) {
+                $inputSubject.notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });
+            }
+            if(!$inputMessage.val()) {
+                $inputMessage.notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });
+            }
+            console.log('false submit');
+            event.preventDefault();
+            return false;
+        } else {
+            window.location.href = link;
+            
+        }
+    });
+
+
     // // Form checkout contact
     $('form#checkout-form').submit( async function(event) {
         link ='/sales/checkout/save';

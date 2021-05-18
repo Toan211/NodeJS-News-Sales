@@ -57,8 +57,9 @@ $(document).ready(function () {
         var $inputEmail = $('#blog_contact_form :input[name=email]');
         var $inputPhone = $('#blog_contact_form :input[name=phone]');
         var $inputMessage = $('#blog_contact_form :input[name=message]');
+        var $inputSubject = $('#blog_contact_form :input[name=subject]');
         
-        if(!$inputName.val() || !$inputEmail.val() || !$inputPhone.val() || !$inputMessage.val()) {
+        if(!$inputName.val() || !$inputEmail.val() || !$inputPhone.val() || !$inputMessage.val() || !$inputSubject.val() ) {
             if(!$inputName.val()) {
                 $('#blog_contact_form :input[name=name]').notify("Hãy nhập tên của bạn!", { position:"top", className: 'info' });
             }
@@ -67,6 +68,9 @@ $(document).ready(function () {
             }
             if(!$inputPhone.val()) {
                 $('#blog_contact_form :input[name=phone]').notify("Hãy nhập số điện thoại của bạn", { position:"top", className: 'info' });
+            }
+            if(!$inputSubject.val()) {
+                $('#blog_contact_form :input[name=subject]').notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });
             }
             if(!$inputMessage.val()) {
                 $('#blog_contact_form :input[name=message]').notify("Hãy nhập nội dung bạn muốn gửi!", { position:"top", className: 'info' });

@@ -6,7 +6,8 @@ const options = {
     email: { min: 5, max: 100 },
     status: { value: 'allValue' },
     phone: {  min: 5, max: 20 },
-    message: { min: 1, max: 50000 }
+    subject: { min: 1, max: 50 },
+    message: { min: 1, max: 50000 },
 }
 
 module.exports = {
@@ -27,6 +28,9 @@ module.exports = {
         // Phone
         req.checkBody('phone', util.format(notify.ERROR_NAME, options.phone.min, options.phone.max) )
         .isLength({ min: options.phone.min, max: options.phone.max })
+
+        req.checkBody('subject', util.format(notify.ERROR_NAME, options.subject.min, options.subject.max) )
+        .isLength({ min: options.subject.min, max: options.subject.max })
 
         // Message
         req.checkBody('message', util.format(notify.ERROR_NAME, options.message.min, options.message.max) )
