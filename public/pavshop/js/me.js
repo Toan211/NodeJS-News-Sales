@@ -361,18 +361,20 @@ function filterPrice() {
 
     let path = window.location.pathname;
     let arrMenu = path.split("/");
-    console.log(arrMenu);
+    console.log(" link filter: "+ arrMenu);
   
     var $d5 = $("#rang");
     var v = $d5.prop("value");
     var from = $d5.data("from");   // input data-from attribute
     var to = $d5.data("to");
     
-    if (arrMenu.length > 3 && arrMenu[3] != 'giam-gia')
+    if (arrMenu.length > 3)
     {
-        console.log(arrMenu);
+        console.log(" link filter1: "+arrMenu);
         var linkRedirect = 'sales/type/filter/' + arrMenu[3] + '&gia=' + from + '-' + to;
-    }else{
+    }else
+    {
+        console.log(" link filter2: "+arrMenu);
         var linkRedirect = 'sales/type/filter/gia=' + from + '-' + to;
     }
     

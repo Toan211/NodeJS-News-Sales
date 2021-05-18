@@ -134,9 +134,10 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 			idCategory = items[0].id; 
 			banner.name = items[0].name;
 			banner.avatar = "uploads/types/" + items[0].avatar;});
-		
+		console.log("router type");
 		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice, id: idCategory}, {task: 'filter-price-items'}).then( (items) => {itemsInCategory = items;});
 	} else if(slugCategory == 'giam-gia'){
+		console.log("router giam gia");
 		banner.name = 'Giảm giá';
 		banner.avatar = 'uploads/types/sale.jpg';
 		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice}, {task: 'filter-price-discounts'}).then( (items) => {itemsInCategory = items;});
@@ -144,6 +145,7 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 	} else {
 		banner.name = 'tất cả đồng hồ';
 		banner.avatar = 'uploads/types/Influential-Watches.jpg';
+		console.log("router all");
 		await ProductModel.listItemsFrontend({min: minPrice, max: maxPrice}, {task: 'filter-price'}).then( (items) => {itemsInCategory = items;});
 	}
 
@@ -160,6 +162,7 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 		itemsInCategory,
 		itemsRandom,
 		banner,
+		params,
 		titleHeader: "lọc giá - PAVSHOP" ,
 	});
   });

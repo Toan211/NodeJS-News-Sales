@@ -119,7 +119,7 @@ module.exports = {
         }
 
         if(options.task == 'filter-price-discounts'){
-            find = {status:'active', 'price': {$gt : params.min, $lt : params.max, }, discount: {$gte: 10},  'group.id': params.id};
+            find = {status:'active', 'price': {$gt : params.min, $lt : params.max, }, discount: {$gte: 10}};
             limit = 50;
             sort = {ordering: 'asc'};
         }
