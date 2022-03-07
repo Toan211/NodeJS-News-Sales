@@ -190,3 +190,18 @@ validate
 backend css
 banner?
 gg map
+
+
+filter
+-selector problem: how to get the value(or the text)
+get the href link current addrress
+if the selector 1 not empty " ", then + into ad field
+
+min max filter: lowest value- highest value
+
+
+gg map
+contact
+pagination
+login/admin
+notify

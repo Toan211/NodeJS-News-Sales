@@ -1,7 +1,7 @@
 <% include ./../../helpers/format-date %>
 <% include ./../../helpers/format-summary %>
 <% include ./../../helpers/format-money %>
-
+<% include ./../../helpers/highlight %>
 <%
     const folder_uploads = 'uploads/products/';
 %>
@@ -64,7 +64,7 @@
                     </div>
                   </div>
                   <!-- Item Name -->
-                  <div class="item-name"> <a href="sales/product/<%= item.slug %>"><%= item.name %></a>
+                  <div class="item-name"> <a href="sales/product/<%= item.slug %>"><%- highlightHelper(item.name, params.keyword) %></a>
                   
                   </div>
                   <!-- Price --> 

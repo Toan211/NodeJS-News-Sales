@@ -173,7 +173,7 @@ $(document).ready(function () {
         if (Number(quantity) < 1 ) {
             $(document).trigger("set-alert-id-notify_cart", [
                 {
-                    "message": "Please choose amount right !!!",
+                    "message": "Số không hợp lệ  !!!",
                     "priority": "info"
                 }
             ]);
@@ -186,7 +186,7 @@ $(document).ready(function () {
                 type: 'post',
                 data:$('form').serialize(),
                 success:function(data){
-                    $('.ps-cart__toggle').append(`<span style="width: 20px;" ><i>${data.length}</i></span>`);
+                    $('.ps-cart__toggle').append(`<span style="width: 20px;"><i style="font-size: 1.4rem;">${data.length}</i></span>`);
                     console.log(data);
                     let total = 0;
                     let numberItems = 0;
@@ -240,7 +240,7 @@ $(document).ready(function () {
     if (typeof $.cookie('cart') !== 'undefined'){
         let data = JSON.parse($.cookie('cart').slice(2));
         
-        $('.ps-cart__toggle').append(`<span style="width: 20px;" ><i>${data.length}</i></span>`);
+        $('.ps-cart__toggle').append(`<span style="width: 20px;"><i style="font-size: 1.4rem;">${data.length}</i></span>`);
                     
                     let total = 0;
                     let numberItems = 0;

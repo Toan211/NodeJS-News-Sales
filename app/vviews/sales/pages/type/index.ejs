@@ -17,24 +17,28 @@
             <div class="item-display">
               <div class="row"> 
                 <!-- Products Select -->
+
+                
                 <div class="col-xs-6">
                   <div class="pull-left"> 
                     
                     <!-- Short By -->
                     <select class="selectpicker" >
                       <option value="" disabled selected hidden>By type</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
+                      <% itemsCategory.forEach((category) => { %>
+                        <option><%= category.name %></option><%})%>
                     </select>
                     <!-- Filter By -->
                     <select class="selectpicker">
                       <option value="" disabled selected hidden>By brand</option>
-                      <option>Short By</option>
-                      <option>Short By</option>
+                      <% itemsBrand.forEach((category) => { %>
+                      <option><%= category.name %></option><%})%>
                     </select>
+
+                    <a href="" class="grid-style"><i class="icon-arrow-right"></i></a>
+                    <!-- <button class=" grid-style">abc</button> -->
                     
-                    <!-- GRID & LIST --> 
-                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
+                  </div>
                 </div>
                 <div class="col-xs-6 text-right"> <span class="product-num">  </span> </div>
               </div>

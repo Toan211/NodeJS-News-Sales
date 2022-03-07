@@ -22,17 +22,26 @@
               
               <!-- Place somewhere in the <body> of your page -->
               <div id="slider-shop" class="flexslider">
-                <ul class="slides">
+                <ul class="slides" >
                   <% itemArticle.avatar.forEach((ava) => { %>
                     <li> <img class="img-responsive" src="<%= folder_uploads + ava %>" alt="<%= itemArticle.name %>"> </li>
                   <% }) %> 
                 </ul>
               </div>
               <div id="shop-thum" class="flexslider">
-                <ul class="slides">
-                  <% itemArticle.avatar.forEach((ava) => { %>
-                    <li style="display: flex;width: 210px;float: left;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + ava %>" alt="<%= itemArticle.name %>"> </li>
-                  <% }) %> 
+                <ul class="slides" style="display: flex;">
+                  <%= //JSON.stringify(itemArticle.avatar.length) %>
+                  <% if(itemArticle.avatar.length>3){  %>
+                    <%  for (let i = 0; i < 3; i++) { %>
+                      <li style="display: block;width: 210px;height: 214px;object-fit: cover; margin-right: 3px;">
+                         <img class="img-responsive" src="<%= folder_uploads + itemArticle.avatar[i] %>" alt="<%= itemArticle.name %>"> </li>
+                    <%}} else {  %>
+                      <% itemArticle.avatar.forEach((ava) => { %>
+                        <li style="display: block;width: 210px;height: 214px;object-fit: cover; margin-right: 3px;"> <img class="img-responsive" src="<%= folder_uploads + ava %>" alt="<%= itemArticle.name %>"> </li>
+                      <% }) %>
+                    <% }%>  
+
+                  
                 </ul>
               </div>
             </div>
@@ -69,7 +78,7 @@
                 <!-- Short By -->
                 <div class="some-info">
                   <ul class="row margin-top-30">
-                    <li class="col-xs-6">
+                    <li class="col-xs-4">
                       <div class="quinty"> 
                         <!-- QTY -->
                         <h6>Số lượng:</h6>
@@ -79,28 +88,16 @@
                         <span data-alertid="notify_cart"></span>
                       </div>
                     </li>
-                    <input class="form-control" name="id" value="<%= itemArticle.id %>" >
-                    <input class="form-control" name="slug" value="<%= itemArticle.slug %>" >
-                    
-                    
-                    <!-- COLORS -->
-                    <li class="col-xs-8">
-                      <ul class="colors-shop">
-                        <li><span class="margin-right-20">Colors</span></li>
-                        <li><a href="#." style="background:#958170;"></a></li>
-                        <li><a href="#." style="background:#c9a688;"></a></li>
-                        <li><a href="#." style="background:#c9c288;"></a></li>
-                        
-                      </ul>
-                    </li>
+                    <input class="form-control" name="id" value="<%= itemArticle.id %>" type="hidden">
+                    <input class="form-control" name="slug" value="<%= itemArticle.slug %>" type="hidden">
                     
                     <!-- ADD TO CART -->
-                    <li class="col-xs-6">
+                    <li class="col-xs-6" style="margin-top: 40px;">
                        <button class="ps-btn mb-10 btn">Add to cart<i class="ps-icon-next"></i></button>
                       </li>
                     
                     <!-- LIKE -->
-                    <li class="col-xs-6"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
+                    <li class="col-xs-1" style="margin-top: 50px;"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
                   </ul>
                   
                   <!-- INFOMATION -->

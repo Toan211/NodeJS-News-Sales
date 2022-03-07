@@ -126,7 +126,7 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 		slug: '',
 		avatar: '',
 	}
-	
+	let max, min;
 	console.log(slugCategory);
 	let itemsInCategory = [];
 
@@ -151,6 +151,10 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 
 	await ProductModel.listItemsFrontend(null, {task: 'items-random'} ).then( (items) => {itemsRandom = items; });
 
+	await ProductModel.comparisonItems(null, {task:'max-value'}).then((values)=> {max = values[0].price;});
+	
+	await ProductModel.comparisonItems(null, {task:'min-value'}).then((values)=> {min = values[0].price;});
+
 	res.render(`${folderView}index`, { 
 	  
 	  layout: layoutBlog,
@@ -163,8 +167,11 @@ router.get('/filter/(:slug&)?gia=:min-:max', async (req, res, next) => {
 		itemsRandom,
 		banner,
 		params,
+		min, max,
 		titleHeader: "lọc giá - PAVSHOP",
 	});
   });
 
   module.exports = router;
+
+  

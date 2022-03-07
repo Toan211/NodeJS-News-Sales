@@ -569,7 +569,7 @@ header .sticky {
 	position: absolute;
 	right: 65px;
 	margin-top: 0px;
-	top: -8px;
+	top: 18px;
 }
 header .navbar .nav li.dropdown:before {
 	content: "\f105";
@@ -635,6 +635,11 @@ header .navbar {
 }
 header .navbar li a {
 }
+
+header .navbar li .ps-cart-item__close {
+	width: 11%;
+} 
+
 .top-right ul li {
 	float: none;
 }
@@ -908,7 +913,7 @@ header .navbar {
 .navbar-toggle {
 	display: inline-block;
 	position: absolute;
-	top: -3px;
+	top: 22px;
 	right: 15px;
 	padding: 0px;
 	margin: 0px;
@@ -1081,7 +1086,7 @@ header .logo {
 }
 .nav-right {
 	position: absolute;
-	top: 40px;
+	top: 65px;
 	left: 0px;
 	float: left;
 }
@@ -1129,7 +1134,7 @@ header .sticky {
 
 }
 .special-offers .extra-huge-text{
-	font-size:50px;
+	font-size:5rem;
 	line-height:50px;
 }
 .header-2 .nav-right{
