@@ -143,14 +143,14 @@ module.exports = {
             //select = 'name created.user_name created.time group.id group.name avatar content price';
             find = {status:'active', '_id': {$ne: params._id}, 'group.id': params.group.id};
             sort = {'created.time': 'desc'};
-            limit = 3;
+            limit = 4;
         }
 
         if (options.task == 'items-others-brand'){
             //select = 'name created.user_name created.time group.id group.name avatar content price';
             find = {status:'active', '_id': {$ne: params._id}, 'brand.id': params.brand.id};
             sort = {'created.time': 'desc'};
-            limit = 3;
+            limit = 4;
         }
 
         if(options.task == 'items-search'){
