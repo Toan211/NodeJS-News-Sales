@@ -36,13 +36,13 @@ router.get('/', async (req, res, next) => {
 	feed = await RssParser.parseURL('https://vnexpress.net/rss/the-thao.rss');
 	FeedItems = feed.items;
 
-	//goid xml
-	let GoldXML = 'https://www.sjc.com.vn/xml/tygiavang.xml';
-	await UrlHelpers.xmlToJson(GoldXML, (err, goid) => {
-		if(err){
-			return console.err(err);
-		}
-		GoldItems = goid.root.ratelist[0].city[0].item;
+	//goid xml (bug)
+	// let GoldXML = 'https://www.sjc.com.vn/xml/tygiavang.xml';
+	// await UrlHelpers.xmlToJson(GoldXML, (err, goid) => {
+	// 	if(err){
+	// 		return console.err(err);
+	// 	}
+	// 	GoldItems = goid.root.ratelist[0].city[0].item;
 
 		//coin api
 		rp(requestOptions).then(response => {
@@ -64,7 +64,7 @@ router.get('/', async (req, res, next) => {
 		  });
 
 		});
-	});
+	// });
 	
 // 	feed.items.forEach(item => {
 // 		console.log(item.title);
