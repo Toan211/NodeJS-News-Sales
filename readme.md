@@ -1,4 +1,4 @@
-this project has yet completed, dont bother
+this project has yet completed
 
 node modules has already been installed, so no need to npm install
 
